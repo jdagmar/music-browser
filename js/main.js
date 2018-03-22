@@ -16,14 +16,21 @@ const Api = {
 const View = {
     displayArtists(artists){
         const listAllArtist = artists.map(artist => {
-            const artistItem = document.createElement('p');
-            const artistName = document.createTextNode(artist.name);
-            artistItem.appendChild(artistName);
-            return artistItem;
-        });
+            const artistContainer = document.querySelector('.artist-container-template').cloneNode(true);
+            artistContainer.classList.remove('artist-container-template');
 
-        const artistsList = document.getElementById('all-artists');
-        listAllArtist.forEach(artistItem => artistsList.appendChild(artistItem));
+            const artistImage = artistContainer.querySelector('.artist-image');
+            artistImage.src = artist.image || artist.coverImage;
+            artistImage.alt = artist.name;
+
+            const artistImageCaption = artistContainer.querySelector('.artist-image-caption');
+            artistImageCaption.innerHTML = artist.name;
+            
+            return artistContainer;
+        });
+        const artistList = document.getElementById('all-artists');
+        artistList.innerHTML = '';
+        listAllArtist.forEach(artistContainer => artistList.appendChild(artistContainer));
     },
     displayAlbums(albums){
         const listAllAlbums = albums.map(album => {
