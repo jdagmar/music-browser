@@ -2,6 +2,7 @@ const Api = {
     getArtists: () => Api.get('artists'),
     getAlbums: () => Api.get('albums'),
     getTracks: () => Api.get('tracks'),
+    getPlaylists: () => Api.get('playlists'),
     get(type){
         return fetch(`https://folksa.ga/api/${type}?key=flat_eric`)
             .then(response => response.json())
@@ -45,9 +46,21 @@ const View = {
 
         const trackList = document.getElementById('all-tracks');
         listAllTracks.forEach(trackItem => trackList.appendChild(trackItem));
+    },
+    displayPlaylists(playlists){
+        const listAllPlaylists = playlists.map(playlist => {
+            const playlistItem = document.createElement('p');
+            const playlistName = document.createTextNode(playlist.title);
+            playlistItem.appendChild(playlistName);
+            return playlistItem;
+        });
+
+        const playlistList = document.getElementById('all-playlists');
+        listAllPlaylists.forEach(playlistItem => playlistList.appendChild(playlistItem));
     }
 }
 
 Api.getArtists().then(artists => View.displayArtists(artists));
 Api.getAlbums().then(albums => View.displayAlbums(albums));
 Api.getTracks().then(tracks => View.displayTracks(tracks));
+Api.getPlaylists().then(playlists => View.displayPlaylists(playlists));
