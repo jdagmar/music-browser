@@ -105,7 +105,8 @@ const View = {
 
 const navLinks = document.querySelectorAll('#nav [data-view]');
 console.log(navLinks);
-navLinks.forEach(link => link.addEventListener('click', () => View.switchView(link.getAttribute('data-view'))));
+navLinks.forEach(link => 
+    link.addEventListener('click', () => View.switchView(link.getAttribute('data-view'))));
 
 Api.getArtists().then(artists => View.displayArtists(artists));
 Api.getAlbums().then(albums => View.displayAlbums(albums));
