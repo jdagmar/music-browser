@@ -34,14 +34,22 @@ const View = {
     },
     displayAlbums(albums){
         const listAllAlbums = albums.map(album => {
-            const albumItem = document.createElement('p');
-            const albumName = document.createTextNode(album.title);
-            albumItem.appendChild(albumName);
-            return albumItem;
+            const albumContainer = document.querySelector('.album-container-template').cloneNode(true);
+            albumContainer.classList.remove('album-container-template');
+
+            const albumImage = albumContainer.querySelector('.album-image');
+            albumImage.src = album.image || album.coverImage;
+            albumImage.alt = album.title;
+
+            const albumImageCaption = albumContainer.querySelector('.album-image-caption');
+            albumImageCaption.innerHTML = album.title;
+            
+            return albumContainer;
         });
 
         const albumList = document.getElementById('all-albums');
-        listAllAlbums.forEach(albumItem => albumList.appendChild(albumItem));
+        albumList.innerHTML = '';
+        listAllAlbums.forEach(albumContainer => albumList.appendChild(albumContainer));
     },
     displayTracks(tracks){
         const listAllTracks = tracks.map(track => {

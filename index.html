@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,27 +10,37 @@
     <link href="css/style.css" rel="stylesheet">
     <title>Music browser</title>
 </head>
+
 <body>
     <header class="bg-grey-light">
         <h1>Music browser</h1>
     </header>
     <main>
         <div id="all-artists">
-            <figure class="artist-container-template"> 
+            <figure class="artist-container-template w-16">
                 <!-- artist image renders here -->
-                <img class="artist-image"/>
+                <img class="artist-image" />
                 <figcaption class="artist-image-caption">
                     <!-- artist name renders here -->
                 </figcaption>
             </figure>
         </div>
-        <div id="all-albums"></div>
+        <div id="all-albums">
+            <figure class="album-container-template w-16">
+                <!-- album image renders here -->
+                <img class="album-image" />
+                <figcaption class="album-image-caption">
+                    <!-- album title renders here -->
+                </figcaption>
+            </figure>
+        </div>
         <div id="all-tracks"></div>
         <div id="all-playlists"></div>
     </main>
     <footer>
-        
+
     </footer>
     <script src="js/main.js"></script>
 </body>
+
 </html>
