@@ -3,7 +3,7 @@ const Api = {
     getAlbums: () => Api.get('albums'),
     getTracks: () => Api.get('tracks'),
     getPlaylists: () => Api.get('playlists'),
-    get(type){
+    get(type) {
         return fetch(`https://folksa.ga/api/${type}?key=flat_eric`)
             .then(response => response.json())
             .catch(error => {
@@ -14,7 +14,7 @@ const Api = {
 }
 
 const View = {
-    displayArtists(artists){
+    displayArtists(artists) {
         const listAllArtist = artists.map(artist => {
             const artistContainer = document.querySelector('.artist-container-template').cloneNode(true);
             artistContainer.classList.remove('artist-container-template');
@@ -25,14 +25,14 @@ const View = {
 
             const artistImageCaption = artistContainer.querySelector('.artist-image-caption');
             artistImageCaption.innerHTML = artist.name;
-            
+
             return artistContainer;
         });
         const artistList = document.getElementById('all-artists');
         artistList.innerHTML = '';
         listAllArtist.forEach(artistContainer => artistList.appendChild(artistContainer));
     },
-    displayAlbums(albums){
+    displayAlbums(albums) {
         const listAllAlbums = albums.map(album => {
             const albumContainer = document.querySelector('.album-container-template').cloneNode(true);
             albumContainer.classList.remove('album-container-template');
@@ -43,7 +43,7 @@ const View = {
 
             const albumImageCaption = albumContainer.querySelector('.album-image-caption');
             albumImageCaption.innerHTML = album.title;
-            
+
             return albumContainer;
         });
 
@@ -51,12 +51,12 @@ const View = {
         albumList.innerHTML = '';
         listAllAlbums.forEach(albumContainer => albumList.appendChild(albumContainer));
     },
-    displayTracks(tracks){
+    displayTracks(tracks) {
         const listAllTracks = tracks.map(track => {
             const trackItem = document.querySelector('.track-item-template').cloneNode(true);
             trackItem.classList.remove('track-item-template');
             trackItem.innerHTML = `${track.title} by ${track.artists.map(artist => artist.name).join(', ')}`;
-            
+
             return trackItem;
         });
 
@@ -64,7 +64,7 @@ const View = {
         trackList.innerHTML = '';
         listAllTracks.forEach(trackItem => trackList.appendChild(trackItem));
     },
-    displayPlaylists(playlists){
+    displayPlaylists(playlists) {
         const listAllPlaylists = playlists.map(playlist => {
             const playlistItem = document.querySelector('.playlist-container-template').cloneNode(true);
             playlistItem.classList.remove('playlist-container-template');
@@ -72,21 +72,40 @@ const View = {
             playlistTitle.innerHTML = playlist.title;
 
             const playlistContainer = playlistItem.querySelector('.playlist');
-          
+
             playlist.tracks.map(track => {
                 const playlistTrack = playlistItem.querySelector('.playlist-item').cloneNode(true);
                 playlistTrack.innerHTML = track.title;
                 return playlistTrack;
             }).forEach(li => playlistContainer.appendChild(li));
-        
+
             return playlistItem;
         });
 
         const playlistList = document.getElementById('all-playlists');
         playlistList.innerHTML = '';
         listAllPlaylists.forEach(playlistItem => playlistList.appendChild(playlistItem));
+    },
+    switchView(currentView) {
+        const views = [
+            'main-view',
+            'all-artists',
+            'all-albums',
+            'all-tracks',
+            'all-playlists'
+        ];
+
+        views.filter(view => view !== currentView)
+            .forEach(view =>
+                 document.getElementById(view).classList.add('hidden'));
+
+        document.getElementById(currentView).classList.remove('hidden');
     }
 }
+
+const navLinks = document.querySelectorAll('#nav [data-view]');
+console.log(navLinks);
+navLinks.forEach(link => link.addEventListener('click', () => View.switchView(link.getAttribute('data-view'))));
 
 Api.getArtists().then(artists => View.displayArtists(artists));
 Api.getAlbums().then(albums => View.displayAlbums(albums));

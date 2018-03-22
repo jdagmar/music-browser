@@ -16,7 +16,19 @@
         <h1>Music browser</h1>
     </header>
     <main>
-        <div id="all-artists">
+        <nav id="nav">
+            <ul class="p-0">
+                <li id="artist-view-link" class="list-reset inline-block" data-view="main-view">Home</li>
+                <li id="artist-view-link" class="list-reset inline-block" data-view="all-artists">Artists</li>
+                <li id="album-view-link" class="list-reset inline-block" data-view="all-albums">Albums</li>
+                <li id="tracks-view-link" class="list-reset inline-block" data-view="all-tracks">Tracks</li>
+                <li id="playlists-view-link" class="list-reset inline-block" data-view="all-playlists">Playlists</li>
+            </ul>
+        </nav>
+        <div id="main-view">
+            <h2>HEJ</h2>
+        </div>
+        <div id="all-artists" class="hidden">
             <figure class="artist-container-template w-16">
                 <!-- artist image renders here -->
                 <img class="artist-image" />
@@ -25,7 +37,7 @@
                 </figcaption>
             </figure>
         </div>
-        <div id="all-albums">
+        <div id="all-albums" class="hidden">
             <figure class="album-container-template w-16">
                 <!-- album image renders here -->
                 <img class="album-image" />
@@ -34,14 +46,14 @@
                 </figcaption>
             </figure>
         </div>
-        <div id="all-tracks">
+        <div id="all-tracks" class="hidden">
             <ul id="track-list" class="p-0">
                 <li class="track-item-template list-reset border-b border-solid">
                     <!-- each track renders here -->
                 </li>
             </ul>
         </div>
-        <div id="all-playlists">
+        <div id="all-playlists" class="hidden">
             <section class="playlist-container-template">
                 <h2 class="playlist-title"></h2>
                 <ul class="playlist p-0">
