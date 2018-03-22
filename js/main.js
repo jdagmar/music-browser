@@ -53,13 +53,16 @@ const View = {
     },
     displayTracks(tracks){
         const listAllTracks = tracks.map(track => {
-            const trackItem = document.createElement('p');
-            const trackName = document.createTextNode(track.title);
-            trackItem.appendChild(trackName);
+            const trackItem = document.querySelector('.track-item-template').cloneNode(true);
+            trackItem.classList.remove('.track-item-template');
+
+            trackItem.innerHTML = `${track.title} by ${track.artists.map(artist => artist.name).join(', ')}`;
+            
             return trackItem;
         });
 
-        const trackList = document.getElementById('all-tracks');
+        const trackList = document.getElementById('track-list');
+        trackList.innerHTML = '';
         listAllTracks.forEach(trackItem => trackList.appendChild(trackItem));
     },
     displayPlaylists(playlists){
