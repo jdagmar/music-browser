@@ -54,8 +54,7 @@ const View = {
     displayTracks(tracks){
         const listAllTracks = tracks.map(track => {
             const trackItem = document.querySelector('.track-item-template').cloneNode(true);
-            trackItem.classList.remove('.track-item-template');
-
+            trackItem.classList.remove('track-item-template');
             trackItem.innerHTML = `${track.title} by ${track.artists.map(artist => artist.name).join(', ')}`;
             
             return trackItem;
@@ -67,13 +66,24 @@ const View = {
     },
     displayPlaylists(playlists){
         const listAllPlaylists = playlists.map(playlist => {
-            const playlistItem = document.createElement('p');
-            const playlistName = document.createTextNode(playlist.title);
-            playlistItem.appendChild(playlistName);
+            const playlistItem = document.querySelector('.playlist-container-template').cloneNode(true);
+            playlistItem.classList.remove('playlist-container-template');
+            const playlistTitle = playlistItem.querySelector('.playlist-title');
+            playlistTitle.innerHTML = playlist.title;
+
+            const playlistContainer = playlistItem.querySelector('.playlist');
+          
+            playlist.tracks.map(track => {
+                const playlistTrack = playlistItem.querySelector('.playlist-item').cloneNode(true);
+                playlistTrack.innerHTML = track.title;
+                return playlistTrack;
+            }).forEach(li => playlistContainer.appendChild(li));
+        
             return playlistItem;
         });
 
         const playlistList = document.getElementById('all-playlists');
+        playlistList.innerHTML = '';
         listAllPlaylists.forEach(playlistItem => playlistList.appendChild(playlistItem));
     }
 }
