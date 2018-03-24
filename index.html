@@ -56,8 +56,8 @@
             <ul id="track-list" class="p-0">
                 <li class="track-item-template list-reset flex justify-between">
                     <div class="flex justify-between w-1/2">
-                    <span class="track-title"></span>
-                    <span class="track-artist"></span>
+                        <span class="track-title"></span>
+                        <span class="track-artist"></span>
                     </div>
                     <div>
                         <button>
@@ -70,12 +70,32 @@
                 </li>
             </ul>
         </div>
-        <div id="all-playlists" class="hidden">
-            <section class="playlist-container-template">
-                <h2 class="playlist-title"></h2>
-                <ul class="playlist p-0">
-                    <li class="playlist-item list-reset"></li>
-                </ul>
+        <div id="all-playlists" class="hidden max-w-2xl m-auto">
+            <section class="playlist-container-template flex border border-solid p-2 w-4/5 m-auto">
+                <div class="w-1/2">
+                    <div class="flex justify-between m-2">
+                        <h2 class="playlist-title"></h2>
+                        <div>
+                            <button>
+                                <img class="w-8 align-middle" src="images/007__close.svg" />
+                            </button>
+                            <button>
+                                <img class="w-8 align-middle" src="images/147__heart.svg" />
+                            </button>
+                        </div>
+                    </div>
+                    <ul class="playlist p-0">
+                        <li class="playlist-item list-reset m-2"></li>
+                    </ul>
+                </div>
+                <div class="w-1/2 m-2">
+                    <h2 class="mb-2">Comments</h2>
+                    <form>
+                        <label for="comment"></label>
+                        <textarea class="border border-solid w-full" id="comment" rows="4" cols="60" ></textarea>
+                        <input class="border border-solid w-full" type="submit" value="comment" />
+                    </form>
+                </div>
             </section>
         </div>
     </main>
