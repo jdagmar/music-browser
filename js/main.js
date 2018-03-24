@@ -28,7 +28,7 @@ const View = {
 
             return artistContainer;
         });
-        const artistList = document.getElementById('all-artists');
+        const artistList = document.getElementById('artist-list');
         artistList.innerHTML = '';
         listAllArtist.forEach(artistContainer => artistList.appendChild(artistContainer));
     },

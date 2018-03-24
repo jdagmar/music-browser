@@ -34,14 +34,33 @@
         <div id="main-view">
             <h2></h2>
         </div>
-        <div id="all-artists" class="hidden">
-            <figure class="artist-container-template w-16 inline-block">
-                <!-- artist image renders here -->
-                <img class="artist-image" />
-                <figcaption class="artist-image-caption">
-                    <!-- artist name renders here -->
-                </figcaption>
-            </figure>
+        <div id="all-artists" class="hidden max-w-2xl m-auto">
+            <section id="artist-list">
+                <figure class="artist-container-template w-16 inline-block">
+                    <!-- artist image renders here -->
+                    <img class="artist-image" />
+                    <figcaption class="artist-image-caption">
+                        <!-- artist name renders here -->
+                    </figcaption>
+                </figure>
+            </section>
+            <section class="mt-8">
+                <form class="w-64">
+                    <legend class="text-xl">Add a new artist</legend>
+                    <label for="name">Name (mandatory)</label>
+                    <input id="name" class="border border-solid block w-full mb-2" type="text"/>
+                    <label for="born">Birthdate</label>
+                    <input id="born" class="border border-solid block w-full mb-2" type="text"/>
+                    <label for="genres">Genre(s) sh/e is active in</label>
+                    <input id="genres" class="border border-solid block w-full mb-2" type="text"/>
+                    <label for="country">Country of origin</label>
+                    <input id="country"  class="border border-solid block w-full mb-2" type="text"/>
+                    <label for="spotify">Link to artist spotify</label>
+                    <input id="spotify" class="border border-solid block w-full mb-2" type="text"/>
+                    <label for="image">Image (url)</label>
+                    <input id="image" class="border border-solid block w-full mb-2" type="text"/>
+                </form>
+            </section>
         </div>
         <div id="all-albums" class="hidden">
             <figure class="album-container-template w-16">
@@ -92,7 +111,7 @@
                     <h2 class="mb-2">Comments</h2>
                     <form>
                         <label for="comment"></label>
-                        <textarea class="border border-solid w-full" id="comment" rows="4" cols="60" ></textarea>
+                        <textarea class="border border-solid w-full" id="comment" rows="4" cols="60"></textarea>
                         <input class="border border-solid w-full" type="submit" value="comment" />
                     </form>
                 </div>
