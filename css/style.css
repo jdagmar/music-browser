@@ -5,3 +5,7 @@ h1, h2, h3 {
 p, #artist-view-link {
     font-family: 'Roboto';
 }
+
+.w-128 {
+    width: 32rem;
+}
