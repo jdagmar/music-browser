@@ -3,6 +3,7 @@ const Api = {
     getAlbums: () => Api.get('albums'),
     getTracks: () => Api.get('tracks'),
     getPlaylists: () => Api.get('playlists'),
+    getComments: () => Api.get('comments'),
     get(type) {
         return fetch(`https://folksa.ga/api/${type}?key=flat_eric`)
             .then(response => response.json())
@@ -59,7 +60,7 @@ const View = {
             const trackTitle = trackItem.querySelector('.track-title');
             const trackArtist = trackItem.querySelector('.track-artist');
 
-            trackTitle.innerHTML = track.title; 
+            trackTitle.innerHTML = track.title;
             trackArtist.innerHTML = track.artists.map(artist => artist.name).join(', ');
 
             return trackItem;
@@ -73,9 +74,11 @@ const View = {
         const listAllPlaylists = playlists.map(playlist => {
             const playlistItem = document.querySelector('.playlist-container-template').cloneNode(true);
             playlistItem.classList.remove('playlist-container-template');
+            const playlistCover = playlistItem.querySelector('.playlist-cover');
+            playlistCover.src = playlist.coverImage;
+            playlistCover.alt = `Coverimage for the playlist ${playlist.title}`;
             const playlistTitle = playlistItem.querySelector('.playlist-title');
             playlistTitle.innerHTML = playlist.title;
-
             const playlistContainer = playlistItem.querySelector('.playlist');
 
             playlist.tracks.map(track => {
@@ -102,18 +105,38 @@ const View = {
 
         views.filter(view => view !== currentView)
             .forEach(view =>
-                 document.getElementById(view).classList.add('hidden'));
+                document.getElementById(view).classList.add('hidden'));
 
         document.getElementById(currentView).classList.remove('hidden');
-    }
+    },
+    // displayComments(comments) {
+    //     const listAllComments = comment.map(comments => {
+    //         const commentItem = document.querySelector('.comment-item');
+    //         const username = commentItem.querySelector('.username');
+    //         username.innerHTML = comments.username;
+    //         const commentText = commentItem.querySelector('.comment-text');
+    //         commentText.innerHTML = comments._id;
+
+    //         comments.ids.map(id => {
+                
+    //             return id;
+    //         }).forEach(li => commentField.appendChild(li));
+
+    //         return comment;
+    //     });
+
+    //     const commentField = document.getElementById('comment-field');
+    //     commentField = '';
+    //     listAllComments.forEach(comment => commentField.appendChild(comment));
+    // }
 }
 
 const navLinks = document.querySelectorAll('#nav [data-view]');
-console.log(navLinks);
-navLinks.forEach(link => 
+navLinks.forEach(link =>
     link.addEventListener('click', () => View.switchView(link.getAttribute('data-view'))));
 
 Api.getArtists().then(artists => View.displayArtists(artists));
 Api.getAlbums().then(albums => View.displayAlbums(albums));
 Api.getTracks().then(tracks => View.displayTracks(tracks));
 Api.getPlaylists().then(playlists => View.displayPlaylists(playlists));
+Api.getComments().then(comments => View.displayComments(comments));

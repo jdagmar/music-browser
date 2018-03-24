@@ -139,16 +139,21 @@
             <section id="playlists-container">
                 <div class="playlist-container-template playlist-container flex border border-solid p-2 w-4/5 m-auto">
                     <div class="w-1/2">
-                        <div class="flex justify-between m-2">
-                            <h2 class="playlist-title"></h2>
-                            <div>
-                                <button>
-                                    <img class="w-8 align-middle" src="images/007__close.svg" />
-                                </button>
-                                <button>
-                                    <img class="w-8 align-middle" src="images/147__heart.svg" />
-                                </button>
+                        <div class=" m-2">
+                            <div class="flex justify-between">
+                                <h2 class="playlist-title"></h2>
+                                <div>
+                                    <button>
+                                        <img class="w-8 align-middle" src="images/007__close.svg" />
+                                    </button>
+                                    <button>
+                                        <img class="w-8 align-middle" src="images/147__heart.svg" />
+                                    </button>
+                                </div>
                             </div>
+                            <figure class="w-full">
+                                <img class="playlist-cover" />
+                            </figure>
                         </div>
                         <ul class="playlist p-0">
                             <li class="playlist-item list-reset m-2"></li>
@@ -161,6 +166,14 @@
                             <textarea class="border border-solid w-full" id="comment" rows="4" cols="60"></textarea>
                             <input class="border border-solid w-full" type="submit" value="comment" />
                         </form>
+                        <div id="comment-field">
+                            <ul class="p-0">
+                                <li class="comment-item list-reset">
+                                    <p class="username"></p>
+                                    <p class="comment-text"></p>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </section>
