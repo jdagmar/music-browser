@@ -47,7 +47,7 @@ const View = {
             return albumContainer;
         });
 
-        const albumList = document.getElementById('all-albums');
+        const albumList = document.getElementById('album-list');
         albumList.innerHTML = '';
         listAllAlbums.forEach(albumContainer => albumList.appendChild(albumContainer));
     },

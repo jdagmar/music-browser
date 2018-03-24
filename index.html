@@ -48,28 +48,49 @@
                 <form class="w-64">
                     <legend class="text-xl">Add a new artist</legend>
                     <label for="name">Name (mandatory)</label>
-                    <input id="name" class="border border-solid block w-full mb-2" type="text"/>
+                    <input id="name" class="border border-solid block w-full mb-2" type="text" />
                     <label for="born">Birthdate</label>
-                    <input id="born" class="border border-solid block w-full mb-2" type="text"/>
+                    <input id="born" class="border border-solid block w-full mb-2" type="text" />
                     <label for="genres">Genre(s) sh/e is active in</label>
-                    <input id="genres" class="border border-solid block w-full mb-2" type="text"/>
+                    <input id="genres" class="border border-solid block w-full mb-2" type="text" />
                     <label for="country">Country of origin</label>
-                    <input id="country"  class="border border-solid block w-full mb-2" type="text"/>
+                    <input id="country" class="border border-solid block w-full mb-2" type="text" />
                     <label for="spotify">Link to artist spotify</label>
-                    <input id="spotify" class="border border-solid block w-full mb-2" type="text"/>
+                    <input id="spotify" class="border border-solid block w-full mb-2" type="text" />
                     <label for="image">Image (url)</label>
-                    <input id="image" class="border border-solid block w-full mb-2" type="text"/>
+                    <input id="image" class="border border-solid block w-full mb-2" type="text" />
                 </form>
             </section>
         </div>
-        <div id="all-albums" class="hidden">
-            <figure class="album-container-template w-16">
-                <!-- album image renders here -->
-                <img class="album-image" />
-                <figcaption class="album-image-caption">
-                    <!-- album title renders here -->
-                </figcaption>
-            </figure>
+        <div id="all-albums" class="hidden max-w-2xl m-auto">
+            <section id="album-list">
+                <figure class="album-container-template w-16">
+                    <!-- album image renders here -->
+                    <img class="album-image" />
+                    <figcaption class="album-image-caption">
+                        <!-- album title renders here -->
+                    </figcaption>
+                </figure>
+            </section>
+            <section class="mt-8">
+                <form class="w-64">
+                    <legend class="text-xl">Add a new album</legend>
+                    <label for="name">Name of album (mandatory)</label>
+                    <input id="name" class="border border-solid block w-full mb-2" type="text" />
+                    <label for="artist">Artist(s)</label>
+                    <input id="artist" class="border border-solid block w-full mb-2" type="text" />
+                    <label for="genres">Genre(s)</label>
+                    <input id="genres" class="border border-solid block w-full mb-2" type="text" />
+                    <label for="release">Release date</label>
+                    <input id="release" class="border border-solid block w-full mb-2" type="text" />
+                    <label for="spotify">Link to album on spotify</label>
+                    <input id="spotify" class="border border-solid block w-full mb-2" type="text" />
+                    <label for="image">Coverimage (url)</label>
+                    <input id="image" class="border border-solid block w-full mb-2" type="text" />
+                    <label for="image-color">Color of coverimage</label>
+                    <input id="image-color" class="border border-solid block w-full mb-2" type="text" />
+                </form>
+            </section>
         </div>
         <div id="all-tracks" class="hidden max-w-2xl m-auto">
             <ul id="track-list" class="p-0">
