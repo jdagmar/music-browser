@@ -87,7 +87,7 @@ const View = {
             return playlistItem;
         });
 
-        const playlistList = document.getElementById('all-playlists');
+        const playlistList = document.getElementById('playlists-container');
         playlistList.innerHTML = '';
         listAllPlaylists.forEach(playlistItem => playlistList.appendChild(playlistItem));
     },
