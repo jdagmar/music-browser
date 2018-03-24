@@ -12,24 +12,30 @@
 </head>
 
 <body>
-    <header class="m-4 text-center">
+    <header class="m-4 text-center border-b">
         <h1>Music browser</h1>
     </header>
+    
     <main class="m-auto md:max-w-lg">
-        <nav id="nav" class="text-center mb-8">
-            <ul class="p-0">
+        <nav id="nav" class="flex justify-between text-center mb-8">
+            <ul class="p-0 inline-block">
                 <li id="artist-view-link" class="list-reset p-2 cursor-pointer inline-block" data-view="main-view">Home</li>
                 <li id="artist-view-link" class="list-reset p-2 cursor-pointer inline-block" data-view="all-artists">Artists</li>
                 <li id="album-view-link" class="list-reset p-2 cursor-pointer inline-block" data-view="all-albums">Albums</li>
                 <li id="tracks-view-link" class="list-reset p-2 cursor-pointer inline-block" data-view="all-tracks">Tracks</li>
                 <li id="playlists-view-link" class="list-reset p-2 cursor-pointer inline-block" data-view="all-playlists">Playlists</li>
             </ul>
+            <form class="inline-block h-8 flex" role="search">
+                <label for="search-field" hidden>search for a artist, track, album or soundtrack</label>
+                <input id="search-field" class="border border-r-0 border-solid h-8" type="search" />
+                <input class="border border-l-0 w-10 align-middle" type="image" src="images/095__search.svg" />
+            </form>
         </nav>
         <div id="main-view">
             <h2></h2>
         </div>
         <div id="all-artists" class="hidden">
-            <figure class="artist-container-template w-16">
+            <figure class="artist-container-template w-16 inline-block">
                 <!-- artist image renders here -->
                 <img class="artist-image" />
                 <figcaption class="artist-image-caption">
