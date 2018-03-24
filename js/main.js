@@ -55,7 +55,12 @@ const View = {
         const listAllTracks = tracks.map(track => {
             const trackItem = document.querySelector('.track-item-template').cloneNode(true);
             trackItem.classList.remove('track-item-template');
-            trackItem.innerHTML = `${track.title} by ${track.artists.map(artist => artist.name).join(', ')}`;
+
+            const trackTitle = trackItem.querySelector('.track-title');
+            const trackArtist = trackItem.querySelector('.track-artist');
+
+            trackTitle.innerHTML = track.title; 
+            trackArtist.innerHTML = track.artists.map(artist => artist.name).join(', ');
 
             return trackItem;
         });

@@ -15,7 +15,7 @@
     <header class="m-4 text-center border-b">
         <h1 class="m-2">Music browser</h1>
     </header>
-    
+
     <main class="m-auto">
         <nav id="nav" class="flex justify-between text-center mb-8 mr-4 ml-4">
             <ul class="p-0 inline-block">
@@ -52,10 +52,21 @@
                 </figcaption>
             </figure>
         </div>
-        <div id="all-tracks" class="hidden">
+        <div id="all-tracks" class="hidden max-w-2xl m-auto">
             <ul id="track-list" class="p-0">
-                <li class="track-item-template list-reset border-b border-solid">
-                    <!-- each track renders here -->
+                <li class="track-item-template list-reset flex justify-between">
+                    <div class="flex justify-between w-1/2">
+                    <span class="track-title"></span>
+                    <span class="track-artist"></span>
+                    </div>
+                    <div>
+                        <button>
+                            <img class="w-8 align-middle" src="images/007__close.svg" />
+                        </button>
+                        <button>
+                            <img class="w-8 align-middle" src="images/147__heart.svg" />
+                        </button>
+                    </div>
                 </li>
             </ul>
         </div>
