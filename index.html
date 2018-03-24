@@ -87,28 +87,53 @@
                     <input id="spotify" class="border border-solid block w-full mb-2" type="text" />
                     <label for="image">Coverimage (url)</label>
                     <input id="image" class="border border-solid block w-full mb-2" type="text" />
-                    <label for="image-color">Color of coverimage</label>
-                    <input id="image-color" class="border border-solid block w-full mb-2" type="text" />
+                    <label for="spotify">Link to song on spotify</label>
+                    <input id="spotify" class="border border-solid block w-full mb-2" type="text" />
+                    <label for="youtube">Link to youtube-video</label>
+                    <input id="youtube" class="border border-solid block w-full mb-2" type="text" />
+                    <label for="soundcloud">Link to soundcloud</label>
+                    <input id="soundcloud" class="border border-solid block w-full mb-2" type="text" />
                 </form>
             </section>
         </div>
         <div id="all-tracks" class="hidden max-w-2xl m-auto">
-            <ul id="track-list" class="p-0">
-                <li class="track-item-template list-reset flex justify-between">
-                    <div class="flex justify-between w-1/2">
-                        <span class="track-title"></span>
-                        <span class="track-artist"></span>
-                    </div>
-                    <div>
-                        <button>
-                            <img class="w-8 align-middle" src="images/007__close.svg" />
-                        </button>
-                        <button>
-                            <img class="w-8 align-middle" src="images/147__heart.svg" />
-                        </button>
-                    </div>
-                </li>
-            </ul>
+            <section>
+                <ul id="track-list" class="p-0">
+                    <li class="track-item-template list-reset flex justify-between">
+                        <div class="flex justify-between w-1/2">
+                            <span class="track-title"></span>
+                            <span class="track-artist"></span>
+                        </div>
+                        <div>
+                            <button>
+                                <img class="w-8 align-middle" src="images/007__close.svg" />
+                            </button>
+                            <button>
+                                <img class="w-8 align-middle" src="images/147__heart.svg" />
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+            <section class="mt-8">
+                <form class="w-64">
+                    <legend class="text-xl">Add a new track</legend>
+                    <label for="name">Title (mandatory)</label>
+                    <input id="name" class="border border-solid block w-full mb-2" type="text" />
+                    <label for="artist">Artist(s) (mandatory)</label>
+                    <input id="artist" class="border border-solid block w-full mb-2" type="text" />
+                    <label for="album">Album (mandatory)</label>
+                    <input id="album" class="border border-solid block w-full mb-2" type="text" />
+                    <label for="genres">Genre(s)</label>
+                    <input id="genres" class="border border-solid block w-full mb-2" type="text" />
+                    <label for="cover-image">Link to album coverimage (url)</label>
+                    <input id="cover-image" class="border border-solid block w-full mb-2" type="text" />
+                    <label for="image-color">Color on coverimage</label>
+                    <input id="image-color" class="border border-solid block w-full mb-2" type="text" />
+                    <label for="image-color">Color of coverimage</label>
+                    <input id="image-color" class="border border-solid block w-full mb-2" type="text" />
+                </form>
+            </section>
         </div>
         <div id="all-playlists" class="hidden max-w-2xl m-auto">
             <section class="playlist-container-template flex border border-solid p-2 w-4/5 m-auto">
