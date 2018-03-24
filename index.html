@@ -136,7 +136,7 @@
             </section>
         </div>
         <div id="all-playlists" class="hidden max-w-2xl m-auto">
-            <section class="playlist-container-template flex border border-solid p-2 w-4/5 m-auto">
+            <section class="playlist-container-template playlist-container flex border border-solid p-2 w-4/5 m-auto">
                 <div class="w-1/2">
                     <div class="flex justify-between m-2">
                         <h2 class="playlist-title"></h2>
@@ -161,6 +161,21 @@
                         <input class="border border-solid w-full" type="submit" value="comment" />
                     </form>
                 </div>
+            </section>
+            <section class="mt-8">
+                <form class="w-64">
+                    <legend class="text-xl">Create a new playlist</legend>
+                    <label for="name">Title (mandatory)</label>
+                    <input id="name" class="border border-solid block w-full mb-2" type="text" />
+                    <label for="tracks">Track id's (seperate with comma)</label>
+                    <input id="tracks" class="border border-solid block w-full mb-2" type="text" />
+                    <label for="genres">Genre(s)</label>
+                    <input id="genres" class="border border-solid block w-full mb-2" type="text" />
+                    <label for="cover-image">Link to coverimage</label>
+                    <input id="cover-image" class="border border-solid block w-full mb-2" type="text" />
+                    <label for="image-color">Color on coverimage</label>
+                    <input id="image-color" class="border border-solid block w-full mb-2" type="text" />
+                </form>
             </section>
         </div>
     </main>
