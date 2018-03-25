@@ -141,12 +141,12 @@
         <div id="all-playlists" class="hidden max-w-2xl m-auto">
             <div class="w-4/5 m-auto mb-2">
                 <label>Show the most voted for playlists first</label>
-                <input type="checkbox" />
+                <input type="checkbox"/>
             </div>
             <section id="playlists-container">
-                <div class="playlist-container-template playlist-container flex border border-solid p-2 w-4/5 m-auto">
-                    <div class="w-1/2">
-                        <div class=" m-2">
+                <div class="playlist-container-template flex flex-col border border-solid p-2 m-auto">
+                    <div>
+                        <div class="m-2">
                             <div class="flex justify-between">
                                 <h2 class="playlist-title"></h2>
                                 <div>
@@ -163,23 +163,33 @@
                             </figure>
                         </div>
                         <ul class="playlist p-0">
-                            <li class="playlist-item-template list-reset m-2">
-                                <span class="track-title"></span>
-                                <span class="artist-name"></span>
+                            <li class="playlist-item-template flex justify-between list-reset m-2">
+                                <div class="flex justify-between w-1/2">
+                                    <p class="track-title"></p>
+                                    <p class="artist-name"></p>
+                                </div>
+                                <div>
+                                    <button>
+                                        <img class="w-8 align-middle" src="images/007__close.svg" />
+                                    </button>
+                                    <button>
+                                        <img class="w-8 align-middle" src="images/147__heart.svg" />
+                                    </button>
+                                </div>
                             </li>
                         </ul>
                     </div>
-                    <div class="w-1/2 m-2">
+                    <div class="m-2">
                         <h2 class="mb-2">Comments</h2>
                         <form>
                             <label for="comment"></label>
                             <textarea class="border border-solid w-full" id="comment" rows="4" cols="60"></textarea>
-                            <input class="border border-solid w-full" type="submit" value="comment" />
+                            <input class="border border-solid w-full mb-2 p-2" type="submit" value="comment" />
                         </form>
                         <div id="comment-field">
                             <ul class="p-0">
                                 <li class="comment-item-template flex flex-col list-reset mt-2 border-b border-solid">
-                                    <p class="username mb-2"></p>
+                                    <p class="username mb-2 font-semibold"></p>
                                     <p class="comment-text"></p>
                                     <button class="ml-auto">
                                         Delete comment

@@ -100,17 +100,16 @@ const View = {
                 trackTitle.innerHTML = track.title;
 
                 track.artists.map(artist => {
-                    const playlistArtist = playlistTrack.querySelector('.artist-name');
+                    const playlistArtist = playlistItem.querySelector('.artist-name');
                     playlistArtist.innerHTML = artist.name;
                     return playlistArtist;
                 });
 
                 return playlistTrack;
-                
+
             }).forEach(li => playlistContainer.appendChild(li));
             return playlistItem;
         });
-        
 
         const playlistList = document.getElementById('playlists-container');
         playlistList.innerHTML = '';
