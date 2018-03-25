@@ -3,7 +3,6 @@ const Api = {
     getAlbums: () => Api.get('albums'),
     getTracks: () => Api.get('tracks'),
     getPlaylists: () => Api.get('playlists'),
-    getComments: () => Api.get('comments'),
     get(type) {
         return fetch(`https://folksa.ga/api/${type}?key=flat_eric`)
             .then(response => response.json())
@@ -11,6 +10,19 @@ const Api = {
                 console.log('error');
                 return [];
             });
+    },
+    getComments(id){
+       id = '5aae312ee3534b03981f6521';
+
+        fetch(`https://folksa.ga/api/playlists/${id}/comments?key=flat_eric`)
+        .then(response => response.json())
+        .then(comments => {
+            View.displayComments(comments);
+        })
+        .catch(error => {
+            console.log('error', error);
+            return [];
+        });
     }
 }
 
@@ -109,26 +121,22 @@ const View = {
 
         document.getElementById(currentView).classList.remove('hidden');
     },
-    // displayComments(comments) {
-    //     const listAllComments = comment.map(comments => {
-    //         const commentItem = document.querySelector('.comment-item');
-    //         const username = commentItem.querySelector('.username');
-    //         username.innerHTML = comments.username;
-    //         const commentText = commentItem.querySelector('.comment-text');
-    //         commentText.innerHTML = comments._id;
+    displayComments(comments) {
+        const listAllComments = comments.map(comments => {
+            const commentItem = document.querySelector('.comment-item-template').cloneNode(true);
+            commentItem .classList.remove('comment-item');
+            const username = commentItem.querySelector('.username');
+            username.innerHTML = comments.username;
+            const commentText = commentItem.querySelector('.comment-text');
+            commentText.innerHTML = comments.body;
 
-    //         comments.ids.map(id => {
-                
-    //             return id;
-    //         }).forEach(li => commentField.appendChild(li));
+            return commentItem;
+        });
 
-    //         return comment;
-    //     });
-
-    //     const commentField = document.getElementById('comment-field');
-    //     commentField = '';
-    //     listAllComments.forEach(comment => commentField.appendChild(comment));
-    // }
+        const commentField = document.getElementById('comment-field');
+        commentField.innerHTML = '';
+        listAllComments.forEach(comment => commentField.appendChild(comment));
+    }
 }
 
 const navLinks = document.querySelectorAll('#nav [data-view]');
@@ -139,4 +147,5 @@ Api.getArtists().then(artists => View.displayArtists(artists));
 Api.getAlbums().then(albums => View.displayAlbums(albums));
 Api.getTracks().then(tracks => View.displayTracks(tracks));
 Api.getPlaylists().then(playlists => View.displayPlaylists(playlists));
+
 Api.getComments().then(comments => View.displayComments(comments));

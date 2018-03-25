@@ -175,9 +175,13 @@
                         </form>
                         <div id="comment-field">
                             <ul class="p-0">
-                                <li class="comment-item list-reset">
-                                    <p class="username"></p>
+                                <li class="comment-item-template flex flex-col list-reset mt-2 border-b border-solid">
+                                    <p class="username mb-2"></p>
                                     <p class="comment-text"></p>
+                                    <button class="ml-auto">
+                                        Delete comment
+                                        <img class="w-8 align-middle" src="images/007__close.svg" />
+                                    </button>
                                 </li>
                             </ul>
                         </div>
@@ -202,7 +206,7 @@
         </div>
     </main>
     <footer>
-        
+
     </footer>
     <script src="js/main.js"></script>
 </body>
