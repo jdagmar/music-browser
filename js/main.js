@@ -11,18 +11,18 @@ const Api = {
                 return [];
             });
     },
-    getComments(id){
-       id = '5aae312ee3534b03981f6521';
+    getComments(id) {
+        id = '5aae312ee3534b03981f6521';
 
         fetch(`https://folksa.ga/api/playlists/${id}/comments?key=flat_eric`)
-        .then(response => response.json())
-        .then(comments => {
-            View.displayComments(comments);
-        })
-        .catch(error => {
-            console.log('error', error);
-            return [];
-        });
+            .then(response => response.json())
+            .then(comments => {
+                View.displayComments(comments);
+            })
+            .catch(error => {
+                console.log('error', error);
+                return [];
+            });
     }
 }
 
@@ -94,13 +94,23 @@ const View = {
             const playlistContainer = playlistItem.querySelector('.playlist');
 
             playlist.tracks.map(track => {
-                const playlistTrack = playlistItem.querySelector('.playlist-item').cloneNode(true);
-                playlistTrack.innerHTML = track.title;
-                return playlistTrack;
-            }).forEach(li => playlistContainer.appendChild(li));
+                const playlistTrack = playlistItem.querySelector('.playlist-item-template').cloneNode(true);
+                playlistTrack.classList.remove('playlist-item-template');
+                const trackTitle = playlistItem.querySelector('.track-title');
+                trackTitle.innerHTML = track.title;
 
+                track.artists.map(artist => {
+                    const playlistArtist = playlistTrack.querySelector('.artist-name');
+                    playlistArtist.innerHTML = artist.name;
+                    return playlistArtist;
+                });
+
+                return playlistTrack;
+                
+            }).forEach(li => playlistContainer.appendChild(li));
             return playlistItem;
         });
+        
 
         const playlistList = document.getElementById('playlists-container');
         playlistList.innerHTML = '';
@@ -124,7 +134,7 @@ const View = {
     displayComments(comments) {
         const listAllComments = comments.map(comments => {
             const commentItem = document.querySelector('.comment-item-template').cloneNode(true);
-            commentItem .classList.remove('comment-item');
+            commentItem.classList.remove('comment-item-template');
             const username = commentItem.querySelector('.username');
             username.innerHTML = comments.username;
             const commentText = commentItem.querySelector('.comment-text');
