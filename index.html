@@ -17,15 +17,16 @@
     </header>
 
     <main class="m-auto">
-        <nav id="nav" class="flex justify-between text-center mb-8 mr-4 ml-4">
+        <nav id="nav" class="hidden z-1 lg:z-0 absolute lg:relative bg-white lg:bg-transparent m-0 w-full lg:w-auto h-screen
+                            lg:h-auto flex flex-col lg:flex-row lg:justify-between text-center lg:mb-8 lg:mr-4 lg:ml-4">
             <ul class="p-0 inline-block">
-                <li id="artist-view-link" class="list-reset p-2 cursor-pointer inline-block" data-view="main-view">Home</li>
-                <li id="artist-view-link" class="list-reset p-2 cursor-pointer inline-block" data-view="all-artists">Artists</li>
-                <li id="album-view-link" class="list-reset p-2 cursor-pointer inline-block" data-view="all-albums">Albums</li>
-                <li id="tracks-view-link" class="list-reset p-2 cursor-pointer inline-block" data-view="all-tracks">Tracks</li>
-                <li id="playlists-view-link" class="list-reset p-2 cursor-pointer inline-block" data-view="all-playlists">Playlists</li>
+                <li id="artist-view-link" class="list-reset p-2 cursor-pointer block lg:inline-block" data-view="main-view">Home</li>
+                <li id="artist-view-link" class="list-reset p-2 cursor-pointer block lg:inline-block" data-view="all-artists">Artists</li>
+                <li id="album-view-link" class="list-reset p-2 cursor-pointer block lg:inline-block" data-view="all-albums">Albums</li>
+                <li id="tracks-view-link" class="list-reset p-2 cursor-pointer block lg:inline-block" data-view="all-tracks">Tracks</li>
+                <li id="playlists-view-link" class="list-reset p-2 cursor-pointer block lg:inline-block" data-view="all-playlists">Playlists</li>
             </ul>
-            <form class="inline-block h-8 flex" role="search">
+            <form class="inline-block h-8 flex m-auto lg:m-0" role="search">
                 <label for="search-field" hidden>search for a artist, track, album or soundtrack</label>
                 <input id="search-field" class="border border-r-0 border-solid h-8 pl-2" type="search" placeholder="search" />
                 <input class="border border-l-0 w-10 align-middle" type="image" src="images/095__search.svg" />
@@ -143,8 +144,8 @@
                 <label>Show the most voted for playlists first</label>
                 <input type="checkbox"/>
             </div>
-            <section id="playlists-container">
-                <div class="playlist-container-template flex flex-col border border-solid p-2 m-auto">
+            <section id="playlists-container" class="flex">
+                <div class="playlist-container-template flex flex-col border border-solid p-2 m-auto w-128 ">
                     <div>
                         <div class="m-2">
                             <div class="flex justify-between">
@@ -164,7 +165,7 @@
                         </div>
                         <ul class="playlist p-0">
                             <li class="playlist-item-template flex justify-between list-reset m-2">
-                                <div class="flex justify-between w-1/2">
+                                <div class="flex justify-between w-2/3">
                                     <p class="track-title"></p>
                                     <p class="artist-name"></p>
                                 </div>

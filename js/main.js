@@ -108,6 +108,7 @@ const View = {
                 return playlistTrack;
 
             }).forEach(li => playlistContainer.appendChild(li));
+            
             return playlistItem;
         });
 
