@@ -12,12 +12,15 @@
 </head>
 
 <body>
-    <header class="m-4 text-center border-b">
-        <h1 class="m-2">Music browser</h1>
+    <header class="flex justify-between text-center h-16 m-4 text-center border-b">
+        <h1 class="m-2 text-2xl">Music browser</h1>
+        <button id="hamburger" class="w-16 bloc visible lg:invisible">
+            <img src="images/031__list.svg" />
+        </button>
     </header>
 
     <main class="m-auto">
-        <nav id="nav" class="hidden z-1 lg:z-0 absolute lg:relative bg-white lg:bg-transparent m-0 w-full lg:w-auto h-screen
+        <nav id="nav" class="invisible lg:visible z-1 lg:z-0 absolute lg:relative bg-white lg:bg-transparent m-0 w-full lg:w-auto h-screen
                             lg:h-auto flex flex-col lg:flex-row lg:justify-between text-center lg:mb-8 lg:mr-4 lg:ml-4">
             <ul class="p-0 inline-block">
                 <li id="artist-view-link" class="list-reset p-2 cursor-pointer block lg:inline-block" data-view="main-view">Home</li>
@@ -39,7 +42,7 @@
             <section id="artist-list">
                 <figure class="artist-container-template w-48 inline-block">
                     <!-- artist image renders here -->
-                    <img class="artist-image" />
+                    <img class="artist-image"/>
                     <figcaption class="artist-image-caption">
                         <!-- artist name renders here -->
                     </figcaption>
@@ -142,7 +145,7 @@
         <div id="all-playlists" class="hidden max-w-2xl m-auto">
             <div class="w-4/5 m-auto mb-2">
                 <label>Show the most voted for playlists first</label>
-                <input type="checkbox"/>
+                <input type="checkbox" />
             </div>
             <section id="playlists-container" class="flex">
                 <div class="playlist-container-template flex flex-col border border-solid p-2 m-auto w-128 ">

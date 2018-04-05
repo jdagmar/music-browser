@@ -14,7 +14,7 @@ const Api = {
     getComments(id) {
         id = '5aae312ee3534b03981f6521';
 
-        fetch(`https://folksa.ga/api/playlists/${id}/comments?key=flat_eric`)
+        return fetch(`https://folksa.ga/api/playlists/${id}/comments?key=flat_eric`)
             .then(response => response.json())
             .then(comments => {
                 View.displayComments(comments);
@@ -94,16 +94,13 @@ const View = {
             const playlistContainer = playlistItem.querySelector('.playlist');
 
             playlist.tracks.map(track => {
-                const playlistTrack = playlistItem.querySelector('.playlist-item-template').cloneNode(true);
+                const playlistTrack = playlistContainer.querySelector('.playlist-item-template').cloneNode(true);
                 playlistTrack.classList.remove('playlist-item-template');
-                const trackTitle = playlistItem.querySelector('.track-title');
+                const trackTitle = playlistTrack.querySelector('.track-title');
                 trackTitle.innerHTML = track.title;
 
-                track.artists.map(artist => {
-                    const playlistArtist = playlistItem.querySelector('.artist-name');
-                    playlistArtist.innerHTML = artist.name;
-                    return playlistArtist;
-                });
+                const playlistArtist = playlistTrack.querySelector('.artist-name');
+                playlistArtist.innerHTML = track.artists.map(artist => artist.name).join(', ');
 
                 return playlistTrack;
 
@@ -146,8 +143,23 @@ const View = {
         const commentField = document.getElementById('comment-field');
         commentField.innerHTML = '';
         listAllComments.forEach(comment => commentField.appendChild(comment));
+    },
+    toggleMenu(){
+        const nav = document.getElementById('nav');
+
+        if (nav.classList.contains('invisible')){
+            nav.classList.remove('invisible');
+        }
+        else {
+            nav.classList.add('invisible');
+        }
     }
 }
+
+const hamburger = document.getElementById('hamburger');
+hamburger.addEventListener('click', () => {
+    View.toggleMenu();
+});
 
 const navLinks = document.querySelectorAll('#nav [data-view]');
 navLinks.forEach(link =>
