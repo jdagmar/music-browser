@@ -39,7 +39,7 @@
             <h2></h2>
         </div>
         <div id="all-artists" class="hidden max-w-2xl m-auto">
-            <section id="artist-list">
+            <section id="artist-list" class="grid grid-col-repeat-200">
                 <figure class="artist-container-template w-48 inline-block">
                     <!-- artist image renders here -->
                     <img class="artist-image"/>
@@ -67,7 +67,7 @@
             </section>
         </div>
         <div id="all-albums" class="hidden max-w-2xl m-auto">
-            <section id="album-list">
+            <section id="album-list" class="grid grid-col-repeat-200">
                 <figure class="album-container-template w-48">
                     <!-- album image renders here -->
                     <img class="album-image" />
@@ -147,7 +147,7 @@
                 <label>Show the most voted for playlists first</label>
                 <input type="checkbox" />
             </div>
-            <section id="playlists-container" class="flex">
+            <section id="playlists-container" class="grid grid-col-repeat-400">
                 <div class="playlist-container-template flex flex-col border border-solid p-2 m-auto w-128 ">
                     <div>
                         <div class="m-2">

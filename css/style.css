@@ -17,3 +17,19 @@ p, #artist-view-link {
 .playlist-item-template {
     display: none;
 }
+
+.grid {
+    display: grid;
+}
+
+.grid-space {
+    grid-gap: 1rem;
+}
+
+.grid-col-repeat-200 {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
+}
+
+.grid-col-repeat-400 {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr))
+}
