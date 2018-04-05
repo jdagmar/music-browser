@@ -42,7 +42,7 @@
             <section id="artist-list" class="grid grid-col-repeat-200">
                 <figure class="artist-container-template w-48 inline-block">
                     <!-- artist image renders here -->
-                    <img class="artist-image"/>
+                    <img class="artist-image" />
                     <figcaption class="artist-image-caption">
                         <!-- artist name renders here -->
                     </figcaption>
@@ -71,12 +71,14 @@
                 <figure class="album-container-template w-48">
                     <!-- album image renders here -->
                     <img class="album-image" />
-                    <figcaption class="album-image-caption">
-                        <!-- album title renders here -->
-                    </figcaption>
-                    <button>
-                        <img class="w-8 align-middle" src="images/147__heart.svg" />
-                    </button>
+                    <div class="flex justify-between">
+                        <figcaption class="album-image-caption self-center">
+                            <!-- album title renders here -->
+                        </figcaption>
+                        <button>
+                            <img class="w-8 align-middle" src="images/147__heart.svg" />
+                        </button>
+                    </div>
                 </figure>
             </section>
             <section class="mt-8">
