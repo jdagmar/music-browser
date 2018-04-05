@@ -150,7 +150,7 @@
                 <input type="checkbox" />
             </div>
             <section id="playlists-container" class="grid grid-col-repeat-400">
-                <div class="playlist-container-template flex flex-col border border-solid p-2 m-auto w-128 ">
+                <div class="playlist-container-template flex flex-col border border-solid p-2 m-auto w-128 min-h-16">
                     <div>
                         <div class="m-2">
                             <div class="flex justify-between">
@@ -168,7 +168,7 @@
                                 <img class="playlist-cover" />
                             </figure>
                         </div>
-                        <ul class="playlist p-0">
+                        <ul class="playlist p-0 max-h-30 overflow-scroll">
                             <li class="playlist-item-template flex justify-between list-reset m-2">
                                 <div class="flex justify-between w-2/3">
                                     <p class="track-title"></p>
@@ -193,7 +193,7 @@
                             <input class="border border-solid w-full mb-2 p-2" type="submit" value="comment" />
                         </form>
                         <div>
-                            <ul class="p-0 comment-field">
+                            <ul class="p-0 comment-field max-h-16 overflow-scroll">
                                 <li class="comment-item-template flex flex-col list-reset mt-2 border-b border-solid">
                                     <p class="username mb-2 font-semibold"></p>
                                     <p class="comment-text"></p>
