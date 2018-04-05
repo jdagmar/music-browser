@@ -41,7 +41,12 @@ const View = {
             const artistImage = artistContainer.querySelector('.artist-image');
             artistImage.src = artist.image || artist.coverImage;
             artistImage.alt = artist.name;
-
+        
+            artistImage.onerror = () => {
+                artistImage.onerror = undefined;
+                artistImage.src = 'images/103__user.svg';
+            }
+            
             const artistImageCaption = artistContainer.querySelector('.artist-image-caption');
             artistImageCaption.innerHTML = artist.name;
 
@@ -58,6 +63,12 @@ const View = {
 
             const albumImage = albumContainer.querySelector('.album-image');
             albumImage.src = album.image || album.coverImage;
+
+            albumImage.onerror = () => {
+                albumImage.onerror = undefined;
+                albumImage.src = 'images/140__music.svg';
+            }
+
             albumImage.alt = album.title;
 
             const albumImageCaption = albumContainer.querySelector('.album-image-caption');
@@ -110,6 +121,11 @@ const View = {
             playlistItem.classList.remove('playlist-container-template');
             const playlistCover = playlistItem.querySelector('.playlist-cover');
             playlistCover.src = playlist.coverImage;
+            playlistCover.onerror = () => {
+                playlistCover.onerror = undefined;
+                playlistCover.src = 'images/144__headphone.svg';
+            }
+           
             playlistCover.alt = `Coverimage for the playlist ${playlist.title}`;
             const playlistTitle = playlistItem.querySelector('.playlist-title');
             playlistTitle.innerHTML = playlist.title;
