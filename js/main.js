@@ -15,7 +15,7 @@ const Api = {
         });
     }),
     get(type) {
-        return fetch(`https://folksa.ga/api/${type}?key=flat_eric`)
+        return fetch(`https://folksa.ga/api/${type}?key=flat_eric&limit=50`)
             .then(response => response.json())
             .catch(error => {
                 console.log('error');
