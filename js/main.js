@@ -2,7 +2,18 @@ const Api = {
     getArtists: () => Api.get('artists'),
     getAlbums: () => Api.get('albums'),
     getTracks: () => Api.get('tracks'),
-    getPlaylists: () => Api.get('playlists'),
+    getPlaylists: () => Api.get('playlists').then(playlists => {
+        const commentPromises = playlists.map(playlist => {
+            return Api.getCommentsByPlaylistId(playlist._id);
+        });
+
+        return Promise.all(commentPromises).then(playlistComments => {
+            return playlists.map((playlist, index) => {
+                playlist.comments = playlistComments[index];
+                return playlist;
+            });
+        });
+    }),
     get(type) {
         return fetch(`https://folksa.ga/api/${type}?key=flat_eric`)
             .then(response => response.json())
@@ -11,14 +22,9 @@ const Api = {
                 return [];
             });
     },
-    getComments(id) {
-        id = '5aae312ee3534b03981f6521';
-
-        return fetch(`https://folksa.ga/api/playlists/${id}/comments?key=flat_eric`)
+    getCommentsByPlaylistId(id) {
+        return fetch(`https://folksa.ga/api/playlists/${id}/comments?key=flat_eric&limit=50`)
             .then(response => response.json())
-            .then(comments => {
-                View.displayComments(comments);
-            })
             .catch(error => {
                 console.log('error', error);
                 return [];
@@ -82,6 +88,22 @@ const View = {
         trackList.innerHTML = '';
         listAllTracks.forEach(trackItem => trackList.appendChild(trackItem));
     },
+    displayPlaylistComments(commentField, comments) {
+        const listAllComments = comments.map(comment => {
+            const commentItem = document.querySelector('.comment-item-template').cloneNode(true);
+            commentItem.classList.remove('comment-item-template');
+            const username = commentItem.querySelector('.username');
+            username.innerHTML = comment.username;
+            const commentText = commentItem.querySelector('.comment-text');
+            commentText.innerHTML = comment.body;
+
+            console.log(comment);
+            return commentItem;
+        });
+
+        commentField.innerHTML = '';
+        listAllComments.forEach(comment => commentField.appendChild(comment));
+    },
     displayPlaylists(playlists) {
         const listAllPlaylists = playlists.map(playlist => {
             const playlistItem = document.querySelector('.playlist-container-template').cloneNode(true);
@@ -92,6 +114,10 @@ const View = {
             const playlistTitle = playlistItem.querySelector('.playlist-title');
             playlistTitle.innerHTML = playlist.title;
             const playlistContainer = playlistItem.querySelector('.playlist');
+
+            const commentField = playlistItem.querySelector('.comment-field');
+
+            View.displayPlaylistComments(commentField, playlist.comments);
 
             playlist.tracks.map(track => {
                 const playlistTrack = playlistContainer.querySelector('.playlist-item-template').cloneNode(true);
@@ -105,7 +131,7 @@ const View = {
                 return playlistTrack;
 
             }).forEach(li => playlistContainer.appendChild(li));
-            
+
             return playlistItem;
         });
 
@@ -127,22 +153,6 @@ const View = {
                 document.getElementById(view).classList.add('hidden'));
 
         document.getElementById(currentView).classList.remove('hidden');
-    },
-    displayComments(comments) {
-        const listAllComments = comments.map(comments => {
-            const commentItem = document.querySelector('.comment-item-template').cloneNode(true);
-            commentItem.classList.remove('comment-item-template');
-            const username = commentItem.querySelector('.username');
-            username.innerHTML = comments.username;
-            const commentText = commentItem.querySelector('.comment-text');
-            commentText.innerHTML = comments.body;
-
-            return commentItem;
-        });
-
-        const commentField = document.getElementById('comment-field');
-        commentField.innerHTML = '';
-        listAllComments.forEach(comment => commentField.appendChild(comment));
     },
     toggleMenu(){
         const nav = document.getElementById('nav');
@@ -170,4 +180,3 @@ Api.getAlbums().then(albums => View.displayAlbums(albums));
 Api.getTracks().then(tracks => View.displayTracks(tracks));
 Api.getPlaylists().then(playlists => View.displayPlaylists(playlists));
 
-Api.getComments().then(comments => View.displayComments(comments));
