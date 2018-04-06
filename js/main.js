@@ -135,6 +135,9 @@ const View = {
             const playlistRating = playlistItem.querySelector('.playlist-rating');
             playlistRating.innerHTML = `(${ratingsTotal} votes)`;
 
+            const playlistCreator = playlistItem.querySelector('.playlist-creator');
+            playlistCreator.innerHTML = `created by ${playlist.createdBy}`
+
             const playlistContainer = playlistItem.querySelector('.playlist');
 
             const commentField = playlistItem.querySelector('.comment-field');
