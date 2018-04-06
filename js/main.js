@@ -99,7 +99,7 @@ const View = {
         trackList.innerHTML = '';
         listAllTracks.forEach(trackItem => trackList.appendChild(trackItem));
     },
-    displayPlaylistComments(commentField, comments) {
+    displayPlaylistComments(commentSection, comments) {
         const listAllComments = comments.map(comment => {
             const commentItem = document.querySelector('.comment-item-template').cloneNode(true);
             commentItem.classList.remove('comment-item-template');
@@ -107,10 +107,14 @@ const View = {
             username.innerHTML = comment.username;
             const commentText = commentItem.querySelector('.comment-text');
             commentText.innerHTML = comment.body;
-
+            
             return commentItem;
         });
 
+        const commentField = commentSection.querySelector('.comment-field');
+        const commentFieldHeading = commentSection.querySelector('.comment-field-heading');
+        commentFieldHeading.innerHTML = `Comments (${comments.length})`;
+        
         commentField.innerHTML = '';
         listAllComments.forEach(comment => commentField.appendChild(comment));
     },
@@ -140,9 +144,8 @@ const View = {
 
             const playlistContainer = playlistItem.querySelector('.playlist');
 
-            const commentField = playlistItem.querySelector('.comment-field');
-
-            View.displayPlaylistComments(commentField, playlist.comments);
+            const commentSection = playlistItem.querySelector('.comment-section');
+            View.displayPlaylistComments(commentSection, playlist.comments);
 
             playlist.tracks.map(track => {
                 const playlistTrack = playlistContainer.querySelector('.playlist-item-template').cloneNode(true);
