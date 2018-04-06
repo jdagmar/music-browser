@@ -6,6 +6,10 @@ p, #artist-view-link {
     font-family: 'Roboto';
 }
 
+.comment-field li:last-child {
+    border: none;
+}
+
 .w-128 {
     width: 32rem;
 }
