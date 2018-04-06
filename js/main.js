@@ -108,7 +108,6 @@ const View = {
             const commentText = commentItem.querySelector('.comment-text');
             commentText.innerHTML = comment.body;
 
-            console.log(comment);
             return commentItem;
         });
 
@@ -129,6 +128,13 @@ const View = {
             playlistCover.alt = `Coverimage for the playlist ${playlist.title}`;
             const playlistTitle = playlistItem.querySelector('.playlist-title');
             playlistTitle.innerHTML = playlist.title;
+
+            const ratings = playlist.ratings;
+            const ratingsTotal = ratings.reduce((sum, ratings) => sum + ratings, 0);
+
+            const playlistRating = playlistItem.querySelector('.playlist-rating');
+            playlistRating.innerHTML = `(${ratingsTotal} votes)`;
+
             const playlistContainer = playlistItem.querySelector('.playlist');
 
             const commentField = playlistItem.querySelector('.comment-field');
