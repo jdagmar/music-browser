@@ -36,7 +36,7 @@
             </form>
         </nav>
         <div id="main-view">
-            <h2></h2>
+            <h2>Home</h2>
         </div>
         <div id="all-artists" class="hidden max-w-2xl m-auto">
             <section id="artist-list" class="grid grid-col-repeat-200">
@@ -126,8 +126,12 @@
                 </div>
                 <ul id="track-list" class="p-0 overflow-auto max-h-30">
                     <li class="track-item-template list-reset flex justify-between">
-                        <span class="track-title w-1/3"></span>
-                        <span class="track-artist w-1/3"></span>
+                        <span class="track-title w-1/3">
+                            <!-- title of the track is rendered here -->
+                        </span>
+                        <span class="track-artist w-1/3">
+                            <!-- artist of the track is rendered here -->
+                        </span>
                         <div>
                             <button>
                                 <img class="w-8 mr-2 align-middle" src="images/007__close.svg" alt="click to delete track"/>
@@ -169,7 +173,9 @@
                     <div class="w-full md:w-1/2">
                         <div class="m-2">
                             <div class="flex justify-between">
-                                <h2 class="playlist-title"></h2>
+                                <h2 class="playlist-title">
+                                    <!-- the playlists title is rendered here -->
+                                </h2>
                                 <div>
                                     <button>
                                         <span class="text-sm">Delete playlist</span>
@@ -182,6 +188,7 @@
                                 </div>
                             </div>
                             <figure class="w-48 m-auto">
+                                <!-- the image of the playlist is rendered here -->
                                 <img class="playlist-cover" />
                             </figure>
                         </div>
@@ -195,8 +202,12 @@
                         </div>
                         <ul class="playlist p-0 max-h-30 overflow-scroll">
                             <li class="playlist-item-template flex justify-between list-reset m-2">
-                                <p class="track-title w-1/3"></p>
-                                <p class="artist-name w-1/3"></p>
+                                <p class="track-title w-1/3">
+                                    <!-- the title of the track is rendered here -->
+                                </p>
+                                <p class="artist-name w-1/3">
+                                    <!-- the artist of the track is rendered here -->
+                                </p>
                                 <div>
                                     <button>
                                         <img class="w-8 align-middle" src="images/007__close.svg" alt="click to delete track"/>
@@ -218,8 +229,12 @@
                         <div>
                             <ul class="p-0 comment-field max-h-30 overflow-scroll">
                                 <li class="comment-item-template flex flex-col list-reset mt-2 border-b border-solid">
-                                    <p class="username mb-2 font-semibold"></p>
-                                    <p class="comment-text"></p>
+                                    <p class="username mb-2 font-semibold">
+                                        <!-- username of the comments is rendered here -->
+                                    </p>
+                                    <p class="comment-text">
+                                        <!-- the comment is rendered here -->
+                                    </p>
                                     <button class="ml-auto">
                                         Delete comment
                                         <img class="w-8 align-middle" src="images/007__close.svg" alt="click to delete comment" />
