@@ -27,6 +27,7 @@ const Api = {
     },
     deletePlaylist: (id) => Api.delete('playlist', id),
     deleteArtist: (id) => Api.delete('artists', id),
+    deleteAlbum: (id) => Api.delete('albums', id),
     delete(type, id){
         return fetch(`https://folksa.ga/api/${type}/${id}?key=flat_eric`, {
             method: 'DELETE',
@@ -114,6 +115,12 @@ const View = {
 
             const albumImageCaption = albumContainer.querySelector('.album-image-caption');
             albumImageCaption.innerHTML = album.title;
+
+            const deleteAlbumButton = albumContainer.querySelector('.delete-album');
+            deleteAlbumButton.addEventListener('click', () => {
+                Api.deleteAlbum(album._id)
+                    .then(() => albumContainer.parentNode.removeChild(albumContainer));
+            });
 
             return albumContainer;
         });
