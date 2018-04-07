@@ -321,6 +321,10 @@ hamburger.addEventListener('click', () => {
 });
 
 const addArtistForm = document.getElementById('add-artist-form');
+const genderChoices = new Choices('#artist-gender', {
+    searchEnabled: false
+});
+
 addArtistForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
@@ -337,20 +341,33 @@ addArtistForm.addEventListener('submit', (event) => {
 });
 
 const addAlbumForm = document.getElementById('add-album-form');
+const artistSelect = new Choices('#artist-select', {
+    position: 'bottom'
+});
+
 addAlbumForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
     const title = addAlbumForm.elements['album-title'];
-    const artists = addAlbumForm.elements['album-artists'];
+    const artists = artistSelect.getValue(true).join(',');
     const releaseDate = addAlbumForm.elements['album-release'];
     const genres = addAlbumForm.elements['album-genres'];
     const spotifyURL = addAlbumForm.elements['album-spotify'];
     const coverImage = addAlbumForm.elements['album-cover'];
 
-    Api.addAlbum(title.value, artists.value, releaseDate.value, genres.value, spotifyURL.value,
+    Api.addAlbum(title.value, artists, releaseDate.value, genres.value, spotifyURL.value,
     coverImage.value);
-
 });
+
+const createArtistSelect = (artists) => {
+    const choices = artists.map(artist => {
+        return {
+            value: artist._id, label: artist.name
+        }
+    });
+
+    artistSelect.setChoices(choices, 'value', 'label', true);
+}
 
 const navLinks = document.querySelectorAll('#nav [data-view]');
 navLinks.forEach(link =>
@@ -360,3 +377,4 @@ Api.getArtists().then(artists => View.displayArtists(artists));
 Api.getAlbums().then(albums => View.displayAlbums(albums));
 Api.getTracks().then(tracks => View.displayTracks(tracks));
 Api.getPlaylists().then(playlists => View.displayPlaylists(playlists));
+Api.getArtists().then(artists => createArtistSelect(artists));

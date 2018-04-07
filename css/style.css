@@ -53,3 +53,11 @@ p, #artist-view-link {
 .grid-row-repeat-400 {
     grid-template-rows: repeat(auto-fill, minmax(400px, 1fr))
 }
+
+.choices__list--multiple .choices__item.is-highlighted,
+.choices__list--multiple .choices__item {
+    border-color: #ddd;
+    background-color: #ddd;
+}
+
+
