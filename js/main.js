@@ -45,6 +45,16 @@ const Api = {
             },
             body: JSON.stringify(comment)
         });
+    },
+    deletePlaylistComment(id){
+        return fetch(`https://folksa.ga/api/comments/${id}?key=flat_eric`, {
+            method: 'DELETE',
+            mode: 'cors',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
     }
 }
 
@@ -123,6 +133,14 @@ const View = {
             username.innerHTML = comment.username;
             const commentText = commentItem.querySelector('.comment-text');
             commentText.innerHTML = comment.body;
+
+            const deleteCommentButton = commentItem.querySelector('.delete-comment');
+
+            deleteCommentButton.addEventListener('click', () => {
+                Api.deletePlaylistComment(comment._id)
+                    .then(() => Api.getCommentsByPlaylistId(playlist._id))
+                    .then(comments => View.displayPlaylistComments(commentSection, comments));
+            });
 
             return commentItem;
         });
