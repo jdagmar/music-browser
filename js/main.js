@@ -22,6 +22,24 @@ const Api = {
                 return [];
             });
     },
+    deletePlaylistComment(id){
+        return Api.delete('comments', id)
+    },
+    deletePlaylist: (id) => Api.delete('playlist', id),
+    delete(type, id){
+        return fetch(`https://folksa.ga/api/${type}/${id}?key=flat_eric`, {
+            method: 'DELETE',
+            mode: 'cors',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then(resp => {
+            if (!resp.ok) {
+                console.log('Api got angry :/', resp.status);
+            }
+        });
+    },
     getCommentsByPlaylistId(id) {
         return fetch(`https://folksa.ga/api/playlists/${id}/comments?key=flat_eric&limit=50`)
             .then(response => response.json())
@@ -44,16 +62,6 @@ const Api = {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(comment)
-        });
-    },
-    deletePlaylistComment(id){
-        return fetch(`https://folksa.ga/api/comments/${id}?key=flat_eric`, {
-            method: 'DELETE',
-            mode: 'cors',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
         });
     }
 }
@@ -138,7 +146,7 @@ const View = {
 
             deleteCommentButton.addEventListener('click', () => {
                 Api.deletePlaylistComment(comment._id)
-                    .then(() => Api.getCommentsByPlaylistId(playlist._id))
+                    .then(() => Api.getCommentsByPlaylistId(comment.playlist))
                     .then(comments => View.displayPlaylistComments(commentSection, comments));
             });
 
@@ -175,6 +183,12 @@ const View = {
 
             const playlistCreator = playlistItem.querySelector('.playlist-creator');
             playlistCreator.innerHTML = `created by ${playlist.createdBy}`
+
+            const deletePlaylistButton = playlistItem.querySelector('.delete-playlist');
+            deletePlaylistButton.addEventListener('click', () => {
+                Api.deletePlaylist(playlist._id)
+                    .then(() => playlistItem.parentNode.removeChild(playlistItem));
+            });
 
             const playlistContainer = playlistItem.querySelector('.playlist');
 
