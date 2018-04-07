@@ -106,8 +106,8 @@
                     <label class="inline-block mb-2" for="album-title">Name of album *</label>
                     <input id="album-name" name="album-title" class="border border-solid block w-full mb-2" type="text" />
                     <label class="inline-block mb-2" for="album-artist">Artist(s) *</label>
-                    <select id="artist-select" name="album-artists" multiple="multiple">
-                        
+                    <select class="artist-select" name="album-artists" multiple="multiple">
+                        <!-- all artists from api is rendered as options here -->
                     </select>
                     <label class="inline-block mb-2" for="album-genres">Genre(s)</label>
                     <input id="album-genres" name="album-genres" class="border border-solid block w-full mb-2" type="text" />
@@ -153,13 +153,20 @@
             <section class="mt-8">
                 <h2 class="mb-2">Add a new track</h2>
                 <p class="mb-4">Fields with an asterix (*) must be filled for the track to be added</p>
-                <form class="w-128">
+                <form id="add-track-form" class="w-128">
                     <label class="inline-block mb-2" for="track-title">Title *</label>
                     <input id="track-title" class="border border-solid block w-full mb-2" type="text" />
+                    
                     <label class="inline-block mb-2" for="track-artist">Artist(s) *</label>
-                    <input id="track-artist" class="border border-solid block w-full mb-2" type="text" />
+                    <select class="track-artist-select" name="track-artists" multiple="multiple">
+                        
+                    </select>
+
                     <label class="inline-block mb-2" for="track-album">Album *</label>
-                    <input id="track-album" class="border border-solid block w-full mb-2" type="text" />
+                    <select class="album-select" name="tracks-album" multiple="multiple">
+
+                    </select>
+
                     <label class="inline-block mb-2" for="track-genres">Genre(s)</label>
                     <input id="track-genres" class="border border-solid block w-full mb-2" type="text" />
                     <label class="inline-block mb-2" for="track-cover-image">Link to album coverimage (url)</label>
@@ -172,6 +179,7 @@
                     <input id="track-youtube" class="border border-solid block w-full mb-2" type="text" />
                     <label class="inline-block mb-2" for="track-soundcloud">Soundcloud-url to track</label>
                     <input id="track-soundcloud" class="border border-solid block w-full mb-2" type="text" />
+                    <input type="submit" value="add"/>
                 </form>
             </section>
         </div>

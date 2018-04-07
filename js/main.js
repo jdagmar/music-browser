@@ -22,14 +22,14 @@ const Api = {
                 return [];
             });
     },
-    deletePlaylistComment(id){
+    deletePlaylistComment(id) {
         return Api.delete('comments', id)
     },
     deletePlaylist: (id) => Api.delete('playlist', id),
     deleteArtist: (id) => Api.delete('artists', id),
     deleteAlbum: (id) => Api.delete('albums', id),
     deleteTrack: (id) => Api.delete('tracks', id),
-    delete(type, id){
+    delete(type, id) {
         return fetch(`https://folksa.ga/api/${type}/${id}?key=flat_eric`, {
             method: 'DELETE',
             mode: 'cors',
@@ -67,7 +67,7 @@ const Api = {
             body: JSON.stringify(comment)
         });
     },
-    addArtist(name, born, genres, gender, countryBorn, spotifyURL, coverImage){
+    addArtist(name, born, genres, gender, countryBorn, spotifyURL, coverImage) {
         const artist = {
             name: name,
             born: born,
@@ -87,7 +87,7 @@ const Api = {
             body: JSON.stringify(artist)
         });
     },
-    addAlbum(title, artists, releaseDate, genres, spotifyURL, coverImage){
+    addAlbum(title, artists, releaseDate, genres, spotifyURL, coverImage) {
         const album = {
             title: title,
             artists: artists,
@@ -104,6 +104,23 @@ const Api = {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(album)
+        });
+    },
+    addTrack(title, artists, album, genres, coverImage, spotifyURL, youtubeURL, soundcloudURL) {
+        const track = {
+            title: title,
+            artists: artists,
+            album: album,
+            genres: genres
+        };
+
+        fetch(`https://folksa.ga/api/tracks?key=flat_eric`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(track)
         });
     }
 }
@@ -328,26 +345,25 @@ const genderChoices = new Choices('#artist-gender', {
 addArtistForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    const name = addArtistForm.elements['artist-name']; 
-    const born = addArtistForm.elements['artist-birthdate']; 
-    const genres = addArtistForm.elements['artist-genres']; 
-    const gender = addArtistForm.elements['artist-gender']; 
-    const countryBorn = addArtistForm.elements['artist-country']; 
-    const spotifyURL = addArtistForm.elements['artist-spotify']; 
-    const artistImage = addArtistForm.elements['artist-image']; 
+    const name = addArtistForm.elements['artist-name'];
+    const born = addArtistForm.elements['artist-birthdate'];
+    const genres = addArtistForm.elements['artist-genres'];
+    const gender = addArtistForm.elements['artist-gender'];
+    const countryBorn = addArtistForm.elements['artist-country'];
+    const spotifyURL = addArtistForm.elements['artist-spotify'];
+    const artistImage = addArtistForm.elements['artist-image'];
 
     Api.addArtist(name.value, born.value, genres.value, gender.value, countryBorn.value,
         spotifyURL.value, artistImage.value);
 });
 
 const addAlbumForm = document.getElementById('add-album-form');
-const artistSelect = new Choices('#artist-select', {
+const artistSelect = new Choices('.artist-select', {
     position: 'bottom'
 });
 
 addAlbumForm.addEventListener('submit', (event) => {
     event.preventDefault();
-
     const title = addAlbumForm.elements['album-title'];
     const artists = artistSelect.getValue(true).join(',');
     const releaseDate = addAlbumForm.elements['album-release'];
@@ -356,7 +372,30 @@ addAlbumForm.addEventListener('submit', (event) => {
     const coverImage = addAlbumForm.elements['album-cover'];
 
     Api.addAlbum(title.value, artists, releaseDate.value, genres.value, spotifyURL.value,
-    coverImage.value);
+        coverImage.value);
+});
+
+const addTrackForm = document.getElementById('add-track-form');
+const albumSelect = new Choices('.album-select', {
+    position: 'bottom'
+});
+const trackArtistSelect = new Choices('.track-artist-select', {
+    position: 'bottom'
+});
+
+addTrackForm.addEventListener('click', (event) => {
+    event.preventDefault();
+    const title = addTrackForm.elements['track-title'];
+    const artists = trackArtistSelect.getValue(true).join(',');
+    const album = albumSelect.getValue(true).join(',');
+    const genres = addTrackForm.elements['track-genres'];
+    const coverImage = addTrackForm.elements['track-cover-image'];
+    const spotifyURL = addTrackForm.elements['track-spotify'];
+    const youtubeURL = addTrackForm.elements['track-youtube'];
+    const soundcloudURL = addTrackForm.elements['track-soundcloud'];
+
+    Api.addTrack(title.value, artists, album, genres.value, coverImage.value,
+        spotifyURL.value, youtubeURL.value);
 });
 
 const createArtistSelect = (artists) => {
@@ -367,6 +406,17 @@ const createArtistSelect = (artists) => {
     });
 
     artistSelect.setChoices(choices, 'value', 'label', true);
+    trackArtistSelect.setChoices(choices, 'value', 'label', true);
+}
+
+const createAlbumSelect = (albums) => {
+    const choices = albums.map(album => {
+        return {
+            value: album._id, label: album.title
+        }
+    });
+
+    albumSelect.setChoices(choices, 'value', 'label', true);
 }
 
 const navLinks = document.querySelectorAll('#nav [data-view]');
@@ -378,3 +428,4 @@ Api.getAlbums().then(albums => View.displayAlbums(albums));
 Api.getTracks().then(tracks => View.displayTracks(tracks));
 Api.getPlaylists().then(playlists => View.displayPlaylists(playlists));
 Api.getArtists().then(artists => createArtistSelect(artists));
+Api.getAlbums().then(albums => createAlbumSelect(albums));
