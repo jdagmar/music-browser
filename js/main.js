@@ -15,7 +15,7 @@ const Api = {
         });
     }),
     get(type) {
-        return fetch(`https://folksa.ga/api/${type}?key=flat_eric&limit=50`)
+        return fetch(`https://folksa.ga/api/${type}?key=flat_eric&limit=100`)
             .then(response => response.json())
             .catch(error => {
                 console.log('error');
@@ -65,6 +65,26 @@ const Api = {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(comment)
+        });
+    },
+    addArtist(name, born, genres, gender, countryBorn, spotifyUrl, coverImage){
+        const artist = {
+            name: name,
+            born: born,
+            genres: genres,
+            gender: gender,
+            countryBorn: countryBorn,
+            spotifyURL: spotifyUrl,
+            coverImage: coverImage
+        };
+
+        fetch(`https://folksa.ga/api/artists?key=flat_eric`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(artist)
         });
     }
 }
@@ -280,6 +300,22 @@ const hamburger = document.getElementById('hamburger');
 hamburger.addEventListener('click', () => {
     View.toggleMenu();
 });
+
+const addArtistForm = document.getElementById('add-artist-form');
+addArtistForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const name = addArtistForm.elements['artist-name']; 
+    const born = addArtistForm.elements['artist-birthdate']; 
+    const genres = addArtistForm.elements['artist-genres']; 
+    const gender = addArtistForm.elements['artist-gender']; 
+    const countryBorn = addArtistForm.elements['artist-country']; 
+    const spotifyUrl = addArtistForm.elements['artist-spotify']; 
+    const artistImage = addArtistForm.elements['artist-image']; 
+
+    Api.addArtist(name.value, born.value, genres.value, gender.value, countryBorn.value,
+        spotifyUrl.value, artistImage.value);
+})
 
 const navLinks = document.querySelectorAll('#nav [data-view]');
 navLinks.forEach(link =>

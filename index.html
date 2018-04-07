@@ -55,19 +55,22 @@
             <section class="mt-8">
                 <h2 class="mb-2">Add a new artist</h2>
                 <p class="mb-4">Fields with an asterix (*) must be filled for artist to be added</p>
-                <form class="w-128">
+                <form id="add-artist-form" class="w-128">
                     <label class="inline-block mb-2" for="artist-name">Name *</label>
-                    <input id="artist-name" class="border border-solid block w-full mb-4" type="text" />
+                    <input id="artist-name" name="artist-name" class="border border-solid block w-full mb-4" type="text" />
                     <label class="inline-block mb-2" for="artist-birthdate">Birthdate (YYYY-MM-DD)</label>
-                    <input id="artist-birthdate" class="border border-solid block w-full mb-4" type="text" />
+                    <input id="artist-birthdate" name="artist-birthdate" class="border border-solid block w-full mb-4" type="text" />
                     <label class="inline-block mb-2" for="artist-genres">Genre(s) sh/e is active in</label>
-                    <input id="artist-genres" class="border border-solid block w-full mb-4" type="text" />
+                    <input id="artist-genres" name="artist-genres" class="border border-solid block w-full mb-4" type="text" />
+                    <label class="inline-block mb-2" for="artist-gender">Gender *</label>
+                    <input id="artist-gender" name="artist-gender" class="border border-solid block w-full mb-4" type="text">
                     <label class="inline-block mb-2" for="artist-country">Country of origin</label>
-                    <input id="artist-country" class="border border-solid block w-full mb-4" type="text" />
+                    <input id="artist-country" name="artist-country" class="border border-solid block w-full mb-4" type="text" />
                     <label class="inline-block mb-2" for="artist-spotify">Url to artist spotify</label>
-                    <input id="artist-spotify" class="border border-solid block w-full mb-4" type="text" />
+                    <input id="artist-spotify" name="artist-spotify" class="border border-solid block w-full mb-4" type="text" />
                     <label class="inline-block mb-2" for="artist-image">Url to artist image</label>
-                    <input id="artist-image" class="border border-solid block w-full mb-4" type="text" />
+                    <input id="artist-image" name="artist-image" class="border border-solid block w-full mb-4" type="text" />
+                    <input type="submit" value="add"/>
                 </form>
             </section>
         </div>
