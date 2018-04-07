@@ -97,19 +97,20 @@
             <section class="mt-8">
                 <h2 class="mb-2">Add a new album</h2>
                 <p class="mb-4">Fields with an asterix (*) must be filled for album to be added</p>
-                <form class="w-128">
-                    <label class="inline-block mb-2" for="album-name">Name of album *</label>
-                    <input id="album-name" class="border border-solid block w-full mb-2" type="text" />
+                <form id="add-album-form" class="w-128">
+                    <label class="inline-block mb-2" for="album-title">Name of album *</label>
+                    <input id="album-name" name="album-title" class="border border-solid block w-full mb-2" type="text" />
                     <label class="inline-block mb-2" for="album-artist">Artist(s) *</label>
-                    <input id="album-artist" class="border border-solid block w-full mb-2" type="text" />
+                    <input id="album-artist" name="album-artists"  class="border border-solid block w-full mb-2" type="text" />
                     <label class="inline-block mb-2" for="album-genres">Genre(s)</label>
-                    <input id="album-genres" class="border border-solid block w-full mb-2" type="text" />
+                    <input id="album-genres" name="album-genres" class="border border-solid block w-full mb-2" type="text" />
                     <label class="inline-block mb-2" for="album-release">Release year (YYYY)</label>
-                    <input id="album-release" class="border border-solid block w-full mb-2" type="text" />
+                    <input id="album-release" name="album-release" class="border border-solid block w-full mb-2" type="text" />
                     <label class="inline-block mb-2" for="album-spotify">Spotify-url to album</label>
-                    <input id="album-spotify" class="border border-solid block w-full mb-2" type="text" />
+                    <input id="album-spotify" name="album-spotify" class="border border-solid block w-full mb-2" type="text" />
                     <label class="inline-block mb-2" for="album-cover">Url to coverimage</label>
-                    <input id="album-cover" class="border border-solid block w-full mb-2" type="text" />
+                    <input id="album-cover" name="album-cover" class="border border-solid block w-full mb-2" type="text" />
+                    <input type="submit" value="add" />
                 </form>
             </section>
         </div>

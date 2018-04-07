@@ -67,14 +67,14 @@ const Api = {
             body: JSON.stringify(comment)
         });
     },
-    addArtist(name, born, genres, gender, countryBorn, spotifyUrl, coverImage){
+    addArtist(name, born, genres, gender, countryBorn, spotifyURL, coverImage){
         const artist = {
             name: name,
             born: born,
             genres: genres,
             gender: gender,
             countryBorn: countryBorn,
-            spotifyURL: spotifyUrl,
+            spotifyURL: spotifyURL,
             coverImage: coverImage
         };
 
@@ -85,6 +85,25 @@ const Api = {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(artist)
+        });
+    },
+    addAlbum(title, artists, releaseDate, genres, spotifyURL, coverImage){
+        const album = {
+            title: title,
+            artists: artists,
+            releaseDate: releaseDate,
+            genres: genres,
+            spotifyURL: spotifyURL,
+            coverImage: coverImage
+        };
+
+        fetch(`https://folksa.ga/api/albums?key=flat_eric`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(album)
         });
     }
 }
@@ -310,12 +329,28 @@ addArtistForm.addEventListener('submit', (event) => {
     const genres = addArtistForm.elements['artist-genres']; 
     const gender = addArtistForm.elements['artist-gender']; 
     const countryBorn = addArtistForm.elements['artist-country']; 
-    const spotifyUrl = addArtistForm.elements['artist-spotify']; 
+    const spotifyURL = addArtistForm.elements['artist-spotify']; 
     const artistImage = addArtistForm.elements['artist-image']; 
 
     Api.addArtist(name.value, born.value, genres.value, gender.value, countryBorn.value,
-        spotifyUrl.value, artistImage.value);
-})
+        spotifyURL.value, artistImage.value);
+});
+
+const addAlbumForm = document.getElementById('add-album-form');
+addAlbumForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const title = addAlbumForm.elements['album-title'];
+    const artists = addAlbumForm.elements['album-artists'];
+    const releaseDate = addAlbumForm.elements['album-release'];
+    const genres = addAlbumForm.elements['album-genres'];
+    const spotifyURL = addAlbumForm.elements['album-spotify'];
+    const coverImage = addAlbumForm.elements['album-cover'];
+
+    Api.addAlbum(title.value, artists.value, releaseDate.value, genres.value, spotifyURL.value,
+    coverImage.value);
+
+});
 
 const navLinks = document.querySelectorAll('#nav [data-view]');
 navLinks.forEach(link =>
