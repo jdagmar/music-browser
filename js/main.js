@@ -185,11 +185,13 @@ const View = {
 
             commentForm.addEventListener('submit', event => {
                 event.preventDefault();
-                const username = commentForm.elements.username.value;
-                const body = commentForm.elements.body.value;
-                Api.postPlaylistComment(playlist._id, body, username)
+                const username = commentForm.elements.username;
+                const body = commentForm.elements.body;
+                Api.postPlaylistComment(playlist._id, body.value, username.value)
                     .then(() => Api.getCommentsByPlaylistId(playlist._id))
                     .then(comments => View.displayPlaylistComments(commentSection, comments));
+                username.value = '';
+                body.value = '';
             });
 
             playlist.tracks.map(track => {
