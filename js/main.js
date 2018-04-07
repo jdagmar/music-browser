@@ -29,6 +29,22 @@ const Api = {
                 console.log('error', error);
                 return [];
             });
+    },
+    postPlaylistComment(id, body, username) {
+        const comment = {
+            playlist: id,
+            body: body,
+            username: username
+        };
+
+        return fetch(`https://folksa.ga/api/playlists/${id}/comments?key=flat_eric`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(comment)
+        });
     }
 }
 
@@ -41,12 +57,12 @@ const View = {
             const artistImage = artistContainer.querySelector('.artist-image');
             artistImage.src = artist.image || artist.coverImage;
             artistImage.alt = artist.name;
-        
+
             artistImage.onerror = () => {
                 artistImage.onerror = undefined;
                 artistImage.src = 'images/103__user.svg';
             }
-            
+
             const artistImageCaption = artistContainer.querySelector('.artist-image-caption');
             artistImageCaption.innerHTML = artist.name;
 
@@ -107,14 +123,14 @@ const View = {
             username.innerHTML = comment.username;
             const commentText = commentItem.querySelector('.comment-text');
             commentText.innerHTML = comment.body;
-            
+
             return commentItem;
         });
 
         const commentField = commentSection.querySelector('.comment-field');
         const commentFieldHeading = commentSection.querySelector('.comment-field-heading');
         commentFieldHeading.innerHTML = `Comments (${comments.length})`;
-        
+
         commentField.innerHTML = '';
         listAllComments.forEach(comment => commentField.appendChild(comment));
     },
@@ -128,7 +144,7 @@ const View = {
                 playlistCover.onerror = undefined;
                 playlistCover.src = 'images/144__headphone.svg';
             }
-           
+
             playlistCover.alt = `Coverimage for the playlist ${playlist.title}`;
             const playlistTitle = playlistItem.querySelector('.playlist-title');
             playlistTitle.innerHTML = playlist.title;
@@ -146,6 +162,17 @@ const View = {
 
             const commentSection = playlistItem.querySelector('.comment-section');
             View.displayPlaylistComments(commentSection, playlist.comments);
+
+            const commentForm = playlistItem.querySelector('.comment-form');
+
+            commentForm.addEventListener('submit', event => {
+                event.preventDefault();
+                const username = commentForm.elements.username.value;
+                const body = commentForm.elements.body.value;
+                Api.postPlaylistComment(playlist._id, body, username)
+                    .then(() => Api.getCommentsByPlaylistId(playlist._id))
+                    .then(comments => View.displayPlaylistComments(commentSection, comments));
+            });
 
             playlist.tracks.map(track => {
                 const playlistTrack = playlistContainer.querySelector('.playlist-item-template').cloneNode(true);
@@ -182,10 +209,10 @@ const View = {
 
         document.getElementById(currentView).classList.remove('hidden');
     },
-    toggleMenu(){
+    toggleMenu() {
         const nav = document.getElementById('nav');
 
-        if (nav.classList.contains('invisible')){
+        if (nav.classList.contains('invisible')) {
             nav.classList.remove('invisible');
         }
         else {
@@ -207,4 +234,3 @@ Api.getArtists().then(artists => View.displayArtists(artists));
 Api.getAlbums().then(albums => View.displayAlbums(albums));
 Api.getTracks().then(tracks => View.displayTracks(tracks));
 Api.getPlaylists().then(playlists => View.displayPlaylists(playlists));
-
