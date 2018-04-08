@@ -279,6 +279,11 @@ const View = {
             const playlistCreator = playlistItem.querySelector('.playlist-creator');
             playlistCreator.innerHTML = `created by ${playlist.createdBy}`
 
+            const genres = playlist.genres.map(genres => genres);
+
+            const playlistGenres = playlistItem.querySelector('.playlist-genres');
+            playlistGenres.innerHTML = genres;
+
             const deletePlaylistButton = playlistItem.querySelector('.delete-playlist');
             deletePlaylistButton.addEventListener('click', () => {
                 Api.deletePlaylist(playlist._id)
