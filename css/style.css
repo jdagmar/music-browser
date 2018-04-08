@@ -6,6 +6,10 @@ p, #artist-view-link, input, label, .choices__list--single .choices__item {
     font-family: 'Roboto';
 }
 
+.artist-image, .album-image {
+    object-fit: cover; 
+}
+
 .comment-field li:last-child {
     border: none;
 }
@@ -43,7 +47,7 @@ p, #artist-view-link, input, label, .choices__list--single .choices__item {
 }
 
 .grid-col-repeat-200 {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
 .grid-col-repeat-400 {
