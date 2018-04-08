@@ -60,4 +60,8 @@ p, #artist-view-link {
     background-color: #ddd;
 }
 
+.choices__item--disabled {
+    display: none;
+}
+
 

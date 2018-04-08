@@ -397,11 +397,30 @@ const addTrackForm = document.getElementById('add-track-form');
 const albumSelect = new Choices('.album-select', {
     position: 'bottom'
 });
+
+albumSelect.passedElement.addEventListener('choice', (event) => {
+    const albumId = event.detail.choice.value;
+
+    const filteredArtists = trackArtistSelect.store.getChoices().map(choice => {
+        return ({
+        value: choice.value, 
+        label: choice.label, 
+        customProperties: choice.customProperties,
+        disabled: choice.customProperties.albums.indexOf(albumId) < 0
+    })});
+
+    trackArtistSelect.setChoices(filteredArtists, 'value', 'label', true);
+
+    trackArtistSelect.enable();
+});
+
 const trackArtistSelect = new Choices('.track-artist-select', {
     position: 'bottom'
 });
 
-addTrackForm.addEventListener('click', (event) => {
+trackArtistSelect.disable();
+
+addTrackForm.addEventListener('submit', (event) => {
     event.preventDefault();
     const title = addTrackForm.elements['track-title'];
     const artists = trackArtistSelect.getValue(true).join(',');
@@ -435,7 +454,10 @@ addPlaylistForm.addEventListener('submit', (event) => {
 const createArtistSelect = (artists) => {
     const choices = artists.map(artist => {
         return {
-            value: artist._id, label: artist.name
+            value: artist._id, label: artist.name,
+            customProperties: {
+                albums: artist.albums
+            }
         }
     });
 
@@ -456,7 +478,8 @@ const createAlbumSelect = (albums) => {
 const createTrackSelect = (tracks) => {
     const choices = tracks.map(track => {
         return {
-            value: track._id, label: track.title + ' by ' + track.artists.map(artist => artist.name).join(', ')
+            value: track._id, 
+            label: track.title + ' by ' + track.artists.map(artist => artist.name).join(', '),
         }
     });
 
