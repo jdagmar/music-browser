@@ -122,6 +122,24 @@ const Api = {
             },
             body: JSON.stringify(track)
         });
+    },
+    addPlaylist(title, tracks, genres, coverImage, createdBy) {
+        const playlist = {
+            title: title,
+            genres: genres,
+            createdBy: createdBy,
+            tracks: tracks,
+            coverImage: coverImage,
+        }
+
+        fetch('https://folksa.ga/api/playlists?key=flat_eric', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(playlist)
+        });
     }
 }
 
@@ -398,6 +416,22 @@ addTrackForm.addEventListener('click', (event) => {
         spotifyURL.value, youtubeURL.value);
 });
 
+const addPlaylistForm = document.getElementById('add-playlist-form');
+const playlistTrackSelect = new Choices('.playlist-track-select', {
+    position: 'bottom'
+});
+
+addPlaylistForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const title = addPlaylistForm.elements['playlist-title'];
+    const tracks = playlistTrackSelect.getValue(true).join(',');
+    const genres = addPlaylistForm.elements['playlist-genres'];
+    const coverImage = addPlaylistForm.elements['playlist-cover-image'];
+    const createdBy = addPlaylistForm.elements['playlist-created-by'];
+
+    Api.addPlaylist(title.value, tracks, genres.value, coverImage.value, createdBy.value);
+});
+
 const createArtistSelect = (artists) => {
     const choices = artists.map(artist => {
         return {
@@ -419,6 +453,16 @@ const createAlbumSelect = (albums) => {
     albumSelect.setChoices(choices, 'value', 'label', true);
 }
 
+const createTrackSelect = (tracks) => {
+    const choices = tracks.map(track => {
+        return {
+            value: track._id, label: track.title + ' by ' + track.artists.map(artist => artist.name).join(', ')
+        }
+    });
+
+    playlistTrackSelect.setChoices(choices, 'value', 'label', true);
+}
+
 const navLinks = document.querySelectorAll('#nav [data-view]');
 navLinks.forEach(link =>
     link.addEventListener('click', () => View.switchView(link.getAttribute('data-view'))));
@@ -427,5 +471,7 @@ Api.getArtists().then(artists => View.displayArtists(artists));
 Api.getAlbums().then(albums => View.displayAlbums(albums));
 Api.getTracks().then(tracks => View.displayTracks(tracks));
 Api.getPlaylists().then(playlists => View.displayPlaylists(playlists));
+
 Api.getArtists().then(artists => createArtistSelect(artists));
 Api.getAlbums().then(albums => createAlbumSelect(albums));
+Api.getTracks().then(tracks => createTrackSelect(tracks));

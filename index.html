@@ -281,11 +281,13 @@
             <section class="mt-8">
                 <h2 class="mb-2">Create a playlist</h2>
                 <p class="mb-4">Fields with an asterix (*) must be filled for the playlist to be added</p>
-                <form class="w-128">
+                <form id="add-playlist-form" class="w-128">
                     <label class="inline-block mb-2" for="playlist-title">Title *</label>
                     <input id="playlist-title" class="border border-solid block w-full mb-2" type="text" />
-                    <label class="inline-block mb-2" for="playlist-tracks">Track id's (seperate with comma)</label>
-                    <input id="playlist-tracks" class="border border-solid block w-full mb-2" type="text" />
+                    <label class="inline-block mb-2" for="playlist-tracks">Tracks</label>
+                    <select class="playlist-track-select" name="playlist-track-select" multiple="multiple">
+
+                    </select>
                     <label class="inline-block mb-2" for="playlist-genres">Genre(s)</label>
                     <input id="playlist-genres" class="border border-solid block w-full mb-2" type="text" />
                     <label class="inline-block mb-2" for="playlist-cover-image">Link to coverimage</label>
@@ -294,6 +296,7 @@
                     <input id="playlist-image-color" class="border border-solid block w-full mb-2" type="text" />
                     <label class="inline-block mb-2" for="playlist-created-by">Your username *</label>
                     <input id="playlist-created-by" class="border border-solid block w-full mb-2" type="text" />
+                    <input type="submit" value="post">
                 </form>
             </section>
         </div>
