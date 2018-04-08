@@ -156,6 +156,7 @@ const View = {
             artistImage.onerror = () => {
                 artistImage.onerror = undefined;
                 artistImage.src = 'images/103__user.svg';
+                artistImage.alt = 'no image was uploaded, fallback image of user icon is in use';
             }
 
             const artistImageCaption = artistContainer.querySelector('.artist-image-caption');
@@ -184,6 +185,7 @@ const View = {
             albumImage.onerror = () => {
                 albumImage.onerror = undefined;
                 albumImage.src = 'images/140__music.svg';
+                artistImage.alt = 'no image was uploaded, fallback image of note icon is in use';
             }
 
             albumImage.alt = album.title;
@@ -264,6 +266,7 @@ const View = {
             playlistCover.onerror = () => {
                 playlistCover.onerror = undefined;
                 playlistCover.src = 'images/144__headphone.svg';
+                playlistCover.alt = 'no image was uploaded, fallback image of headphones icon is in use';
             }
 
             playlistCover.alt = `Coverimage for the playlist ${playlist.title}`;
