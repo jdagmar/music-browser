@@ -105,8 +105,8 @@
                 <form id="add-album-form" class="w-128">
                     <label class="inline-block mb-2" for="album-title">Album title *</label>
                     <input id="album-name" name="album-title" class="border border-solid block w-full mb-2 h-10 rounded" type="text" />
-                    <label class="inline-block mb-2" for="album-artist">Artist(s) *</label>
-                    <select class="artist-select" name="album-artists" multiple="multiple">
+                    <label class="inline-block mb-2" for="artist-select">Artist(s) *</label>
+                    <select id="artist-select" name="album-artists" multiple="multiple">
                         <!-- all artists from api is rendered as options here -->
                     </select>
                     <label class="inline-block mb-2" for="album-genres">Genre(s)</label>
@@ -156,12 +156,12 @@
                 <form id="add-track-form" class="w-128">
                     <label class="inline-block mb-2" for="track-title">Track title *</label>
                     <input id="track-title" class="border border-solid block w-full mb-2 h-10" type="text" />
-                    <label class="inline-block mb-2" for="track-album">Album *</label>
-                    <select class="album-select" name="tracks-album">
+                    <label class="inline-block mb-2" for="album-select">Album *</label>
+                    <select id="album-select" name="tracks-album">
                         <!-- all albums from api is rendered here -->
                     </select>
-                    <label class="inline-block mb-2" for="track-artist">Artist(s) *</label>
-                    <select class="track-artist-select" name="track-artists" multiple="multiple">
+                    <label class="inline-block mb-2" for="track-artist-select">Artist(s) *</label>
+                    <select id="track-artist-select" name="track-artists" multiple="multiple">
                         <!-- all artists from choosen album is rendered here -->
                     </select>
                     <label class="inline-block mb-2" for="track-genres">Genre(s)</label>
@@ -182,8 +182,8 @@
         </div>
         <div id="all-playlists" class="hidden max-w-2xl m-auto">
             <div class="m-auto mb-2">
-                <label>Sort by most popular</label>
-                <input type="checkbox" id="popular-playlist-checkbox" />
+                <label for="popular-playlist-checkbox">Sort by most popular</label>
+                <input id="popular-playlist-checkbox" type="checkbox" />
             </div>
             <section id="playlists-container" class="grid grid-space rid-row-repeat-400">
             </section>
@@ -286,8 +286,8 @@
                     <input id="playlist-title" class="border border-solid block w-full mb-2 h-10 rounded" type="text" />
                     <label class="inline-block mb-2" for="playlist-created-by">Your username *</label>
                     <input id="playlist-created-by" class="border border-solid block w-full mb-2 h-10 rounded" type="text" />
-                    <label class="inline-block mb-2" for="playlist-tracks">Tracks</label>
-                    <select class="playlist-track-select" name="playlist-track-select" multiple="multiple">
+                    <label class="inline-block mb-2" for="playlist-track-select">Tracks</label>
+                    <select id="playlist-track-select" name="playlist-track-select" multiple="multiple">
                         <!-- all tracks from api is rendered here -->
                     </select>
                     <label class="inline-block mb-2" for="playlist-genres">Genre(s)</label>

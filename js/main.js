@@ -381,7 +381,7 @@ addArtistForm.addEventListener('submit', (event) => {
 });
 
 const addAlbumForm = document.getElementById('add-album-form');
-const artistSelect = new Choices('.artist-select', {
+const artistSelect = new Choices('#artist-select', {
     position: 'bottom'
 });
 
@@ -399,7 +399,7 @@ addAlbumForm.addEventListener('submit', (event) => {
 });
 
 const addTrackForm = document.getElementById('add-track-form');
-const albumSelect = new Choices('.album-select', {
+const albumSelect = new Choices('#album-select', {
     position: 'bottom'
 });
 
@@ -419,7 +419,7 @@ albumSelect.passedElement.addEventListener('choice', (event) => {
     trackArtistSelect.enable();
 });
 
-const trackArtistSelect = new Choices('.track-artist-select', {
+const trackArtistSelect = new Choices('#track-artist-select', {
     position: 'bottom'
 });
 
@@ -441,7 +441,7 @@ addTrackForm.addEventListener('submit', (event) => {
 });
 
 const addPlaylistForm = document.getElementById('add-playlist-form');
-const playlistTrackSelect = new Choices('.playlist-track-select', {
+const playlistTrackSelect = new Choices('#playlist-track-select', {
     position: 'bottom'
 });
 
