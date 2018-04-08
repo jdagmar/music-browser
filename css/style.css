@@ -2,7 +2,7 @@ h1, h2, h3 {
     font-family: 'Poppins';
 }
 
-p, #artist-view-link {
+p, #artist-view-link, input, label, .choices__list--single .choices__item {
     font-family: 'Roboto';
 }
 
@@ -54,10 +54,12 @@ p, #artist-view-link {
     grid-template-rows: repeat(auto-fill, minmax(400px, 1fr))
 }
 
+/* restyling of choices.js styling */
 .choices__list--multiple .choices__item.is-highlighted,
 .choices__list--multiple .choices__item {
-    border-color: #ddd;
-    background-color: #ddd;
+    border-color: #424242;
+    background-color: #424242;
+    border-radius: 0.25rem;
 }
 
 .choices__item--disabled {

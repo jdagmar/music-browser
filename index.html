@@ -57,12 +57,12 @@
                 <h2 class="mb-2">Add a new artist</h2>
                 <p class="mb-4">Fields with an asterix (*) must be filled for artist to be added</p>
                 <form id="add-artist-form" class="w-128">
-                    <label class="inline-block mb-2" for="artist-name">Name *</label>
-                    <input id="artist-name" name="artist-name" class="border border-solid block w-full mb-4" type="text" />
+                    <label class="inline-block mb-2" for="artist-name">Full name *</label>
+                    <input id="artist-name" name="artist-name" class="border border-solid block w-full mb-4 h-10 rounded" type="text" />
                     <label class="inline-block mb-2" for="artist-birthdate">Birthdate (YYYY-MM-DD)</label>
-                    <input id="artist-birthdate" name="artist-birthdate" class="border border-solid block w-full mb-4" type="text" />
+                    <input id="artist-birthdate" name="artist-birthdate" class="border border-solid block w-full mb-4 h-10 rounded" type="text" />
                     <label class="inline-block mb-2" for="artist-genres">Genre(s) sh/e is active in</label>
-                    <input id="artist-genres" name="artist-genres" class="border border-solid block w-full mb-4" type="text" />
+                    <input id="artist-genres" name="artist-genres" class="border border-solid block w-full mb-4 h-10 rounded" type="text" />
                     <label class="inline-block mb-2" for="artist-gender">Gender *</label>
                     <select id="artist-gender" name="artist-gender">
                         <option value="female">female</option>
@@ -70,12 +70,12 @@
                         <option value="other">other</option>
                     </select>
                     <label class="inline-block mb-2" for="artist-country">Country of origin</label>
-                    <input id="artist-country" name="artist-country" class="border border-solid block w-full mb-4" type="text" />
+                    <input id="artist-country" name="artist-country" class="border border-solid block w-full mb-4 h-10 rounded" type="text" />
                     <label class="inline-block mb-2" for="artist-spotify">Url to artist spotify</label>
-                    <input id="artist-spotify" name="artist-spotify" class="border border-solid block w-full mb-4" type="text" />
+                    <input id="artist-spotify" name="artist-spotify" class="border border-solid block w-full mb-4 h-10 rounded" type="text" />
                     <label class="inline-block mb-2" for="artist-image">Url to artist image</label>
-                    <input id="artist-image" name="artist-image" class="border border-solid block w-full mb-4" type="text" />
-                    <input type="submit" value="add"/>
+                    <input id="artist-image" name="artist-image" class="border border-solid block w-full mb-4 h-10 rounded" type="text" />
+                    <input class="border border-solid block w-full mb-4 h-10 rounded" type="submit" value="Create artist"/>
                 </form>
             </section>
         </div>
@@ -103,21 +103,21 @@
                 <h2 class="mb-2">Add a new album</h2>
                 <p class="mb-4">Fields with an asterix (*) must be filled for album to be added</p>
                 <form id="add-album-form" class="w-128">
-                    <label class="inline-block mb-2" for="album-title">Name of album *</label>
-                    <input id="album-name" name="album-title" class="border border-solid block w-full mb-2" type="text" />
+                    <label class="inline-block mb-2" for="album-title">Album title *</label>
+                    <input id="album-name" name="album-title" class="border border-solid block w-full mb-2 h-10 rounded" type="text" />
                     <label class="inline-block mb-2" for="album-artist">Artist(s) *</label>
                     <select class="artist-select" name="album-artists" multiple="multiple">
                         <!-- all artists from api is rendered as options here -->
                     </select>
                     <label class="inline-block mb-2" for="album-genres">Genre(s)</label>
-                    <input id="album-genres" name="album-genres" class="border border-solid block w-full mb-2" type="text" />
+                    <input id="album-genres" name="album-genres" class="border border-solid block w-full mb-2 h-10 rounded" type="text" />
                     <label class="inline-block mb-2" for="album-release">Release year (YYYY)</label>
-                    <input id="album-release" name="album-release" class="border border-solid block w-full mb-2" type="text" />
+                    <input id="album-release" name="album-release" class="border border-solid block w-full mb-2 h-10 rounded" type="text" />
                     <label class="inline-block mb-2" for="album-spotify">Spotify-url to album</label>
-                    <input id="album-spotify" name="album-spotify" class="border border-solid block w-full mb-2" type="text" />
+                    <input id="album-spotify" name="album-spotify" class="border border-solid block w-full mb-2 h-10 rounded" type="text" />
                     <label class="inline-block mb-2" for="album-cover">Url to coverimage</label>
-                    <input id="album-cover" name="album-cover" class="border border-solid block w-full mb-2" type="text" />
-                    <input type="submit" value="add" />
+                    <input id="album-cover" name="album-cover" class="border border-solid block w-full mb-2 h-10 rounded" type="text" />
+                    <input class="border border-solid block w-full mb-2 h-10 rounded" type="submit" value="Create album" />
                 </form>
             </section>
         </div>
@@ -154,30 +154,29 @@
                 <h2 class="mb-2">Add a new track</h2>
                 <p class="mb-4">Fields with an asterix (*) must be filled for the track to be added</p>
                 <form id="add-track-form" class="w-128">
-                    <label class="inline-block mb-2" for="track-title">Title *</label>
-                    <input id="track-title" class="border border-solid block w-full mb-2" type="text" />
+                    <label class="inline-block mb-2" for="track-title">Track title *</label>
+                    <input id="track-title" class="border border-solid block w-full mb-2 h-10" type="text" />
                     <label class="inline-block mb-2" for="track-album">Album *</label>
                     <select class="album-select" name="tracks-album">
-
+                        <!-- all albums from api is rendered here -->
                     </select>
-
                     <label class="inline-block mb-2" for="track-artist">Artist(s) *</label>
                     <select class="track-artist-select" name="track-artists" multiple="multiple">
-                        
+                        <!-- all artists from choosen album is rendered here -->
                     </select>
                     <label class="inline-block mb-2" for="track-genres">Genre(s)</label>
-                    <input id="track-genres" class="border border-solid block w-full mb-2" type="text" />
-                    <label class="inline-block mb-2" for="track-cover-image">Link to album coverimage (url)</label>
-                    <input id="track-cover-image" class="border border-solid block w-full mb-2" type="text" />
+                    <input id="track-genres" class="border border-solid block w-full mb-2 h-10 rounded" type="text" />
+                    <label class="inline-block mb-2" for="track-cover-image">Url to album coverimage (url)</label>
+                    <input id="track-cover-image" class="border border-solid block w-full mb-2 h-10 rounded" type="text" />
                     <label class="inline-block mb-2" for="track-image-color">Color on coverimage</label>
-                    <input id="track-image-color" class="border border-solid block w-full mb-2" type="text" />
+                    <input id="track-image-color" class="border border-solid block w-full mb-2 h-10 rounded" type="text" />
                     <label class="inline-block mb-2" for="track-spotify">Spotify-url to track</label>
-                    <input id="track-spotify" class="border border-solid block w-full mb-2" type="text" />
+                    <input id="track-spotify" class="border border-solid block w-full mb-2 h-10 rounded" type="text" />
                     <label class="inline-block mb-2" for="track-youtube">Youtube-url to track</label>
-                    <input id="track-youtube" class="border border-solid block w-full mb-2" type="text" />
+                    <input id="track-youtube" class="border border-solid block w-full mb-2 h-10 rounded" type="text" />
                     <label class="inline-block mb-2" for="track-soundcloud">Soundcloud-url to track</label>
-                    <input id="track-soundcloud" class="border border-solid block w-full mb-2" type="text" />
-                    <input type="submit" value="add"/>
+                    <input id="track-soundcloud" class="border border-solid block w-full mb-2 h-10 rounded" type="text" />
+                    <input class="border border-solid block w-full mb-2 h-10 rounded" type="submit" value="Create track"/>
                 </form>
             </section>
         </div>
@@ -251,10 +250,10 @@
                         <h2 class="mb-2">Comment on this playlist</h2>
                         <form class="comment-form">
                             <label class="inline-block mb-2" for="username">Name</label>
-                            <input class="border border-solid w-full mb-2 p-2" name="username" id="username" type="text" />
+                            <input class="border border-solid w-full mb-2 p-2 rounded" name="username" id="username" type="text" />
                             <label class="inline-block mb-2" for="comment">Comment</label>
-                            <textarea class="border border-solid w-full" name="body" id="comment" rows="4" cols="60"></textarea>
-                            <input class="border border-solid w-full mb-2 p-2" type="submit" value="Post comment" />
+                            <textarea class="border border-solid w-full rounded" name="body" id="comment" rows="4" cols="60"></textarea>
+                            <input class="border border-solid w-full mb-2 p-2 rounded" type="submit" value="Post comment" />
                         </form>
                         <div class="comment-section">
                             <h3 class="comment-field-heading mb-4 mt-4">comments</h3>
@@ -280,21 +279,21 @@
                 <h2 class="mb-2">Create a playlist</h2>
                 <p class="mb-4">Fields with an asterix (*) must be filled for the playlist to be added</p>
                 <form id="add-playlist-form" class="w-128">
-                    <label class="inline-block mb-2" for="playlist-title">Title *</label>
-                    <input id="playlist-title" class="border border-solid block w-full mb-2" type="text" />
+                    <label class="inline-block mb-2" for="playlist-title">Playlist title *</label>
+                    <input id="playlist-title" class="border border-solid block w-full mb-2 h-10 rounded" type="text" />
+                    <label class="inline-block mb-2" for="playlist-created-by">Your username *</label>
+                    <input id="playlist-created-by" class="border border-solid block w-full mb-2 h-10 rounded" type="text" />
                     <label class="inline-block mb-2" for="playlist-tracks">Tracks</label>
                     <select class="playlist-track-select" name="playlist-track-select" multiple="multiple">
-
+                        <!-- all tracks from api is rendered here -->
                     </select>
                     <label class="inline-block mb-2" for="playlist-genres">Genre(s)</label>
-                    <input id="playlist-genres" class="border border-solid block w-full mb-2" type="text" />
+                    <input id="playlist-genres" class="border border-solid block w-full mb-2 h-10 rounded" type="text" />
                     <label class="inline-block mb-2" for="playlist-cover-image">Link to coverimage</label>
-                    <input id="playlist-cover-image" class="border border-solid block w-full mb-2" type="text" />
+                    <input id="playlist-cover-image" class="border border-solid block w-full mb-2 h-10 rounded" type="text" />
                     <label class="inline-block mb-2" for="playlist-image-color">Color on coverimage</label>
-                    <input id="playlist-image-color" class="border border-solid block w-full mb-2" type="text" />
-                    <label class="inline-block mb-2" for="playlist-created-by">Your username *</label>
-                    <input id="playlist-created-by" class="border border-solid block w-full mb-2" type="text" />
-                    <input type="submit" value="post">
+                    <input id="playlist-image-color" class="border border-solid block w-full mb-2 h-10 rounded" type="text" />
+                    <input class="border border-solid block w-full mb-2 h-10 rounded" type="submit" value="Create playlist">
                 </form>
             </section>
         </div>
