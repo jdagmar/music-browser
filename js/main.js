@@ -25,7 +25,7 @@ const Api = {
     deletePlaylistComment(id) {
         return Api.delete('comments', id)
     },
-    deletePlaylist: (id) => Api.delete('playlist', id),
+    deletePlaylist: (id) => Api.delete('playlists', id),
     deleteArtist: (id) => Api.delete('artists', id),
     deleteAlbum: (id) => Api.delete('albums', id),
     deleteTrack: (id) => Api.delete('tracks', id),
