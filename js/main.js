@@ -446,7 +446,7 @@ addTrackForm.addEventListener('submit', (event) => {
     event.preventDefault();
     const title = addTrackForm.elements['track-title'];
     const artists = trackArtistSelect.getValue(true).join(',');
-    const album = albumSelect.getValue(true).join(',');
+    const album = albumSelect.getValue(true);
     const genres = addTrackForm.elements['track-genres'];
     const coverImage = addTrackForm.elements['track-cover-image'];
     const spotifyURL = addTrackForm.elements['track-spotify'];
@@ -454,16 +454,16 @@ addTrackForm.addEventListener('submit', (event) => {
     const soundcloudURL = addTrackForm.elements['track-soundcloud'];
 
     Api.addTrack(title.value, artists, album, genres.value, coverImage.value,
-        spotifyURL.value, youtubeURL.value);
+    spotifyURL.value, youtubeURL.value);
     
     title.value = '';
     artists.value = '';
-    album = '';
+    album.value = '';
     genres.value = '';
-    coverImage = '';
-    spotifyURL = '';
-    youtubeURL = '';
-    soundcloudURL = '';
+    coverImage.value = '';
+    spotifyURL.value = '';
+    youtubeURL.value = '';
+    soundcloudURL.value = '';
 });
 
 const addPlaylistForm = document.getElementById('add-playlist-form');
