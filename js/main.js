@@ -491,7 +491,7 @@ addPlaylistForm.addEventListener('submit', (event) => {
 const createArtistSelect = (artists) => {
     const choices = artists.map(artist => {
         return {
-            value: artist._id, label: artist.name,
+            value: artist._id, label: `<p class="text-lg">${artist.name}</p>`,
             customProperties: {
                 albums: artist.albums
             }
@@ -505,7 +505,7 @@ const createArtistSelect = (artists) => {
 const createAlbumSelect = (albums) => {
     const choices = albums.map(album => {
         return {
-            value: album._id, label: album.title
+            value: album._id, label: `<p class="text-lg">${album.title}</p>`
         }
     });
 
