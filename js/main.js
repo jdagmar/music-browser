@@ -516,7 +516,8 @@ const createTrackSelect = (tracks) => {
     const choices = tracks.map(track => {
         return {
             value: track._id, 
-            label: track.title + ' by ' + track.artists.map(artist => artist.name).join(', '),
+            label: `<p class="font-semibold text-lg">${track.title}</p>
+                    <p>${track.artists.map(artist => artist.name).join(', ')}</p>`,
         }
     });
 
