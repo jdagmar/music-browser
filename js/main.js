@@ -408,11 +408,11 @@ addAlbumForm.addEventListener('submit', (event) => {
         coverImage.value);
 
     title.value = '';
-    artists.value = '';
+    artistSelect.removeActiveItems().clearInput();
     releaseDate.value = '';
     genres.value = '';
     spotifyURL.value = '';
-    coverImage = '';
+    coverImage.value = '';
 });
 
 const addTrackForm = document.getElementById('add-track-form');
@@ -457,8 +457,8 @@ addTrackForm.addEventListener('submit', (event) => {
     spotifyURL.value, youtubeURL.value);
     
     title.value = '';
-    artists.value = '';
-    album.value = '';
+    trackArtistSelect.removeActiveItems().clearInput();
+    albumSelect.removeActiveItems().clearInput();
     genres.value = '';
     coverImage.value = '';
     spotifyURL.value = '';
@@ -482,7 +482,7 @@ addPlaylistForm.addEventListener('submit', (event) => {
     Api.addPlaylist(title.value, tracks, genres.value, coverImage.value, createdBy.value);
 
     title.value = '';
-    tracks.value = '';
+    playlistTrackSelect.removeActiveItems().clearInput();
     genres.value = '';
     coverImage.value = '';
     createdBy.value = '';
