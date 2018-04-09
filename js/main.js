@@ -15,7 +15,7 @@ const Api = {
         });
     }),
     get(type) {
-        return fetch(`https://folksa.ga/api/${type}?key=flat_eric&limit=100`)
+        return fetch(`https://folksa.ga/api/${type}?key=flat_eric&limit=200`)
             .then(response => response.json())
             .catch(error => {
                 console.log('error');
@@ -185,7 +185,7 @@ const View = {
             albumImage.onerror = () => {
                 albumImage.onerror = undefined;
                 albumImage.src = 'images/140__music.svg';
-                artistImage.alt = 'no image was uploaded, fallback image of note icon is in use';
+                albumImage.alt = 'no image was uploaded, fallback image of note icon is in use';
             }
 
             albumImage.alt = album.title;
@@ -370,7 +370,6 @@ const genderChoices = new Choices('#artist-gender', {
 
 addArtistForm.addEventListener('submit', (event) => {
     event.preventDefault();
-
     const name = addArtistForm.elements['artist-name'];
     const born = addArtistForm.elements['artist-birthdate'];
     const genres = addArtistForm.elements['artist-genres'];
@@ -381,6 +380,14 @@ addArtistForm.addEventListener('submit', (event) => {
 
     Api.addArtist(name.value, born.value, genres.value, gender.value, countryBorn.value,
         spotifyURL.value, artistImage.value);
+
+    name.value = '';
+    born.value = '';
+    genres.value = '';
+    gender.value = '';
+    countryBorn.value = '';
+    spotifyURL.value = '';
+    artistImage.value = '';
 });
 
 const addAlbumForm = document.getElementById('add-album-form');
@@ -399,6 +406,13 @@ addAlbumForm.addEventListener('submit', (event) => {
 
     Api.addAlbum(title.value, artists, releaseDate.value, genres.value, spotifyURL.value,
         coverImage.value);
+
+    title.value = '';
+    artists.value = '';
+    releaseDate.value = '';
+    genres.value = '';
+    spotifyURL.value = '';
+    coverImage = '';
 });
 
 const addTrackForm = document.getElementById('add-track-form');
@@ -441,6 +455,15 @@ addTrackForm.addEventListener('submit', (event) => {
 
     Api.addTrack(title.value, artists, album, genres.value, coverImage.value,
         spotifyURL.value, youtubeURL.value);
+    
+    title.value = '';
+    artists.value = '';
+    album = '';
+    genres.value = '';
+    coverImage = '';
+    spotifyURL = '';
+    youtubeURL = '';
+    soundcloudURL = '';
 });
 
 const addPlaylistForm = document.getElementById('add-playlist-form');
@@ -457,6 +480,12 @@ addPlaylistForm.addEventListener('submit', (event) => {
     const createdBy = addPlaylistForm.elements['playlist-created-by'];
 
     Api.addPlaylist(title.value, tracks, genres.value, coverImage.value, createdBy.value);
+
+    title.value = '';
+    tracks.value = '';
+    genres.value = '';
+    coverImage.value = '';
+    createdBy.value = '';
 });
 
 const createArtistSelect = (artists) => {
