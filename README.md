@@ -1,5 +1,5 @@
-## Music browser
-made by Jessica Gustavsson
+## Music browser :headphones:
+made by Jessica Gustavsson 
 
 ### Built with
 #### Basic Styling
