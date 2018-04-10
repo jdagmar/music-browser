@@ -211,7 +211,7 @@ const View = {
             const ratingsTotal = ratings.reduce((sum, ratings) => sum + ratings, 0);
 
             const albumImageCaption = albumContainer.querySelector('.album-image-caption');
-            albumImageCaption.innerHTML = album.title + ' ' + ratingsTotal;
+            albumImageCaption.innerHTML = `${album.title} (${ratingsTotal} votes)`;
 
             const deleteAlbumButton = albumContainer.querySelector('.delete-album');
             deleteAlbumButton.addEventListener('click', () => {
@@ -220,8 +220,6 @@ const View = {
             });
 
             const albumVoteForm = albumContainer.querySelector('.album-vote-form');
-            // const albumVoteSelect = new Choices('.album-vote');
-
             albumVoteForm.addEventListener('submit', (event) => {
                 event.preventDefault();
                 const vote = albumVoteForm.elements['album-rating'];
@@ -246,7 +244,7 @@ const View = {
             const ratings = track.ratings;
             const ratingsTotal = ratings.reduce((sum, ratings) => sum + ratings, 0);
 
-            trackTitle.innerHTML = track.title + ratingsTotal;
+            trackTitle.innerHTML = `${track.title} (${ratingsTotal} votes)`;
             trackArtist.innerHTML = track.artists.map(artist => artist.name).join(', ');
 
             const deleteTrackButton = trackItem.querySelector('.delete-track');
@@ -300,10 +298,10 @@ const View = {
         const listAllPlaylists = playlists.map(playlist => {
             const playlistItem = document.querySelector('.playlist-container-template').cloneNode(true);
             playlistItem.classList.remove('playlist-container-template');
-            
+
             const playlistCover = playlistItem.querySelector('.playlist-cover');
             playlistCover.src = playlist.coverImage;
-            
+
             playlistCover.onerror = () => {
                 playlistCover.onerror = undefined;
                 playlistCover.src = 'images/144__headphone.svg';
@@ -311,7 +309,7 @@ const View = {
             }
 
             playlistCover.alt = `Coverimage for the playlist ${playlist.title}`;
-            
+
             const playlistTitle = playlistItem.querySelector('.playlist-title');
             playlistTitle.innerHTML = playlist.title;
 
