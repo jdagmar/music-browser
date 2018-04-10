@@ -36,8 +36,20 @@
                 <input class="border border-l-0 w-10 align-middle" type="image" src="images/095__search.svg" alt="click to run search" />
             </form>
         </nav>
-        <div id="main-view">
-            <h2>Home</h2>
+        <div id="main-view" class="max-w-2xl m-auto">
+            <section>
+                <h2>Latest activities</h2>
+                <h3>Recently added</h3>
+                <h3>Latest playlist comments</h3>
+            </section>
+            <section class="mt-4">
+                <h2>Be a part of music browser</h2>
+                <p>Are you missing someone or something on the site? Anyone can add material to the site.</p>
+                <a href="#add-artist">Add a new artist</a>
+                <a href="#add-album">Add a new album</a>
+                <a href="#add-track">Add a new track</a>
+                <a href="#add-playlist">Add a new playlist</a>
+            </section>
         </div>
         <div id="all-artists" class="hidden max-w-2xl m-auto">
             <section id="artist-list" class="grid grid-col-repeat-200">
@@ -55,6 +67,7 @@
             </section>
             <section class="flex mt-8">
                 <div>
+                    <a name="add-artist"></a>
                     <h2 class="mb-2">Add a new artist</h2>
                     <p class="mb-4">Fields with an asterix (*) must be filled for artist to be added</p>
                     <form id="add-artist-form" class="w-128">
@@ -114,6 +127,7 @@
             </section>
             <section class="flex mt-8">
                 <div>
+                    <a name="add-album"></a>
                     <h2 class="mb-2">Add a new album</h2>
                     <p class="mb-4">Fields with an asterix (*) must be filled for album to be added</p>
                     <form id="add-album-form" class="w-128">
@@ -176,6 +190,7 @@
             </section>
             <section class="flex mt-8">
                 <div>
+                    <a name="add-track"></a>
                     <h2 class="mb-2">Add a new track</h2>
                     <p class="mb-4">Fields with an asterix (*) must be filled for the track to be added</p>
                     <form id="add-track-form" class="w-128">
@@ -312,6 +327,7 @@
             </section>
             <section class="flex mt-8">
                 <div>
+                    <a name="add-playlist"></a>
                     <h2 class="mb-2">Create a playlist</h2>
                     <p class="mb-4">Fields with an asterix (*) must be filled for the playlist to be added</p>
                     <form id="add-playlist-form" class="w-128">
