@@ -142,14 +142,19 @@ const Api = {
         });
     },
     voteOnAlbum: (id, vote) => Api.vote('albums', id, vote),
+    voteOnTrack: (id, vote) => Api.vote('tracks', id, vote),
     vote(type, id, vote) {
-        fetch(`https://folksa.ga/api/${type}/${id}/vote?key=flat_eric`, {
+        return fetch(`https://folksa.ga/api/${type}/${id}/vote?key=flat_eric`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ rating: vote })
+        }).then(resp => {
+            if (!resp.ok) {
+                console.log('Api got angry :/', resp.status);
+            }
         });
     }
 }
@@ -220,7 +225,6 @@ const View = {
                 event.preventDefault();
                 const vote = albumVoteForm.elements['album-rating'];
                 Api.voteOnAlbum(album._id, vote.value);
-                console.log(vote.value);
             });
 
             return albumContainer;
@@ -238,13 +242,23 @@ const View = {
             const trackTitle = trackItem.querySelector('.track-title');
             const trackArtist = trackItem.querySelector('.track-artist');
 
-            trackTitle.innerHTML = track.title;
+            const ratings = track.ratings;
+            const ratingsTotal = ratings.reduce((sum, ratings) => sum + ratings, 0);
+
+            trackTitle.innerHTML = track.title + ratingsTotal;
             trackArtist.innerHTML = track.artists.map(artist => artist.name).join(', ');
 
             const deleteTrackButton = trackItem.querySelector('.delete-track');
             deleteTrackButton.addEventListener('click', () => {
                 Api.deleteTrack(track._id)
                     .then(() => trackItem.parentNode.removeChild(trackItem));
+            });
+
+            const trackVoteForm = trackItem.querySelector('.track-vote-form');
+            trackVoteForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const vote = trackVoteForm.elements['track-rating'];
+                Api.voteOnTrack(track._id, vote.value);
             });
 
             return trackItem;
