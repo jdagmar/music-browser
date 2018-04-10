@@ -48,26 +48,22 @@
                 <div class="grid grid-space grid-col-repeat-200 m-auto max-w-xl">
                     <div class="border border-solid text-center p-2">
                         <a class="no-underline text-xl text-black" href="#add-artist">
-                            <img class="w-48" src="images/103__user.svg" />
-                            Add a new artist
+                            <img class="w-48" src="images/103__user.svg" /> Add a new artist
                         </a>
                     </div>
                     <div class="border border-solid text-center p-2">
                         <a class="no-underline text-xl text-black" href="#add-album">
-                            <img class="w-48" src="images/140__music.svg" />
-                            Add a new album
+                            <img class="w-48" src="images/140__music.svg" /> Add a new album
                         </a>
                     </div>
                     <div class="border border-solid text-center p-2">
                         <a class="no-underline text-xl text-black" href="#add-track">
-                            <img class="w-48" src="images/140__music.svg" />
-                            Add a new track
+                            <img class="w-48" src="images/140__music.svg" /> Add a new track
                         </a>
                     </div>
                     <div class="border border-solid text-center p-2">
                         <a class="no-underline text-xl text-black" href="#add-playlist">
-                            <img class="w-48" src="images/144__headphone.svg" />
-                            Add a new playlist
+                            <img class="w-48" src="images/144__headphone.svg" /> Add a new playlist
                         </a>
                     </div>
                 </div>
@@ -129,6 +125,10 @@
         </div>
         <div id="all-albums" class="hidden max-w-2xl m-auto">
             <section id="album-list" class="grid grid-col-repeat-200">
+                <!-- all albums are rendered here -->
+            </section>
+
+            <section class="album-template-section hidden">
                 <figure class="album-container-template">
                     <!-- album image renders here -->
                     <img class="album-image border border-solid w-48 h-48" />
@@ -140,13 +140,26 @@
                             <span class="text-sm">Delete album</span>
                             <img class="w-8 align-middle" src="images/007__close.svg" alt="click to delete album" />
                         </button>
-                        <button>
-                            <span class="text-sm">Vote</span>
-                            <img class="w-8 align-middle" src="images/147__heart.svg" alt="click to vote on album" />
-                        </button>
+                        <form class="album-vote-form">
+                            <label for="album-rating" hidden>choose how high to vote</label>
+                            <select class="album-vote" name="album-rating">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                            <input class="w-8" type="image" src="images/147__heart.svg" alt="click to vote on album">
+                        </form>
                     </div>
                 </figure>
             </section>
+
             <section class="flex mt-8">
                 <div>
                     <a name="add-album"></a>

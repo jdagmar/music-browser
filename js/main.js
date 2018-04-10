@@ -140,6 +140,17 @@ const Api = {
             },
             body: JSON.stringify(playlist)
         });
+    },
+    voteOnAlbum: (id, vote) => Api.vote('albums', id, vote),
+    vote(type, id, vote) {
+        fetch(`https://folksa.ga/api/${type}/${id}/vote?key=flat_eric`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ rating: vote })
+        });
     }
 }
 
@@ -190,13 +201,26 @@ const View = {
 
             albumImage.alt = album.title;
 
+            const ratings = album.ratings;
+            const ratingsTotal = ratings.reduce((sum, ratings) => sum + ratings, 0);
+
             const albumImageCaption = albumContainer.querySelector('.album-image-caption');
-            albumImageCaption.innerHTML = album.title;
+            albumImageCaption.innerHTML = album.title + ' ' + ratingsTotal;
 
             const deleteAlbumButton = albumContainer.querySelector('.delete-album');
             deleteAlbumButton.addEventListener('click', () => {
                 Api.deleteAlbum(album._id)
                     .then(() => albumContainer.parentNode.removeChild(albumContainer));
+            });
+
+            const albumVoteForm = albumContainer.querySelector('.album-vote-form');
+            // const albumVoteSelect = new Choices('.album-vote');
+
+            albumVoteForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const vote = albumVoteForm.elements['album-rating'];
+                Api.voteOnAlbum(album._id, vote.value);
+                console.log(vote.value);
             });
 
             return albumContainer;
@@ -261,8 +285,10 @@ const View = {
         const listAllPlaylists = playlists.map(playlist => {
             const playlistItem = document.querySelector('.playlist-container-template').cloneNode(true);
             playlistItem.classList.remove('playlist-container-template');
+            
             const playlistCover = playlistItem.querySelector('.playlist-cover');
             playlistCover.src = playlist.coverImage;
+            
             playlistCover.onerror = () => {
                 playlistCover.onerror = undefined;
                 playlistCover.src = 'images/144__headphone.svg';
@@ -270,6 +296,7 @@ const View = {
             }
 
             playlistCover.alt = `Coverimage for the playlist ${playlist.title}`;
+            
             const playlistTitle = playlistItem.querySelector('.playlist-title');
             playlistTitle.innerHTML = playlist.title;
 
@@ -390,7 +417,7 @@ addArtistForm.addEventListener('submit', (event) => {
     artistImage.value = '';
 
     const successMessage = document.getElementById('add-artist-success-msg');
-    successMessage.classList.remove('hidden');    
+    successMessage.classList.remove('hidden');
 });
 
 const addAlbumForm = document.getElementById('add-album-form');
@@ -418,7 +445,7 @@ addAlbumForm.addEventListener('submit', (event) => {
     coverImage.value = '';
 
     const successMessage = document.getElementById('add-album-success-msg');
-    successMessage.classList.remove('hidden');    
+    successMessage.classList.remove('hidden');
 });
 
 const addTrackForm = document.getElementById('add-track-form');
@@ -431,11 +458,12 @@ albumSelect.passedElement.addEventListener('choice', (event) => {
 
     const filteredArtists = trackArtistSelect.store.getChoices().map(choice => {
         return ({
-        value: choice.value, 
-        label: choice.label, 
-        customProperties: choice.customProperties,
-        disabled: choice.customProperties.albums.indexOf(albumId) < 0
-    })});
+            value: choice.value,
+            label: choice.label,
+            customProperties: choice.customProperties,
+            disabled: choice.customProperties.albums.indexOf(albumId) < 0
+        })
+    });
 
     trackArtistSelect.setChoices(filteredArtists, 'value', 'label', true);
 
@@ -460,8 +488,8 @@ addTrackForm.addEventListener('submit', (event) => {
     const soundcloudURL = addTrackForm.elements['track-soundcloud'];
 
     Api.addTrack(title.value, artists, album, genres.value, coverImage.value,
-    spotifyURL.value, youtubeURL.value);
-    
+        spotifyURL.value, youtubeURL.value);
+
     title.value = '';
     trackArtistSelect.removeActiveItems().clearInput();
     albumSelect.removeActiveItems().clearInput();
@@ -527,7 +555,7 @@ const createAlbumSelect = (albums) => {
 const createTrackSelect = (tracks) => {
     const choices = tracks.map(track => {
         return {
-            value: track._id, 
+            value: track._id,
             label: `<p class="font-semibold text-lg">${track.title}</p>
                     <p>${track.artists.map(artist => artist.name).join(', ')}</p>`,
         }
