@@ -300,10 +300,22 @@
                                         <span class="text-sm">Delete playlist</span>
                                         <img class="w-8 align-middle" src="images/007__close.svg" alt="click to delete playlist" />
                                     </button>
-                                    <button>
-                                        <span class="text-sm">Vote</span>
-                                        <img class="w-8 align-middle" src="images/147__heart.svg" alt="click to vote for playlist" />
-                                    </button>
+                                    <form class="playlist-vote-form">
+                                        <label for="playlist-rating" hidden>choose how high to vote</label>
+                                        <select class="playlist-vote" name="playlist-rating">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                        </select>
+                                        <input class="w-8" type="image" src="images/147__heart.svg" alt="click to vote on album">
+                                    </form>
                                 </div>
                             </div>
                             <span class="playlist-creator block">

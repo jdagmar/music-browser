@@ -143,6 +143,7 @@ const Api = {
     },
     voteOnAlbum: (id, vote) => Api.vote('albums', id, vote),
     voteOnTrack: (id, vote) => Api.vote('tracks', id, vote),
+    voteOnPlaylist: (id, vote) => Api.vote('playlists', id, vote),
     vote(type, id, vote) {
         return fetch(`https://folksa.ga/api/${type}/${id}/vote?key=flat_eric`, {
             method: 'POST',
@@ -319,6 +320,13 @@ const View = {
 
             const playlistRating = playlistItem.querySelector('.playlist-rating');
             playlistRating.innerHTML = `(${ratingsTotal} votes)`;
+
+            const playlistVoteForm = playlistItem.querySelector('.playlist-vote-form');
+            playlistVoteForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const vote = playlistVoteForm.elements['playlist-rating'];
+                Api.voteOnPlaylist(playlist._id, vote.value);
+            });
 
             const playlistCreator = playlistItem.querySelector('.playlist-creator');
             playlistCreator.innerHTML = `created by ${playlist.createdBy}`
