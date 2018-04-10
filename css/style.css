@@ -2,7 +2,7 @@ h1, h2, h3 {
     font-family: 'Poppins';
 }
 
-p, #artist-view-link, input, label, .choices__list--single .choices__item {
+p, #artist-view-link, input, label, .choices__list--single .choices__item, a {
     font-family: 'Roboto';
 }
 
