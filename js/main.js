@@ -388,6 +388,9 @@ addArtistForm.addEventListener('submit', (event) => {
     countryBorn.value = '';
     spotifyURL.value = '';
     artistImage.value = '';
+
+    const successMessage = document.getElementById('add-artist-success-msg');
+    successMessage.classList.remove('hidden');    
 });
 
 const addAlbumForm = document.getElementById('add-album-form');
@@ -413,6 +416,9 @@ addAlbumForm.addEventListener('submit', (event) => {
     genres.value = '';
     spotifyURL.value = '';
     coverImage.value = '';
+
+    const successMessage = document.getElementById('add-album-success-msg');
+    successMessage.classList.remove('hidden');    
 });
 
 const addTrackForm = document.getElementById('add-track-form');
@@ -464,6 +470,9 @@ addTrackForm.addEventListener('submit', (event) => {
     spotifyURL.value = '';
     youtubeURL.value = '';
     soundcloudURL.value = '';
+
+    const successMessage = document.getElementById('add-track-success-msg');
+    successMessage.classList.remove('hidden');
 });
 
 const addPlaylistForm = document.getElementById('add-playlist-form');
@@ -486,6 +495,9 @@ addPlaylistForm.addEventListener('submit', (event) => {
     genres.value = '';
     coverImage.value = '';
     createdBy.value = '';
+
+    const successMessage = document.getElementById('add-playlist-success-msg');
+    successMessage.classList.remove('hidden');
 });
 
 const createArtistSelect = (artists) => {
