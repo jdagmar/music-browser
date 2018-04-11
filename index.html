@@ -47,7 +47,7 @@
                 <p class="mb-4">Are you missing someone or something on the site? Anyone can add material to the site.</p>
                 <div class="grid grid-space grid-col-repeat-200 m-auto max-w-xl">
                     <div class="border border-solid text-center p-2">
-                        <a class="no-underline text-xl text-black" href="#add-artist">
+                        <a class="no-underline text-xl text-black" id="all-artists" data-view="all-artists" href="#add-artist">
                             <img class="w-48" src="images/103__user.svg" /> Add a new artist
                         </a>
                     </div>
@@ -218,7 +218,7 @@
                             </button>
                             <form class="track-vote-form">
                                 <label for="track-rating" hidden>choose how high to vote</label>
-                                <select class="track-vote" name="track-rating">
+                                <select class="track-rating" name="track-rating">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>

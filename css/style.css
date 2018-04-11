@@ -69,3 +69,7 @@ p, #artist-view-link, input, label, .choices__list--single .choices__item, a {
 .choices__item--disabled {
     display: none;
 }
+
+.choices__list--dropdown .choices__item--selectable {
+    padding-right: 10px;
+}

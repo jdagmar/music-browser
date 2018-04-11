@@ -220,6 +220,13 @@ const View = {
             });
 
             const albumVoteForm = albumContainer.querySelector('.album-vote-form');
+            const albumRatingSelect = new Choices(albumContainer.querySelector('.album-vote'), {
+                position: 'bottom',
+                searchEnabled: false,
+                itemSelectText: '',
+                shouldSort: false
+            });
+
             albumVoteForm.addEventListener('submit', (event) => {
                 event.preventDefault();
                 const vote = albumVoteForm.elements['album-rating'];
@@ -254,6 +261,13 @@ const View = {
             });
 
             const trackVoteForm = trackItem.querySelector('.track-vote-form');
+            const trackRatingSelect = new Choices(trackItem.querySelector('.track-rating'), {
+                position: 'bottom',
+                searchEnabled: false,
+                itemSelectText: '',
+                shouldSort: false
+            });
+
             trackVoteForm.addEventListener('submit', (event) => {
                 event.preventDefault();
                 const vote = trackVoteForm.elements['track-rating'];
@@ -320,6 +334,13 @@ const View = {
             playlistRating.innerHTML = `(${ratingsTotal} votes)`;
 
             const playlistVoteForm = playlistItem.querySelector('.playlist-vote-form');
+            const playlistRatingSelect = new Choices(playlistItem.querySelector('.playlist-vote'), {
+                position: 'bottom',
+                searchEnabled: false,
+                itemSelectText: '',
+                shouldSort: false
+            });
+
             playlistVoteForm.addEventListener('submit', (event) => {
                 event.preventDefault();
                 const vote = playlistVoteForm.elements['playlist-rating'];
