@@ -20,6 +20,83 @@ const Api = {
                 return [];
             });
     },
+    searchArtistByName(name){
+        return Api.responseToJson(fetch(`https://folksa.ga/api/artists?name=${name}&key=flat_eric`))
+            .catch(error => console.log(error));
+    },
+    searchByTitle(type, title){
+        return Api.responseToJson(fetch(`https://folksa.ga/api/${type}?title=${title}&key=flat_eric`))
+            .catch(error => console.log(error));
+    },
+    searchByGenre(type, genre){
+        return Api.responseToJson(fetch(`https://folksa.ga/api/${type}?genres=${genre}&key=flat_eric`))
+            .catch(error => console.log(error));
+    },
+    searchByPlaylistByUser(username){
+        return Api.responseToJson(fetch(`https://folksa.ga/api/playlists?createdBy=${username}&key=flat_eric`))
+            .catch(error => console.log(error));
+    },
+    searchForArtists(searchWord){
+        return Promise.all([
+            Api.searchArtistByName(searchWord),
+            Api.searchByGenre('artists', searchWord),
+        ]).then(result => {
+            const nameResults = result[0];
+            const genreResults = result[1];
+
+            return nameResults.concat(genreResults);
+        });
+    },
+    searchForAlbums(searchWord){
+        return Promise.all([
+            Api.searchByTitle('albums', searchWord),
+            Api.searchByGenre('albums', searchWord),
+        ]).then(result => {
+            const titleResults = result[0];
+            const genreResults = result[1];
+
+            return titleResults.concat(genreResults);
+        });
+    },
+    searchForTracks(searchWord){
+        return Promise.all([
+            Api.searchByTitle('tracks', searchWord),
+            Api.searchByGenre('tracks', searchWord),
+        ]).then(result => {
+            const titleResults = result[0];
+            const genreResults = result[1];
+
+            return titleResults.concat(genreResults);
+        });
+    },
+    searchForPlaylists(searchWord){
+        return Promise.all([
+            Api.searchByTitle('playlists', searchWord),
+            Api.searchByGenre('playlists',searchWord),
+            Api.searchByPlaylistByUser(searchWord),
+        ]).then(result => {
+            const titleResults = result[0];
+            const genreResults = result[1];
+            const userResult = result[2];
+
+            return titleResults.concat(genreResults).concat(userResult);
+        });
+    },
+    searchAll(searchWord){
+        return Promise.all([
+            Api.searchForArtists(searchWord),
+            Api.searchForAlbums(searchWord),
+            Api.searchForTracks(searchWord),
+            Api.searchForPlaylists(searchWord)
+        ]).then(result => {
+            return {
+                artists: result[0],
+                albums: result[1],
+                tracks: result[2],
+                playlists: result[3]
+            }
+        });
+    },
     deletePlaylistComment(id) {
         return Api.delete('comments', id)
     },
@@ -447,7 +524,8 @@ const View = {
             'all-artists',
             'all-albums',
             'all-tracks',
-            'all-playlists'
+            'all-playlists',
+            'search-view'
         ];
 
         views.filter(view => view !== currentView)
@@ -535,8 +613,6 @@ const View = {
             const topTenAlbumsItemTitle = topTenAlbumsItem.querySelector('.top-ten-album-title');
             topTenAlbumsItemTitle.innerHTML = albums.title;
 
-            console.log(albums);
-
             const topTenAlbumsItemArtist = topTenAlbumsItem.querySelector('.top-ten-album-artist');
             topTenAlbumsItemArtist.innerHTML = albums.artists.map(artist => artist.name).join(', ');
 
@@ -548,6 +624,24 @@ const View = {
 
         topTenAlbumsContainer.innerHTML = '';
         topTenAlbums.forEach(topTenAlbumsItem => topTenAlbumsContainer.appendChild(topTenAlbumsItem));
+    },
+    displaySearchResults(result){
+        const searchArtistContainer = document.getElementById('search-artist-container');
+        const foundArtists = result.artists;
+        View.displayArtists(searchArtistContainer, foundArtists);
+
+        const searchAlbumContanier = document.getElementById('search-album-container');
+        const foundAlbums = result.albums;
+        View.displayAlbums(searchAlbumContanier, foundAlbums);
+
+        const searchTrackContainer = document.getElementById('search-track-container');
+        const foundTracks = result.tracks;
+        View.displayTracks(searchTrackContainer, foundTracks);
+
+        const searchPlaylistContainer = document.getElementById('search-playlist-container');
+        const foundPlaylists = result.playlists;
+        View.displayPlaylists(searchPlaylistContainer, foundPlaylists);
+
     },
     showSpinner(container) {
         const spinner = document.createElement('img');
@@ -789,3 +883,13 @@ Api.getAlbums().then(albums => View.displayTopTenAlbums(topTenAlbumsContainer, a
 Api.getArtists().then(artists => createArtistSelect(artists));
 Api.getAlbums().then(albums => createAlbumSelect(albums));
 Api.getTracks().then(tracks => createTrackSelect(tracks));
+
+const searchForm = document.getElementById('search-form');
+searchForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    View.switchView('search-view');
+    const searchField = document.getElementById('search-field');
+    const searchWord = searchField.value;
+
+    Api.searchAll(searchWord).then(result => View.displaySearchResults(result));
+});
