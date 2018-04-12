@@ -15,7 +15,7 @@ const Api = {
         });
     }),
     get(type) {
-        return fetch(`https://folksa.ga/api/${type}?key=flat_eric&limit=200`)
+        return fetch(`https://folksa.ga/api/${type}?key=flat_eric&limit=200&sort=asc`)
             .then(response => response.json())
             .catch(error => {
                 console.log('error');
@@ -312,6 +312,7 @@ const View = {
         const listAllPlaylists = playlists.map(playlist => {
             const playlistItem = document.querySelector('.playlist-container-template').cloneNode(true);
             playlistItem.classList.remove('playlist-container-template');
+            playlistItem.id = `playlist-${playlist._id}`;
 
             const playlistCover = playlistItem.querySelector('.playlist-cover');
             playlistCover.src = playlist.coverImage;
@@ -329,9 +330,10 @@ const View = {
 
             const ratings = playlist.ratings;
             const ratingsTotal = ratings.reduce((sum, ratings) => sum + ratings, 0);
+            const averageRating = ratings.length > 0 ? Math.floor(ratingsTotal / ratings.length) : 'no votes yet';
 
             const playlistRating = playlistItem.querySelector('.playlist-rating');
-            playlistRating.innerHTML = `(${ratingsTotal} votes)`;
+            playlistRating.innerHTML = `(${averageRating})`;
 
             const playlistVoteForm = playlistItem.querySelector('.playlist-vote-form');
             const playlistRatingSelect = new Choices(playlistItem.querySelector('.playlist-vote'), {
@@ -423,6 +425,51 @@ const View = {
         else {
             nav.classList.add('invisible');
         }
+    },
+    displayTopTenPlaylists(playlists) {
+        const getAverageRating = (playlist) => {
+            const ratings = playlist.ratings;
+            const ratingsTotal = ratings.reduce((sum, ratings) => sum + ratings, 0);
+            const averageRating = ratings.length > 0 ? Math.floor(ratingsTotal / ratings.length) : 0;
+
+            return averageRating;
+        }
+
+        playlists.sort((a, b) => {
+            const aRating = getAverageRating(a);
+            const bRating = getAverageRating(b);
+
+            return bRating - aRating;
+        });
+        
+        const topTenPLaylists = playlists.slice(0, 10).map(playlist => {
+            const topTenPLaylistsItem = document.querySelector('.top-ten-playlist-item-template').cloneNode(true);
+            topTenPLaylistsItem.classList.remove('top-ten-playlist-item-template');
+
+            const topTenPLaylistsItemTitle = topTenPLaylistsItem.querySelector('.top-ten-playlist-title');
+            topTenPLaylistsItemTitle.innerHTML = playlist.title;
+            
+            topTenPLaylistsItemTitle.addEventListener('click', () => {
+                this.switchView('all-playlists');
+
+                setTimeout(() => {
+                    const playlistLocation = document.getElementById(`playlist-${playlist._id}`);
+                    playlistLocation.scrollIntoView({behavior: 'smooth'});
+                });
+            });
+
+            const topTenPLaylistsItemAuthor = topTenPLaylistsItem.querySelector('.top-ten-playlist-author');
+            topTenPLaylistsItemAuthor.innerHTML = playlist.createdBy;
+
+            const topTenPLaylistsItemRating = topTenPLaylistsItem.querySelector('.top-ten-playlist-rating');
+            topTenPLaylistsItemRating.innerHTML = getAverageRating(playlist);
+
+            return topTenPLaylistsItem;
+        });
+
+        const topTenPLaylistsContainer = document.getElementById('top-ten-playlists-container');
+        topTenPLaylistsContainer.innerHTML = '';
+        topTenPLaylists.forEach(topTenPLaylistsItem => topTenPLaylistsContainer.appendChild(topTenPLaylistsItem));
     }
 }
 
@@ -613,6 +660,8 @@ Api.getArtists().then(artists => View.displayArtists(artists));
 Api.getAlbums().then(albums => View.displayAlbums(albums));
 Api.getTracks().then(tracks => View.displayTracks(tracks));
 Api.getPlaylists().then(playlists => View.displayPlaylists(playlists));
+
+Api.getPlaylists().then(playlists => View.displayTopTenPlaylists(playlists));
 
 Api.getArtists().then(artists => createArtistSelect(artists));
 Api.getAlbums().then(albums => createAlbumSelect(albums));
