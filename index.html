@@ -62,26 +62,26 @@
             <section class="mt-4">
                 <h2>Be a part of music browser</h2>
                 <p class="mb-4">Are you missing someone or something on the site? Anyone can add material to the site.</p>
-                <div class="grid grid-space grid-col-repeat-200 m-auto max-w-xl">
-                    <div class="border border-solid text-center p-2">
-                        <a class="no-underline text-xl text-black" href="#add-artist">
+                <div id="form-links" class="grid grid-space grid-col-repeat-200 m-auto max-w-xl">
+                    <div class="border border-solid text-center p-2" data-view="all-artists" data-location="artist-form-location">
+                        <span class="text-xl">
                             <img class="w-48" src="images/103__user.svg" /> Add a new artist
-                        </a>
+                        </span>
                     </div>
-                    <div class="border border-solid text-center p-2">
-                        <a class="no-underline text-xl text-black" href="#add-album">
+                    <div class="border border-solid text-center p-2" data-view="all-albums" data-location="album-form-location">
+                        <span class="text-xl">
                             <img class="w-48" src="images/140__music.svg" /> Add a new album
-                        </a>
+                        </span>
                     </div>
-                    <div class="border border-solid text-center p-2">
-                        <a class="no-underline text-xl text-black" href="#add-track">
+                    <div class="border border-solid text-center p-2" data-view="all-tracks" data-location="track-form-location">
+                        <span class="text-xl">
                             <img class="w-48" src="images/140__music.svg" /> Add a new track
-                        </a>
+                        </span>
                     </div>
-                    <div class="border border-solid text-center p-2">
-                        <a class="no-underline text-xl text-black" href="#add-playlist">
+                    <div class="border border-solid text-center p-2" data-view="all-playlists" data-location="playlist-form-location">
+                        <span class="text-xl">
                             <img class="w-48" src="images/144__headphone.svg" /> Add a new playlist
-                        </a>
+                        </span>
                     </div>
                 </div>
             </section>
@@ -101,7 +101,7 @@
                 </figure>
             </section>
             <section class="flex mt-8">
-                <div>
+                <div id="artist-form-location">
                     <h2 class="mb-2">Add a new artist</h2>
                     <p class="mb-4">Fields with an asterix (*) must be filled for artist to be added</p>
                     <form id="add-artist-form" class="w-128">
@@ -177,7 +177,7 @@
             </section>
 
             <section class="flex mt-8">
-                <div>
+                <div id="album-form-location">
                     <h2 class="mb-2">Add a new album</h2>
                     <p class="mb-4">Fields with an asterix (*) must be filled for album to be added</p>
                     <form id="add-album-form" class="w-128">
@@ -252,7 +252,7 @@
                 </ul>
             </section>
             <section class="flex mt-8">
-                <div>
+                <div id="track-form-location">
                     <h2 class="mb-2">Add a new track</h2>
                     <p class="mb-4">Fields with an asterix (*) must be filled for the track to be added</p>
                     <form id="add-track-form" class="w-128">
@@ -401,7 +401,7 @@
                 </div>
             </section>
             <section class="flex mt-8">
-                <div>
+                <div id="playlist-form-location">
                     <h2 class="mb-2">Create a playlist</h2>
                     <p class="mb-4">Fields with an asterix (*) must be filled for the playlist to be added</p>
                     <form id="add-playlist-form" class="w-128">
