@@ -82,6 +82,7 @@ const Api = {
             },
             body: JSON.stringify(artist)
         }))
+        .then(Api.successHandler)
         .catch(() => {
             return {};
         });
@@ -104,6 +105,7 @@ const Api = {
             },
             body: JSON.stringify(album)
         }))
+        .then(Api.successHandler)
         .catch(() => {
             return {};
         });
@@ -124,6 +126,7 @@ const Api = {
             },
             body: JSON.stringify(track)
         }))
+        .then(Api.successHandler)
         .catch(() => {
             return {};
         });
@@ -145,6 +148,7 @@ const Api = {
             },
             body: JSON.stringify(playlist)
         }))
+        .then(Api.successHandler)
         .catch(() => {
             return {};
         });
@@ -161,6 +165,7 @@ const Api = {
             },
             body: JSON.stringify({ rating: vote })
         }))
+        .then(Api.successHandler)
         .catch(() => {
             return {};
         });
@@ -187,6 +192,15 @@ const Api = {
         });
 
         return Promise.reject(respone);
+    },
+    successHandler(){
+        const successAddMsg = document.getElementById('add-success-msg');
+        successAddMsg.classList.remove('hidden');
+
+        const closeSuccessMsgButton = document.getElementById('close-success-msg');
+        closeSuccessMsgButton.addEventListener('click', () => {
+            successAddMsg.classList.add('hidden');
+        });
     }
 }
 
@@ -538,9 +552,6 @@ addArtistForm.addEventListener('submit', (event) => {
     countryBorn.value = '';
     spotifyURL.value = '';
     artistImage.value = '';
-
-    const successMessage = document.getElementById('add-artist-success-msg');
-    successMessage.classList.remove('hidden');
 });
 
 const addAlbumForm = document.getElementById('add-album-form');
@@ -566,9 +577,6 @@ addAlbumForm.addEventListener('submit', (event) => {
     genres.value = '';
     spotifyURL.value = '';
     coverImage.value = '';
-
-    const successMessage = document.getElementById('add-album-success-msg');
-    successMessage.classList.remove('hidden');
 });
 
 const addTrackForm = document.getElementById('add-track-form');
@@ -589,7 +597,6 @@ albumSelect.passedElement.addEventListener('choice', (event) => {
     });
 
     trackArtistSelect.setChoices(filteredArtists, 'value', 'label', true);
-
     trackArtistSelect.enable();
 });
 
@@ -621,9 +628,6 @@ addTrackForm.addEventListener('submit', (event) => {
     spotifyURL.value = '';
     youtubeURL.value = '';
     soundcloudURL.value = '';
-
-    const successMessage = document.getElementById('add-track-success-msg');
-    successMessage.classList.remove('hidden');
 });
 
 const addPlaylistForm = document.getElementById('add-playlist-form');
@@ -646,9 +650,6 @@ addPlaylistForm.addEventListener('submit', (event) => {
     genres.value = '';
     coverImage.value = '';
     createdBy.value = '';
-
-    const successMessage = document.getElementById('add-playlist-success-msg');
-    successMessage.classList.remove('hidden');
 });
 
 const createArtistSelect = (artists) => {

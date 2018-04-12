@@ -37,7 +37,7 @@
             </form>
         </nav>
         <div id="failed-loading-msg" class="hidden w-1/2 m-auto">
-            <div class="flex justify-between text-center border border-solid border-red-light bg-red p-4 fixed z-1 pin-x pin-t">
+            <div class="flex justify-between text-center border border-solid bg-red p-4 fixed z-1 pin-x pin-t">
                 <div class="flex justify-center">
                     <span class="self-center text-white">Something went wrong, try again later</span>
                     <img class="w-6 ml-2" src="images/ic_error_outline.svg" alt="" />
@@ -45,6 +45,18 @@
                 <button id="close-fail-msg" class="flex block ml-auto">
                     <span class="self-center text-sm text-white">Close</span>
                     <img class="w-8 h-8" src="images/007__close_white.svg" alt="" />
+                </button>
+            </div>
+        </div>
+        <div id="add-success-msg" class="hidden w-full">
+            <div class="flex justify-between text-center border border-solid bg-green p-4 fixed z-1 pin-x pin-t">
+                <div class="flex justify-center">
+                    <p class="self-center text-white">Your contribution was added successfully </p>
+                    <img class="w-8 h-8" src="images/008__choose.svg" alt="green checkmark" />
+                </div>
+                <button id="close-success-msg" class="flex block ml-auto">
+                    <span class="text-white text-sm self-center">Close</span>
+                    <img class="w-8" src="images/007__close_white.svg" />
                 </button>
             </div>
         </div>
@@ -143,12 +155,6 @@
                         <input class="border border-solid block w-full mb-4 h-10 rounded" type="submit" value="Create artist" />
                     </form>
                 </div>
-                <div id="add-artist-success-msg" class="hidden ml-auto mr-auto">
-                    <div class="flex border border-solid border-green-light p-4">
-                        <p class="inline-block self-center">The artist was successfully added</p>
-                        <img class="w-8 h-8" src="images/008__choose.svg" alt="green checkmark" />
-                    </div>
-                </div>
             </section>
         </div>
         <div id="all-albums" class="hidden max-w-2xl m-auto">
@@ -212,12 +218,6 @@
                         <input id="album-cover" name="album-cover" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text" />
                         <input class="border border-solid block w-full mb-2 h-10 rounded" type="submit" value="Create album" />
                     </form>
-                </div>
-                <div id="add-album-success-msg" class="hidden ml-auto mr-auto">
-                    <div class="flex border border-solid border-green-light p-4">
-                        <p class="inline-block self-center">The album was successfully added</p>
-                        <img class="w-8 h-8" src="images/008__choose.svg" alt="green checkmark" />
-                    </div>
                 </div>
             </section>
         </div>
@@ -292,12 +292,6 @@
                         <input id="track-soundcloud" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text" />
                         <input class="border border-solid block w-full mb-2 h-10 rounded" type="submit" value="Create track" />
                     </form>
-                </div>
-                <div id="add-track-success-msg" class="hidden ml-auto mr-auto">
-                    <div class="flex border border-solid border-green-light p-4">
-                        <p class="inline-block self-center">The track was successfully added</p>
-                        <img class="w-8 h-8" src="images/008__choose.svg" alt="green checkmark" />
-                    </div>
                 </div>
             </section>
         </div>
@@ -433,12 +427,6 @@
                         <input id="playlist-image-color" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text" />
                         <input class="border border-solid block w-full mb-2 h-10 rounded" type="submit" value="Create playlist">
                     </form>
-                </div>
-                <div id="add-playlist-success-msg" class="hidden ml-auto mr-auto">
-                    <div class="flex border border-solid border-green-light p-4">
-                        <p class="inline-block self-center">The playlist was successfully added</p>
-                        <img class="w-8 h-8" src="images/008__choose.svg" alt="green checkmark" />
-                    </div>
                 </div>
             </section>
         </div>
