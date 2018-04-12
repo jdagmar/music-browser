@@ -15,10 +15,8 @@ const Api = {
         });
     }),
     get(type) {
-        return fetch(`https://folksa.ga/api/${type}?key=flat_eric&limit=200&sort=asc`)
-            .then(response => response.json())
-            .catch(error => {
-                console.log('error');
+        return Api.responseToJson(fetch(`https://folksa.ga/api/${type}?key=flat_eric&limit=200&sort=asc`))
+            .catch(() => {
                 return [];
             });
     },
@@ -30,25 +28,21 @@ const Api = {
     deleteAlbum: (id) => Api.delete('albums', id),
     deleteTrack: (id) => Api.delete('tracks', id),
     delete(type, id) {
-        return fetch(`https://folksa.ga/api/${type}/${id}?key=flat_eric`, {
+        return Api.responseToJson(fetch(`https://folksa.ga/api/${type}/${id}?key=flat_eric`, {
             method: 'DELETE',
             mode: 'cors',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
-        }).then(resp => {
-            if (!resp.ok) {
-                console.log('Api got angry :/', resp.status);
-            }
+        })).catch(() => {
+            return {};
         });
     },
     getCommentsByPlaylistId(id) {
-        return fetch(`https://folksa.ga/api/playlists/${id}/comments?key=flat_eric&limit=50`)
-            .then(response => response.json())
-            .catch(error => {
-                console.log('error', error);
-                return [];
+        return Api.responseToJson(fetch(`https://folksa.ga/api/playlists/${id}/comments?key=flat_eric&limit=50`))
+            .catch(() => {
+                return {};
             });
     },
     postPlaylistComment(id, body, username) {
@@ -58,13 +52,15 @@ const Api = {
             username: username
         };
 
-        return fetch(`https://folksa.ga/api/playlists/${id}/comments?key=flat_eric`, {
+        return Api.responseToJson(fetch(`https://folksa.ga/api/playlists/${id}/comments?key=flat_eric`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(comment)
+        })).catch(() => {
+            return {};
         });
     },
     addArtist(name, born, genres, gender, countryBorn, spotifyURL, coverImage) {
@@ -78,13 +74,16 @@ const Api = {
             coverImage: coverImage
         };
 
-        fetch(`https://folksa.ga/api/artists?key=flat_eric`, {
+        return Api.responseToJson(fetch(`https://folksa.ga/api/artists?key=flat_eric`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(artist)
+        }))
+        .catch(() => {
+            return {};
         });
     },
     addAlbum(title, artists, releaseDate, genres, spotifyURL, coverImage) {
@@ -97,13 +96,16 @@ const Api = {
             coverImage: coverImage
         };
 
-        fetch(`https://folksa.ga/api/albums?key=flat_eric`, {
+        return Api.responseToJson(fetch(`https://folksa.ga/api/albums?key=flat_eric`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(album)
+        }))
+        .catch(() => {
+            return {};
         });
     },
     addTrack(title, artists, album, genres, coverImage, spotifyURL, youtubeURL, soundcloudURL) {
@@ -114,13 +116,16 @@ const Api = {
             genres: genres
         };
 
-        fetch(`https://folksa.ga/api/tracks?key=flat_eric`, {
+        return Api.responseToJson(fetch(`https://folksa.ga/api/tracks?key=flat_eric`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(track)
+        }))
+        .catch(() => {
+            return {};
         });
     },
     addPlaylist(title, tracks, genres, coverImage, createdBy) {
@@ -132,31 +137,56 @@ const Api = {
             coverImage: coverImage,
         }
 
-        fetch('https://folksa.ga/api/playlists?key=flat_eric', {
+        return Api.responseToJson(fetch('https://folksa.ga/api/playlists?key=flat_eric', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(playlist)
+        }))
+        .catch(() => {
+            return {};
         });
     },
     voteOnAlbum: (id, vote) => Api.vote('albums', id, vote),
     voteOnTrack: (id, vote) => Api.vote('tracks', id, vote),
     voteOnPlaylist: (id, vote) => Api.vote('playlists', id, vote),
     vote(type, id, vote) {
-        return fetch(`https://folksa.ga/api/${type}/${id}/vote?key=flat_eric`, {
+        return Api.responseToJson(fetch(`https://folksa.ga/api/${type}/${id}/vote?key=flat_eric`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ rating: vote })
-        }).then(resp => {
-            if (!resp.ok) {
-                console.log('Api got angry :/', resp.status);
-            }
+        }))
+        .catch(() => {
+            return {};
         });
+    },
+    responseToJson(responsePromise) {
+        return responsePromise
+            .then(response => {
+                if (response.ok) {
+                    return response;
+                }
+        
+                return Promise.reject(response);
+            })
+            .then(response => response.json())
+            .catch(Api.errorHandler)
+    },
+    errorHandler(response) {
+        const failedLoadingMsg = document.getElementById('failed-loading-msg');
+        failedLoadingMsg.classList.remove('hidden');
+
+        const closeFailMsgButton = document.getElementById('close-fail-msg');
+        closeFailMsgButton.addEventListener('click', () => {
+            failedLoadingMsg.classList.add('hidden');
+        });
+
+        return Promise.reject(respone);
     }
 }
 
@@ -685,11 +715,11 @@ Api.getAlbums().then(albums => View.displayAlbums(albumList, albums));
 
 const trackList = document.getElementById('track-list');
 View.showSpinner(trackList);
-Api.getTracks().then(tracks => View.displayTracks(tracks));
+Api.getTracks().then(tracks => View.displayTracks(trackList, tracks));
 
 const playlistList = document.getElementById('playlists-container');
 View.showSpinner(playlistList);
-Api.getPlaylists().then(playlists => View.displayPlaylists(playlists));
+Api.getPlaylists().then(playlists => View.displayPlaylists(playlistList, playlists));
 
 const topTenPLaylistsContainer = document.getElementById('top-ten-playlists-container');
 View.showSpinner(topTenPLaylistsContainer);

@@ -36,6 +36,18 @@
                 <input class="border border-l-0 w-10 align-middle" type="image" src="images/095__search.svg" alt="click to run search" />
             </form>
         </nav>
+        <div id="failed-loading-msg" class="hidden w-1/2 m-auto">
+            <div class="flex justify-between text-center border border-solid border-red-light bg-red p-4 fixed z-1 pin-x pin-t">
+                <div class="flex justify-center">
+                    <span class="self-center text-white">Something went wrong, try again later</span>
+                    <img class="w-6 ml-2" src="images/ic_error_outline.svg" alt="" />
+                </div>
+                <button id="close-fail-msg" class="flex block ml-auto">
+                    <span class="self-center text-sm text-white">Close</span>
+                    <img class="w-8 h-8" src="images/007__close_white.svg" alt="" />
+                </button>
+            </div>
+        </div>
         <div id="main-view" class="max-w-2xl m-auto">
             <section>
                 <h2>Highest rated</h2>
