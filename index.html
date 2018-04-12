@@ -61,8 +61,30 @@
             </div>
         </div>
         <div id="main-view" class="max-w-2xl m-auto">
-            <section>
-                <h2>Highest rated</h2>
+            <section class="mt-4 mb-8">
+                <h2>Be a part of music browser</h2>
+                <p class="mb-4">Are you missing someone or something on the site? Anyone can add material to the site.</p>
+                <div id="form-links" class="grid grid-space grid-col-repeat-250 m-auto">
+                    <div class="border border-solid text-center p-2" data-view="all-artists" data-location="artist-form-location">
+                        <img class="w-48 block m-auto" src="images/103__user.svg" />
+                        <span class="text-xl">Add a new artist</span>
+                    </div>
+                    <div class="border border-solid text-center p-2" data-view="all-albums" data-location="album-form-location">
+                        <img class="w-48 block m-auto" src="images/140__music.svg" />
+                        <span class="text-xl">Add a new album</span>
+                    </div>
+                    <div class="border border-solid text-center p-2" data-view="all-tracks" data-location="track-form-location">
+                        <img class="w-48 block m-auto" src="images/140__music.svg" />
+                        <span class="text-xl">Add a new track</span>
+                    </div>
+                    <div class="border border-solid text-center p-2" data-view="all-playlists" data-location="playlist-form-location">
+                        <img class="w-48 block m-auto" src="images/144__headphone.svg" />
+                        <span class="text-xl">Add a new playlist</span>
+                    </div>
+                </div>
+            </section>
+            <section class="mb-6">
+                <h2>Top ten highest rated</h2>
                 <div class="mt-4">
                     <h3 class="mb-2">Albums</h3>
                     <div class="border border-solid p-4">
@@ -112,32 +134,6 @@
                                 <span class="top-ten-playlist-rating"></span>
                             </li>
                         </ul>
-                    </div>
-                </div>
-            </section>
-            <section class="mt-4 mb-8">
-                <h2>Be a part of music browser</h2>
-                <p class="mb-4">Are you missing someone or something on the site? Anyone can add material to the site.</p>
-                <div id="form-links" class="grid grid-space grid-col-repeat-200 m-auto max-w-xl">
-                    <div class="border border-solid text-center p-2" data-view="all-artists" data-location="artist-form-location">
-                        <span class="text-xl">
-                            <img class="w-48" src="images/103__user.svg" /> Add a new artist
-                        </span>
-                    </div>
-                    <div class="border border-solid text-center p-2" data-view="all-albums" data-location="album-form-location">
-                        <span class="text-xl">
-                            <img class="w-48" src="images/140__music.svg" /> Add a new album
-                        </span>
-                    </div>
-                    <div class="border border-solid text-center p-2" data-view="all-tracks" data-location="track-form-location">
-                        <span class="text-xl">
-                            <img class="w-48" src="images/140__music.svg" /> Add a new track
-                        </span>
-                    </div>
-                    <div class="border border-solid text-center p-2" data-view="all-playlists" data-location="playlist-form-location">
-                        <span class="text-xl">
-                            <img class="w-48" src="images/144__headphone.svg" /> Add a new playlist
-                        </span>
                     </div>
                 </div>
             </section>
