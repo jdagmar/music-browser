@@ -58,6 +58,11 @@ p, #artist-view-link, input, label, .choices__list--single .choices__item, a {
     grid-template-rows: repeat(auto-fill, minmax(400px, 1fr))
 }
 
+.spinner {
+    margin: 20px auto;
+    display: block;
+}
+
 /* restyling of choices.js styling */
 .choices__list--multiple .choices__item.is-highlighted,
 .choices__list--multiple .choices__item {

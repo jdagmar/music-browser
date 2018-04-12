@@ -161,7 +161,7 @@ const Api = {
 }
 
 const View = {
-    displayArtists(artists) {
+    displayArtists(artistList, artists) {
         const listAllArtist = artists.map(artist => {
             const artistContainer = document.querySelector('.artist-container-template').cloneNode(true);
             artistContainer.classList.remove('artist-container-template');
@@ -187,11 +187,10 @@ const View = {
 
             return artistContainer;
         });
-        const artistList = document.getElementById('artist-list');
         artistList.innerHTML = '';
         listAllArtist.forEach(artistContainer => artistList.appendChild(artistContainer));
     },
-    displayAlbums(albums) {
+    displayAlbums(albumList, albums) {
         const listAllAlbums = albums.map(album => {
             const albumContainer = document.querySelector('.album-container-template').cloneNode(true);
             albumContainer.classList.remove('album-container-template');
@@ -236,11 +235,10 @@ const View = {
             return albumContainer;
         });
 
-        const albumList = document.getElementById('album-list');
         albumList.innerHTML = '';
         listAllAlbums.forEach(albumContainer => albumList.appendChild(albumContainer));
     },
-    displayTracks(tracks) {
+    displayTracks(trackList, tracks) {
         const listAllTracks = tracks.map(track => {
             const trackItem = document.querySelector('.track-item-template').cloneNode(true);
             trackItem.classList.remove('track-item-template');
@@ -277,7 +275,6 @@ const View = {
             return trackItem;
         });
 
-        const trackList = document.getElementById('track-list');
         trackList.innerHTML = '';
         listAllTracks.forEach(trackItem => trackList.appendChild(trackItem));
     },
@@ -308,7 +305,7 @@ const View = {
         commentField.innerHTML = '';
         listAllComments.forEach(comment => commentField.appendChild(comment));
     },
-    displayPlaylists(playlists) {
+    displayPlaylists(playlistList, playlists) {
         const listAllPlaylists = playlists.map(playlist => {
             const playlistItem = document.querySelector('.playlist-container-template').cloneNode(true);
             playlistItem.classList.remove('playlist-container-template');
@@ -397,7 +394,6 @@ const View = {
             return playlistItem;
         });
 
-        const playlistList = document.getElementById('playlists-container');
         playlistList.innerHTML = '';
         listAllPlaylists.forEach(playlistItem => playlistList.appendChild(playlistItem));
     },
@@ -426,7 +422,7 @@ const View = {
             nav.classList.add('invisible');
         }
     },
-    displayTopTenPlaylists(playlists) {
+    displayTopTenPlaylists(topTenPLaylistsContainer, playlists) {
         const getAverageRating = (playlist) => {
             const ratings = playlist.ratings;
             const ratingsTotal = ratings.reduce((sum, ratings) => sum + ratings, 0);
@@ -469,9 +465,16 @@ const View = {
                 return topTenPLaylistsItem;
             });
 
-        const topTenPLaylistsContainer = document.getElementById('top-ten-playlists-container');
         topTenPLaylistsContainer.innerHTML = '';
         topTenPLaylists.forEach(topTenPLaylistsItem => topTenPLaylistsContainer.appendChild(topTenPLaylistsItem));
+    },
+    showSpinner(container) {
+        const spinner = document.createElement('img');
+        spinner.src = 'images/bars.svg';
+        spinner.alt = 'loading resources';
+        spinner.classList.add('spinner');
+
+        container.appendChild(spinner);
     }
 }
 
@@ -672,12 +675,25 @@ formLinks.forEach(link =>
         });
     }));
 
-Api.getArtists().then(artists => View.displayArtists(artists));
-Api.getAlbums().then(albums => View.displayAlbums(albums));
+const artistList = document.getElementById('artist-list');
+View.showSpinner(artistList);
+Api.getArtists().then(artists => View.displayArtists(artistList, artists));
+
+const albumList = document.getElementById('album-list');
+View.showSpinner(albumList);
+Api.getAlbums().then(albums => View.displayAlbums(albumList, albums));
+
+const trackList = document.getElementById('track-list');
+View.showSpinner(trackList);
 Api.getTracks().then(tracks => View.displayTracks(tracks));
+
+const playlistList = document.getElementById('playlists-container');
+View.showSpinner(playlistList);
 Api.getPlaylists().then(playlists => View.displayPlaylists(playlists));
 
-Api.getPlaylists().then(playlists => View.displayTopTenPlaylists(playlists));
+const topTenPLaylistsContainer = document.getElementById('top-ten-playlists-container');
+View.showSpinner(topTenPLaylistsContainer);
+Api.getPlaylists().then(playlists => View.displayTopTenPlaylists(topTenPLaylistsContainer, playlists));
 
 Api.getArtists().then(artists => createArtistSelect(artists));
 Api.getAlbums().then(albums => createAlbumSelect(albums));
