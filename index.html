@@ -41,15 +41,22 @@
                 <h2>Latest activities</h2>
                 <h3>Recently added</h3>
                 <h3>Latest playlist comments</h3>
-                <h3>Top ten most voted for playlists</h3>
-                <div>
-                    <ul id="top-ten-playlists-container" class="p-0">
-                        <li class="top-ten-playlist-item-template list-reset">
-                            <a class="top-ten-playlist-title"></a>
-                            <span class="top-ten-playlist-author"></span>
-                            <span class="top-ten-playlist-rating"></span>
-                        </li>
-                    </ul>
+                <div class="mt-4">
+                    <h3 class="mb-2">Highest rated playlists</h3>
+                    <div class="border border-solid p-4">
+                        <div class="flex justify-between">
+                            <span class="font-semibold w-1/3 text-lg">Title</span>
+                            <span class="font-semibold w-1/3 text-lg ml-8">User</span>
+                            <span class="font-semibold text-lg">Rating</span>
+                        </div>
+                        <ul id="top-ten-playlists-container" class="p-0">
+                            <li class="top-ten-playlist-item-template list-reset flex justify-between mt-2">
+                                <a class="top-ten-playlist-title w-1/3 hover:underline"></a>
+                                <span class="top-ten-playlist-author w-1/3"></span>
+                                <span class="top-ten-playlist-rating"></span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </section>
             <section class="mt-4">
@@ -291,6 +298,7 @@
                 <input id="popular-playlist-checkbox" type="checkbox" />
             </div>
             <section id="playlists-container" class="grid grid-space rid-row-repeat-400">
+
             </section>
             <section class="playlist-template-section hidden">
                 <div class="playlist-container-template flex flex-col md:flex-row border border-solid p-2 m-auto min-h-16 w-full">

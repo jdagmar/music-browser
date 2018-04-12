@@ -441,31 +441,33 @@ const View = {
 
             return bRating - aRating;
         });
-        
-        const topTenPLaylists = playlists.slice(0, 10).map(playlist => {
-            const topTenPLaylistsItem = document.querySelector('.top-ten-playlist-item-template').cloneNode(true);
-            topTenPLaylistsItem.classList.remove('top-ten-playlist-item-template');
 
-            const topTenPLaylistsItemTitle = topTenPLaylistsItem.querySelector('.top-ten-playlist-title');
-            topTenPLaylistsItemTitle.innerHTML = playlist.title;
-            
-            topTenPLaylistsItemTitle.addEventListener('click', () => {
-                this.switchView('all-playlists');
+        const topTenPLaylists = playlists.filter(playlist => getAverageRating(playlist) > 0)
+            .slice(0, 10)
+            .map(playlist => {
+                const topTenPLaylistsItem = document.querySelector('.top-ten-playlist-item-template').cloneNode(true);
+                topTenPLaylistsItem.classList.remove('top-ten-playlist-item-template');
 
-                setTimeout(() => {
-                    const playlistLocation = document.getElementById(`playlist-${playlist._id}`);
-                    playlistLocation.scrollIntoView({behavior: 'smooth'});
+                const topTenPLaylistsItemTitle = topTenPLaylistsItem.querySelector('.top-ten-playlist-title');
+                topTenPLaylistsItemTitle.innerHTML = playlist.title;
+
+                topTenPLaylistsItemTitle.addEventListener('click', () => {
+                    this.switchView('all-playlists');
+
+                    setTimeout(() => {
+                        const playlistLocation = document.getElementById(`playlist-${playlist._id}`);
+                        playlistLocation.scrollIntoView({ behavior: 'smooth' });
+                    });
                 });
+
+                const topTenPLaylistsItemAuthor = topTenPLaylistsItem.querySelector('.top-ten-playlist-author');
+                topTenPLaylistsItemAuthor.innerHTML = playlist.createdBy;
+
+                const topTenPLaylistsItemRating = topTenPLaylistsItem.querySelector('.top-ten-playlist-rating');
+                topTenPLaylistsItemRating.innerHTML = getAverageRating(playlist);
+
+                return topTenPLaylistsItem;
             });
-
-            const topTenPLaylistsItemAuthor = topTenPLaylistsItem.querySelector('.top-ten-playlist-author');
-            topTenPLaylistsItemAuthor.innerHTML = playlist.createdBy;
-
-            const topTenPLaylistsItemRating = topTenPLaylistsItem.querySelector('.top-ten-playlist-rating');
-            topTenPLaylistsItemRating.innerHTML = getAverageRating(playlist);
-
-            return topTenPLaylistsItem;
-        });
 
         const topTenPLaylistsContainer = document.getElementById('top-ten-playlists-container');
         topTenPLaylistsContainer.innerHTML = '';
