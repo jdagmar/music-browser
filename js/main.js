@@ -15,7 +15,7 @@ const Api = {
         });
     }),
     get(type) {
-        return Api.responseToJson(fetch(`https://folksa.ga/api/${type}?key=flat_eric&limit=200&sort=asc`))
+        return Api.responseToJson(fetch(`https://folksa.ga/api/${type}?key=flat_eric&limit=200&populateArtists=true`))
             .catch(() => {
                 return [];
             });
@@ -467,20 +467,7 @@ const View = {
         }
     },
     displayTopTenPlaylists(topTenPLaylistsContainer, playlists) {
-        const getAverageRating = (playlist) => {
-            const ratings = playlist.ratings;
-            const ratingsTotal = ratings.reduce((sum, ratings) => sum + ratings, 0);
-            const averageRating = ratings.length > 0 ? Math.floor(ratingsTotal / ratings.length) : 0;
-
-            return averageRating;
-        }
-
-        playlists.sort((a, b) => {
-            const aRating = getAverageRating(a);
-            const bRating = getAverageRating(b);
-
-            return bRating - aRating;
-        });
+        playlists.sort(compareAverageRating);
 
         const topTenPLaylists = playlists.filter(playlist => getAverageRating(playlist) > 0)
             .slice(0, 10)
@@ -512,6 +499,56 @@ const View = {
         topTenPLaylistsContainer.innerHTML = '';
         topTenPLaylists.forEach(topTenPLaylistsItem => topTenPLaylistsContainer.appendChild(topTenPLaylistsItem));
     },
+    displayTopTenTracks(topTenTracksContainer, tracks){
+        tracks.sort(compareAverageRating);
+
+        const topTenTracks = tracks.filter(tracks => getAverageRating(tracks) > 0)
+        .slice(0, 10)
+        .map(tracks => {
+            const topTenTracksItem = document.querySelector('.top-ten-tracks-item-template').cloneNode(true);
+            topTenTracksItem.classList.remove('top-ten-tracks-item-template');
+
+            const topTenTracksItemTitle = topTenTracksItem.querySelector('.top-ten-track-title');
+            topTenTracksItemTitle.innerHTML = tracks.title;
+
+            const topTenTracksItemArtist = topTenTracksItem.querySelector('.top-ten-track-artist');
+            topTenTracksItemArtist.innerHTML = tracks.artists.map(artist => artist.name).join(', ');
+
+            const topTenTracksItemRating = topTenTracksItem.querySelector('.top-ten-track-rating');
+            topTenTracksItemRating.innerHTML = getAverageRating(tracks);
+
+            return topTenTracksItem;
+        });
+
+        topTenTracksContainer.innerHTML = '';
+        topTenTracks.forEach(topTenTracksItem => topTenTracksContainer.appendChild(topTenTracksItem));
+    },
+    displayTopTenAlbums(topTenAlbumsContainer, albums){
+        albums.sort(compareAverageRating);
+
+        const topTenAlbums = albums.filter(albums => getAverageRating(albums) > 0)
+        .slice(0, 10)
+        .map(albums => {
+            const topTenAlbumsItem = document.querySelector('.top-ten-albums-item-template').cloneNode(true);
+            topTenAlbumsItem.classList.remove('top-ten-albums-item-template');
+
+            const topTenAlbumsItemTitle = topTenAlbumsItem.querySelector('.top-ten-album-title');
+            topTenAlbumsItemTitle.innerHTML = albums.title;
+
+            console.log(albums);
+
+            const topTenAlbumsItemArtist = topTenAlbumsItem.querySelector('.top-ten-album-artist');
+            topTenAlbumsItemArtist.innerHTML = albums.artists.map(artist => artist.name).join(', ');
+
+            const topTenAlbumsItemRating = topTenAlbumsItem.querySelector('.top-ten-album-rating');
+            topTenAlbumsItemRating.innerHTML = getAverageRating(albums);
+
+            return topTenAlbumsItem;
+        });
+
+        topTenAlbumsContainer.innerHTML = '';
+        topTenAlbums.forEach(topTenAlbumsItem => topTenAlbumsContainer.appendChild(topTenAlbumsItem));
+    },
     showSpinner(container) {
         const spinner = document.createElement('img');
         spinner.src = 'images/bars.svg';
@@ -526,6 +563,21 @@ const hamburger = document.getElementById('hamburger');
 hamburger.addEventListener('click', () => {
     View.toggleMenu();
 });
+
+const getAverageRating = (resource) => {
+    const ratings = resource.ratings;
+    const ratingsTotal = ratings.reduce((sum, ratings) => sum + ratings, 0);
+    const averageRating = ratings.length > 0 ? Math.floor(ratingsTotal / ratings.length) : 0;
+
+    return averageRating;
+}
+
+const compareAverageRating = (a, b) => {
+    const aRating = getAverageRating(a);
+    const bRating = getAverageRating(b);
+
+    return bRating - aRating;
+}
 
 const addArtistForm = document.getElementById('add-artist-form');
 const genderChoices = new Choices('#artist-gender', {
@@ -725,6 +777,14 @@ Api.getPlaylists().then(playlists => View.displayPlaylists(playlistList, playlis
 const topTenPLaylistsContainer = document.getElementById('top-ten-playlists-container');
 View.showSpinner(topTenPLaylistsContainer);
 Api.getPlaylists().then(playlists => View.displayTopTenPlaylists(topTenPLaylistsContainer, playlists));
+
+const topTenTracksContainer = document.getElementById('top-ten-tracks-container');
+View.showSpinner(topTenTracksContainer);
+Api.getTracks().then(tracks => View.displayTopTenTracks(topTenTracksContainer, tracks));
+
+const topTenAlbumsContainer = document.getElementById('top-ten-albums-container');
+View.showSpinner(topTenAlbumsContainer);
+Api.getAlbums().then(albums => View.displayTopTenAlbums(topTenAlbumsContainer, albums));
 
 Api.getArtists().then(artists => createArtistSelect(artists));
 Api.getAlbums().then(albums => createAlbumSelect(albums));

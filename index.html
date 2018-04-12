@@ -63,8 +63,40 @@
         <div id="main-view" class="max-w-2xl m-auto">
             <section>
                 <h2>Highest rated</h2>
-                <h3>Albums</h3>
-                <h3>Tracks</h3>
+                <div class="mt-4">
+                    <h3 class="mb-2">Albums</h3>
+                    <div class="border border-solid p-4">
+                        <div class="flex justify-between">
+                            <span class="font-semibold w-1/3 text-lg">Title</span>
+                            <span class="font-semibold w-1/3 text-lg ml-8">Artist</span>
+                            <span class="font-semibold text-lg">Rating</span>
+                        </div>
+                        <ul id="top-ten-albums-container" class="p-0">
+                            <li class="top-ten-albums-item-template list-reset flex justify-between mt-2">
+                                <span class="top-ten-album-title w-1/3"></span>
+                                <span class="top-ten-album-artist w-1/3"></span>
+                                <span class="top-ten-album-rating"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <h3 class="mb-2">Tracks</h3>
+                    <div class="border border-solid p-4">
+                        <div class="flex justify-between">
+                            <span class="font-semibold w-1/3 text-lg">Title</span>
+                            <span class="font-semibold w-1/3 text-lg ml-8">Artist</span>
+                            <span class="font-semibold text-lg">Rating</span>
+                        </div>
+                        <ul id="top-ten-tracks-container" class="p-0">
+                            <li class="top-ten-tracks-item-template list-reset flex justify-between mt-2">
+                                <span class="top-ten-track-title w-1/3"></span>
+                                <span class="top-ten-track-artist w-1/3"></span>
+                                <span class="top-ten-track-rating"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 <div class="mt-4">
                     <h3 class="mb-2">Playlists</h3>
                     <div class="border border-solid p-4">
