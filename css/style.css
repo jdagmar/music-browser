@@ -63,6 +63,10 @@ p, #artist-view-link, input, label, .choices__list--single .choices__item, a {
     display: block;
 }
 
+#nav {
+    display: inline-block;
+}
+
 /* restyling of choices.js styling */
 .choices__list--multiple .choices__item.is-highlighted,
 .choices__list--multiple .choices__item {

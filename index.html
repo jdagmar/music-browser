@@ -9,33 +9,35 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
     <link href="css/choices.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <title>Music browser 1337</title>
+    <title>Music browser</title>
 </head>
 
 <body>
-    <header class="flex justify-between text-center h-16 m-4 text-center border-b">
-        <h1 class="m-2 text-2xl">Music browser 1337</h1>
-        <button id="hamburger" class="w-16 bloc visible lg:invisible">
-            <img src="images/031__list.svg" alt="click to open/close mobile menu" />
-        </button>
+    <header class="flex justify-between text-center h-16 m-4 text-center ">
+        <div>
+            <h3 class="inline-block">Music browser</h3>
+            <button id="hamburger" class="w-16 bloc  lg:hidden">
+                <img src="images/031__list.svg" alt="click to open/close mobile menu" />
+            </button>
+            <nav id="nav" class="invisible lg:visible z-1 lg:z-0 absolute lg:relative bg-white lg:bg-transparent m-0 w-full lg:w-auto h-screen
+                            lg:h-auto flex flex-col lg:flex-row lg:justify-between text-center lg:mb-8 lg:mr-4 lg:ml-4 inline-block">
+                <ul class="p-0 inline-block">
+                    <li id="artist-view-link" class="list-reset p-2 cursor-pointer block lg:inline-block" data-view="main-view">Home</li>
+                    <li id="artist-view-link" class="list-reset p-2 cursor-pointer block lg:inline-block" data-view="all-artists">Artists</li>
+                    <li id="album-view-link" class="list-reset p-2 cursor-pointer block lg:inline-block" data-view="all-albums">Albums</li>
+                    <li id="tracks-view-link" class="list-reset p-2 cursor-pointer block lg:inline-block" data-view="all-tracks">Tracks</li>
+                    <li id="playlists-view-link" class="list-reset p-2 cursor-pointer block lg:inline-block" data-view="all-playlists">Playlists</li>
+                </ul>
+            </nav>
+        </div>
+        <form id="search-form" class="inline-block h-8 flex m-auto lg:m-0" role="search">
+            <label for="search-field" hidden>search for a artist, track, album or soundtrack</label>
+            <input id="search-field" class="border border-r-0 border-solid h-8 pl-2" type="search" placeholder="search" />
+            <input class="border border-l-0 w-10 align-middle" type="image" src="images/095__search.svg" alt="click to run search" />
+        </form>
     </header>
 
     <main class="m-auto">
-        <nav id="nav" class="invisible lg:visible z-1 lg:z-0 absolute lg:relative bg-white lg:bg-transparent m-0 w-full lg:w-auto h-screen
-                            lg:h-auto flex flex-col lg:flex-row lg:justify-between text-center lg:mb-8 lg:mr-4 lg:ml-4">
-            <ul class="p-0 inline-block">
-                <li id="artist-view-link" class="list-reset p-2 cursor-pointer block lg:inline-block" data-view="main-view">Home</li>
-                <li id="artist-view-link" class="list-reset p-2 cursor-pointer block lg:inline-block" data-view="all-artists">Artists</li>
-                <li id="album-view-link" class="list-reset p-2 cursor-pointer block lg:inline-block" data-view="all-albums">Albums</li>
-                <li id="tracks-view-link" class="list-reset p-2 cursor-pointer block lg:inline-block" data-view="all-tracks">Tracks</li>
-                <li id="playlists-view-link" class="list-reset p-2 cursor-pointer block lg:inline-block" data-view="all-playlists">Playlists</li>
-            </ul>
-            <form id="search-form" class="inline-block h-8 flex m-auto lg:m-0" role="search">
-                <label for="search-field" hidden>search for a artist, track, album or soundtrack</label>
-                <input id="search-field" class="border border-r-0 border-solid h-8 pl-2" type="search" placeholder="search" />
-                <input class="border border-l-0 w-10 align-middle" type="image" src="images/095__search.svg" alt="click to run search" />
-            </form>
-        </nav>
         <div id="failed-loading-msg" class="hidden w-1/2 m-auto">
             <div class="flex justify-between text-center border border-solid bg-red p-4 fixed z-1 pin-x pin-t">
                 <div class="flex justify-center">
@@ -361,8 +363,8 @@
                                         <!-- the playlists title is rendered here -->
                                     </h2>
                                     <span class="playlist-creator">
-                                            <!-- the user who has created playlist is rendered here -->
-                                        </span>
+                                        <!-- the user who has created playlist is rendered here -->
+                                    </span>
                                     <span class="playlist-rating self-center ml-2">
                                         <!-- number of votes for playlist is rendered here -->
                                     </span>
@@ -390,7 +392,7 @@
                                     </form>
                                 </div>
                             </div>
-                            
+
                             <span class="playlist-genres">
                                 <!-- the playlists genres is rendered here -->
                             </span>
