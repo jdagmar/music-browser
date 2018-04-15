@@ -441,7 +441,7 @@ const View = {
             playlistTitle.innerHTML = playlist.title;
 
             const playlistRating = playlistItem.querySelector('.playlist-rating');
-            playlistRating.innerHTML = `(${Utils.getAverageRating(playlist)})`;
+            playlistRating.innerHTML = Utils.getAverageRating(playlist);
 
             const playlistVoteForm = playlistItem.querySelector('.playlist-vote-form');
             const playlistRatingSelect = new Choices(playlistItem.querySelector('.playlist-vote'), {
@@ -458,10 +458,9 @@ const View = {
             });
 
             const playlistCreator = playlistItem.querySelector('.playlist-creator');
-            playlistCreator.innerHTML = `created by ${playlist.createdBy}`
+            playlistCreator.innerHTML = `by ${playlist.createdBy}`
 
-            const genres = playlist.genres.map(genres => genres);
-
+            const genres = playlist.genres.map(genres => genres).join(', ');
             const playlistGenres = playlistItem.querySelector('.playlist-genres');
             playlistGenres.innerHTML = genres;
 
