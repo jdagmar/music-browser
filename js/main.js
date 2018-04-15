@@ -283,6 +283,9 @@ const Api = {
 
 const View = {
     displayArtists(artistList, artists) {
+        const artistSectionHeader = document.getElementById('artist-section-header');
+        artistSectionHeader.innerHTML = `Artists (${artists.length})`;
+
         const listAllArtist = artists.map(artist => {
             const artistContainer = document.querySelector('.artist-container-template').cloneNode(true);
             artistContainer.classList.remove('artist-container-template');
@@ -312,6 +315,9 @@ const View = {
         listAllArtist.forEach(artistContainer => artistList.appendChild(artistContainer));
     },
     displayAlbums(albumList, albums) {
+        const albumSectionHeader = document.getElementById('album-section-header');
+        albumSectionHeader.innerHTML = `Albums (${albums.length})`;
+
         const listAllAlbums = albums.map(album => {
             const albumContainer = document.querySelector('.album-container-template').cloneNode(true);
             albumContainer.classList.remove('album-container-template');
@@ -357,6 +363,9 @@ const View = {
         listAllAlbums.forEach(albumContainer => albumList.appendChild(albumContainer));
     },
     displayTracks(trackList, tracks) {
+        const trackSectionHeader = document.getElementById('track-section-header');
+        trackSectionHeader.innerHTML = `Tracks (${tracks.length})`;
+
         const listAllTracks = tracks.map(track => {
             const trackItem = document.querySelector('.track-item-template').cloneNode(true);
             trackItem.classList.remove('track-item-template');
@@ -421,6 +430,9 @@ const View = {
         listAllComments.forEach(comment => commentField.appendChild(comment));
     },
     displayPlaylists(playlistList, playlists) {
+        const playlistSectionHeader = document.getElementById('playlist-section-header');
+        playlistSectionHeader.innerHTML = `Playlists (${playlists.length})`;
+
         const listAllPlaylists = playlists.map(playlist => {
             const playlistItem = document.querySelector('.playlist-container-template').cloneNode(true);
             playlistItem.classList.remove('playlist-container-template');

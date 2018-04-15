@@ -159,8 +159,13 @@
             </section>
         </div>
         <div id="all-artists" class="hidden max-w-2xl m-auto">
-            <section id="artist-list" class="grid grid-col-repeat-200">
-
+            <section>
+                <h2 id="artist-section-header" class="mb-4">
+                    <!-- artist (number of artists) will render here -->
+                </h2>
+                <div id="artist-list" class="grid grid-col-repeat-200">
+                    <!-- all artists are rendered here -->
+                </div>
             </section>
             <section class="artist-template-section hidden">
                 <figure class="artist-container-template inline-block">
@@ -209,10 +214,14 @@
             </section>
         </div>
         <div id="all-albums" class="hidden max-w-2xl m-auto">
-            <section id="album-list" class="grid grid-col-repeat-200">
-                <!-- all albums are rendered here -->
+            <section>
+                <h2 id="album-section-header" class="mb-4">
+                    <!-- artist (number of artists) will render here -->
+                </h2>
+                <div id="album-list" class="grid grid-col-repeat-200">
+                    <!-- all albums are rendered here -->
+                </div>
             </section>
-
             <section class="album-template-section hidden">
                 <figure class="album-container-template">
                     <!-- album image renders here -->
@@ -244,7 +253,6 @@
                     </div>
                 </figure>
             </section>
-
             <section class="flex mt-8">
                 <div id="album-form-location">
                     <h2 class="mb-2">Add a new album</h2>
@@ -272,19 +280,23 @@
                 </div>
             </section>
         </div>
-        <div id="all-tracks" class="hidden max-w-2xl m-auto">
-            <section class="border border-solid p-4">
-                <div class="flex justify-between mb-2">
-                    <span class="text-lg font-semibold w-1/3">Title</span>
-                    <span class="text-lg font-semibold w-1/3">Artist</span>
-                    <div>
-                        <span class="text-sm mr-2">Delete</span>
-                        <span class="text-sm">Vote</span>
-                    </div>
-                </div>
-                <ul id="track-list" class="p-0 overflow-auto max-h-30">
 
-                </ul>
+        <div id="all-tracks" class="hidden max-w-2xl m-auto">
+            <section>
+                <h2 id="track-section-header" class="mb-4"></h2>
+                <div class="border border-solid p-4">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-lg font-semibold w-1/3">Title</span>
+                        <span class="text-lg font-semibold w-1/3">Artist</span>
+                        <div>
+                            <span class="text-sm mr-2">Delete</span>
+                            <span class="text-sm">Vote</span>
+                        </div>
+                    </div>
+                    <ul id="track-list" class="p-0 overflow-auto max-h-30">
+                        <!-- all tracks are rendered here -->
+                    </ul>
+                </div>
             </section>
             <section class="track-item-template-section hidden">
                 <li class="track-item-template list-reset flex justify-between">
@@ -350,8 +362,13 @@
             </section>
         </div>
         <div id="all-playlists" class="hidden max-w-2xl m-auto">
-            <section id="playlists-container" class="grid grid-space rid-row-repeat-400">
-
+            <section>
+                <h2 id="playlist-section-header" class="mb-4">
+                    <!-- playlists (number of playlists) are rendered here -->
+                </h2>
+                <div id="playlists-container" class="grid grid-space rid-row-repeat-400">
+                    <!-- all playlists are rendered here -->
+                </div>
             </section>
             <section class="playlist-template-section hidden">
                 <div class="playlist-container-template flex flex-col md:flex-row border border-solid p-2 m-auto min-h-16 w-full">
