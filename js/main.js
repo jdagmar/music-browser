@@ -20,23 +20,23 @@ const Api = {
                 return [];
             });
     },
-    searchArtistByName(name){
+    searchArtistByName(name) {
         return Api.responseToJson(fetch(`https://folksa.ga/api/artists?name=${name}&key=flat_eric`))
             .catch(error => console.log(error));
     },
-    searchByTitle(type, title){
+    searchByTitle(type, title) {
         return Api.responseToJson(fetch(`https://folksa.ga/api/${type}?title=${title}&key=flat_eric`))
             .catch(error => console.log(error));
     },
-    searchByGenre(type, genre){
+    searchByGenre(type, genre) {
         return Api.responseToJson(fetch(`https://folksa.ga/api/${type}?genres=${genre}&key=flat_eric`))
             .catch(error => console.log(error));
     },
-    searchByPlaylistByUser(username){
+    searchByPlaylistByUser(username) {
         return Api.responseToJson(fetch(`https://folksa.ga/api/playlists?createdBy=${username}&key=flat_eric`))
             .catch(error => console.log(error));
     },
-    searchForArtists(searchWord){
+    searchForArtists(searchWord) {
         return Promise.all([
             Api.searchArtistByName(searchWord),
             Api.searchByGenre('artists', searchWord),
@@ -47,7 +47,7 @@ const Api = {
             return nameResults.concat(genreResults);
         });
     },
-    searchForAlbums(searchWord){
+    searchForAlbums(searchWord) {
         return Promise.all([
             Api.searchByTitle('albums', searchWord),
             Api.searchByGenre('albums', searchWord),
@@ -58,7 +58,7 @@ const Api = {
             return titleResults.concat(genreResults);
         });
     },
-    searchForTracks(searchWord){
+    searchForTracks(searchWord) {
         return Promise.all([
             Api.searchByTitle('tracks', searchWord),
             Api.searchByGenre('tracks', searchWord),
@@ -69,10 +69,10 @@ const Api = {
             return titleResults.concat(genreResults);
         });
     },
-    searchForPlaylists(searchWord){
+    searchForPlaylists(searchWord) {
         return Promise.all([
             Api.searchByTitle('playlists', searchWord),
-            Api.searchByGenre('playlists',searchWord),
+            Api.searchByGenre('playlists', searchWord),
             Api.searchByPlaylistByUser(searchWord),
         ]).then(result => {
             const titleResults = result[0];
@@ -82,7 +82,7 @@ const Api = {
             return titleResults.concat(genreResults).concat(userResult);
         });
     },
-    searchAll(searchWord){
+    searchAll(searchWord) {
         return Promise.all([
             Api.searchForArtists(searchWord),
             Api.searchForAlbums(searchWord),
@@ -159,10 +159,10 @@ const Api = {
             },
             body: JSON.stringify(artist)
         }))
-        .then(Api.successHandler)
-        .catch(() => {
-            return {};
-        });
+            .then(Api.successHandler)
+            .catch(() => {
+                return {};
+            });
     },
     addAlbum(title, artists, releaseDate, genres, spotifyURL, coverImage) {
         const album = {
@@ -182,10 +182,10 @@ const Api = {
             },
             body: JSON.stringify(album)
         }))
-        .then(Api.successHandler)
-        .catch(() => {
-            return {};
-        });
+            .then(Api.successHandler)
+            .catch(() => {
+                return {};
+            });
     },
     addTrack(title, artists, album, genres, coverImage, spotifyURL, youtubeURL, soundcloudURL) {
         const track = {
@@ -203,10 +203,10 @@ const Api = {
             },
             body: JSON.stringify(track)
         }))
-        .then(Api.successHandler)
-        .catch(() => {
-            return {};
-        });
+            .then(Api.successHandler)
+            .catch(() => {
+                return {};
+            });
     },
     addPlaylist(title, tracks, genres, coverImage, createdBy) {
         const playlist = {
@@ -225,10 +225,10 @@ const Api = {
             },
             body: JSON.stringify(playlist)
         }))
-        .then(Api.successHandler)
-        .catch(() => {
-            return {};
-        });
+            .then(Api.successHandler)
+            .catch(() => {
+                return {};
+            });
     },
     voteOnAlbum: (id, vote) => Api.vote('albums', id, vote),
     voteOnTrack: (id, vote) => Api.vote('tracks', id, vote),
@@ -242,10 +242,10 @@ const Api = {
             },
             body: JSON.stringify({ rating: vote })
         }))
-        .then(Api.successHandler)
-        .catch(() => {
-            return {};
-        });
+            .then(Api.successHandler)
+            .catch(() => {
+                return {};
+            });
     },
     responseToJson(responsePromise) {
         return responsePromise
@@ -253,7 +253,7 @@ const Api = {
                 if (response.ok) {
                     return response;
                 }
-        
+
                 return Promise.reject(response);
             })
             .then(response => response.json())
@@ -270,7 +270,7 @@ const Api = {
 
         return Promise.reject(respone);
     },
-    successHandler(){
+    successHandler() {
         const successAddMsg = document.getElementById('add-success-msg');
         successAddMsg.classList.remove('hidden');
 
@@ -327,11 +327,8 @@ const View = {
 
             albumImage.alt = album.title;
 
-            const ratings = album.ratings;
-            const ratingsTotal = ratings.reduce((sum, ratings) => sum + ratings, 0);
-
             const albumImageCaption = albumContainer.querySelector('.album-image-caption');
-            albumImageCaption.innerHTML = `${album.title} (${ratingsTotal} votes)`;
+            albumImageCaption.innerHTML = `${album.title} (${Utils.getAverageRating(album)} votes)`;
 
             const deleteAlbumButton = albumContainer.querySelector('.delete-album');
             deleteAlbumButton.addEventListener('click', () => {
@@ -347,10 +344,10 @@ const View = {
                 shouldSort: false
             });
 
-            albumVoteForm.addEventListener('submit', (event) => {
+            albumVoteForm.addEventListener('choice', (event) => {
                 event.preventDefault();
-                const vote = albumVoteForm.elements['album-rating'];
-                Api.voteOnAlbum(album._id, vote.value);
+                const vote = event.detail.choice.value;
+                Api.voteOnAlbum(album._id, vote);
             });
 
             return albumContainer;
@@ -367,10 +364,7 @@ const View = {
             const trackTitle = trackItem.querySelector('.track-title');
             const trackArtist = trackItem.querySelector('.track-artist');
 
-            const ratings = track.ratings;
-            const ratingsTotal = ratings.reduce((sum, ratings) => sum + ratings, 0);
-
-            trackTitle.innerHTML = `${track.title} (${ratingsTotal} votes)`;
+            trackTitle.innerHTML = `${track.title} (${Utils.getAverageRating(track)} votes)`;
             trackArtist.innerHTML = track.artists.map(artist => artist.name).join(', ');
 
             const deleteTrackButton = trackItem.querySelector('.delete-track');
@@ -387,7 +381,7 @@ const View = {
                 shouldSort: false
             });
 
-            trackVoteForm.addEventListener('submit', (event) => {
+            trackVoteForm.addEventListener('choice', (event) => {
                 event.preventDefault();
                 const vote = trackVoteForm.elements['track-rating'];
                 Api.voteOnTrack(track._id, vote.value);
@@ -446,12 +440,8 @@ const View = {
             const playlistTitle = playlistItem.querySelector('.playlist-title');
             playlistTitle.innerHTML = playlist.title;
 
-            const ratings = playlist.ratings;
-            const ratingsTotal = ratings.reduce((sum, ratings) => sum + ratings, 0);
-            const averageRating = ratings.length > 0 ? Math.floor(ratingsTotal / ratings.length) : 'no votes yet';
-
             const playlistRating = playlistItem.querySelector('.playlist-rating');
-            playlistRating.innerHTML = `(${averageRating})`;
+            playlistRating.innerHTML = `(${Utils.getAverageRating(playlist)})`;
 
             const playlistVoteForm = playlistItem.querySelector('.playlist-vote-form');
             const playlistRatingSelect = new Choices(playlistItem.querySelector('.playlist-vote'), {
@@ -461,7 +451,7 @@ const View = {
                 shouldSort: false
             });
 
-            playlistVoteForm.addEventListener('submit', (event) => {
+            playlistVoteForm.addEventListener('choice', (event) => {
                 event.preventDefault();
                 const vote = playlistVoteForm.elements['playlist-rating'];
                 Api.voteOnPlaylist(playlist._id, vote.value);
@@ -545,9 +535,9 @@ const View = {
         }
     },
     displayTopTenPlaylists(topTenPLaylistsContainer, playlists) {
-        playlists.sort(compareAverageRating);
+        playlists.sort(Utils.compareAverageRating);
 
-        const topTenPLaylists = playlists.filter(playlist => getAverageRating(playlist) > 0)
+        const topTenPLaylists = playlists.filter(playlist => Utils.getAverageRating(playlist) > 0)
             .slice(0, 10)
             .map(playlist => {
                 const topTenPLaylistsItem = document.querySelector('.top-ten-playlist-item-template').cloneNode(true);
@@ -569,7 +559,7 @@ const View = {
                 topTenPLaylistsItemAuthor.innerHTML = playlist.createdBy;
 
                 const topTenPLaylistsItemRating = topTenPLaylistsItem.querySelector('.top-ten-playlist-rating');
-                topTenPLaylistsItemRating.innerHTML = getAverageRating(playlist);
+                topTenPLaylistsItemRating.innerHTML = Utils.getAverageRating(playlist);
 
                 return topTenPLaylistsItem;
             });
@@ -577,55 +567,55 @@ const View = {
         topTenPLaylistsContainer.innerHTML = '';
         topTenPLaylists.forEach(topTenPLaylistsItem => topTenPLaylistsContainer.appendChild(topTenPLaylistsItem));
     },
-    displayTopTenTracks(topTenTracksContainer, tracks){
-        tracks.sort(compareAverageRating);
+    displayTopTenTracks(topTenTracksContainer, tracks) {
+        tracks.sort(Utils.compareAverageRating);
 
-        const topTenTracks = tracks.filter(tracks => getAverageRating(tracks) > 0)
-        .slice(0, 10)
-        .map(tracks => {
-            const topTenTracksItem = document.querySelector('.top-ten-tracks-item-template').cloneNode(true);
-            topTenTracksItem.classList.remove('top-ten-tracks-item-template');
+        const topTenTracks = tracks.filter(tracks => Utils.getAverageRating(tracks) > 0)
+            .slice(0, 10)
+            .map(tracks => {
+                const topTenTracksItem = document.querySelector('.top-ten-tracks-item-template').cloneNode(true);
+                topTenTracksItem.classList.remove('top-ten-tracks-item-template');
 
-            const topTenTracksItemTitle = topTenTracksItem.querySelector('.top-ten-track-title');
-            topTenTracksItemTitle.innerHTML = tracks.title;
+                const topTenTracksItemTitle = topTenTracksItem.querySelector('.top-ten-track-title');
+                topTenTracksItemTitle.innerHTML = tracks.title;
 
-            const topTenTracksItemArtist = topTenTracksItem.querySelector('.top-ten-track-artist');
-            topTenTracksItemArtist.innerHTML = tracks.artists.map(artist => artist.name).join(', ');
+                const topTenTracksItemArtist = topTenTracksItem.querySelector('.top-ten-track-artist');
+                topTenTracksItemArtist.innerHTML = tracks.artists.map(artist => artist.name).join(', ');
 
-            const topTenTracksItemRating = topTenTracksItem.querySelector('.top-ten-track-rating');
-            topTenTracksItemRating.innerHTML = getAverageRating(tracks);
+                const topTenTracksItemRating = topTenTracksItem.querySelector('.top-ten-track-rating');
+                topTenTracksItemRating.innerHTML = Utils.getAverageRating(tracks);
 
-            return topTenTracksItem;
-        });
+                return topTenTracksItem;
+            });
 
         topTenTracksContainer.innerHTML = '';
         topTenTracks.forEach(topTenTracksItem => topTenTracksContainer.appendChild(topTenTracksItem));
     },
-    displayTopTenAlbums(topTenAlbumsContainer, albums){
-        albums.sort(compareAverageRating);
+    displayTopTenAlbums(topTenAlbumsContainer, albums) {
+        albums.sort(Utils.compareAverageRating);
 
-        const topTenAlbums = albums.filter(albums => getAverageRating(albums) > 0)
-        .slice(0, 10)
-        .map(albums => {
-            const topTenAlbumsItem = document.querySelector('.top-ten-albums-item-template').cloneNode(true);
-            topTenAlbumsItem.classList.remove('top-ten-albums-item-template');
+        const topTenAlbums = albums.filter(albums => Utils.getAverageRating(albums) > 0)
+            .slice(0, 10)
+            .map(albums => {
+                const topTenAlbumsItem = document.querySelector('.top-ten-albums-item-template').cloneNode(true);
+                topTenAlbumsItem.classList.remove('top-ten-albums-item-template');
 
-            const topTenAlbumsItemTitle = topTenAlbumsItem.querySelector('.top-ten-album-title');
-            topTenAlbumsItemTitle.innerHTML = albums.title;
+                const topTenAlbumsItemTitle = topTenAlbumsItem.querySelector('.top-ten-album-title');
+                topTenAlbumsItemTitle.innerHTML = albums.title;
 
-            const topTenAlbumsItemArtist = topTenAlbumsItem.querySelector('.top-ten-album-artist');
-            topTenAlbumsItemArtist.innerHTML = albums.artists.map(artist => artist.name).join(', ');
+                const topTenAlbumsItemArtist = topTenAlbumsItem.querySelector('.top-ten-album-artist');
+                topTenAlbumsItemArtist.innerHTML = albums.artists.map(artist => artist.name).join(', ');
 
-            const topTenAlbumsItemRating = topTenAlbumsItem.querySelector('.top-ten-album-rating');
-            topTenAlbumsItemRating.innerHTML = getAverageRating(albums);
+                const topTenAlbumsItemRating = topTenAlbumsItem.querySelector('.top-ten-album-rating');
+                topTenAlbumsItemRating.innerHTML = Utils.getAverageRating(albums);
 
-            return topTenAlbumsItem;
-        });
+                return topTenAlbumsItem;
+            });
 
         topTenAlbumsContainer.innerHTML = '';
         topTenAlbums.forEach(topTenAlbumsItem => topTenAlbumsContainer.appendChild(topTenAlbumsItem));
     },
-    displaySearchResults(result){
+    displaySearchResults(result) {
         const searchArtistContainer = document.getElementById('search-artist-container');
         const foundArtists = result.artists;
         View.displayArtists(searchArtistContainer, foundArtists);
@@ -653,25 +643,28 @@ const View = {
     }
 }
 
+const Utils = {
+    getAverageRating(resource) {
+        const ratings = resource.ratings;
+        const ratingsTotal = ratings.reduce((sum, ratings) => sum + ratings, 0);
+        const averageRating = ratings.length > 0 ? Math.floor(ratingsTotal / ratings.length) : 0;
+
+        return averageRating;
+    },
+    compareAverageRating(a, b) {
+        const aRating = Utils.getAverageRating(a);
+        const bRating = Utils.getAverageRating(b);
+
+        return bRating - aRating;
+    }
+}
+
 const hamburger = document.getElementById('hamburger');
 hamburger.addEventListener('click', () => {
     View.toggleMenu();
 });
 
-const getAverageRating = (resource) => {
-    const ratings = resource.ratings;
-    const ratingsTotal = ratings.reduce((sum, ratings) => sum + ratings, 0);
-    const averageRating = ratings.length > 0 ? Math.floor(ratingsTotal / ratings.length) : 0;
 
-    return averageRating;
-}
-
-const compareAverageRating = (a, b) => {
-    const aRating = getAverageRating(a);
-    const bRating = getAverageRating(b);
-
-    return bRating - aRating;
-}
 
 const addArtistForm = document.getElementById('add-artist-form');
 const genderChoices = new Choices('#artist-gender', {

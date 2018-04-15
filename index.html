@@ -9,12 +9,12 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
     <link href="css/choices.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <title>Music browser</title>
+    <title>Music browser 1337</title>
 </head>
 
 <body>
     <header class="flex justify-between text-center h-16 m-4 text-center border-b">
-        <h1 class="m-2 text-2xl">Music browser</h1>
+        <h1 class="m-2 text-2xl">Music browser 1337</h1>
         <button id="hamburger" class="w-16 bloc visible lg:invisible">
             <img src="images/031__list.svg" alt="click to open/close mobile menu" />
         </button>
@@ -226,6 +226,7 @@
                         <form class="album-vote-form">
                             <label for="album-rating" hidden>choose how high to vote</label>
                             <select class="album-vote" name="album-rating">
+                                <option placeholder>Vote</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -237,7 +238,6 @@
                                 <option value="9">9</option>
                                 <option value="10">10</option>
                             </select>
-                            <input class="w-8" type="image" src="images/147__heart.svg" alt="click to vote on album">
                         </form>
                     </div>
                 </figure>
@@ -284,7 +284,7 @@
 
                 </ul>
             </section>
-            <section class="track-item-template-section">
+            <section class="track-item-template-section hidden">
                 <li class="track-item-template list-reset flex justify-between">
                     <span class="track-title w-1/3">
                         <!-- title of the track is rendered here -->
@@ -299,6 +299,7 @@
                         <form class="track-vote-form">
                             <label for="track-rating" hidden>choose how high to vote</label>
                             <select class="track-rating" name="track-rating">
+                                <option placeholder>Vote</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -310,7 +311,6 @@
                                 <option value="9">9</option>
                                 <option value="10">10</option>
                             </select>
-                            <input class="w-8" type="image" src="images/147__heart.svg" alt="click to vote on album">
                         </form>
                     </div>
                 </li>
@@ -372,6 +372,7 @@
                                     <form class="playlist-vote-form">
                                         <label for="playlist-rating" hidden>choose how high to vote</label>
                                         <select class="playlist-vote" name="playlist-rating">
+                                            <option placeholder>Vote</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -383,7 +384,6 @@
                                             <option value="9">9</option>
                                             <option value="10">10</option>
                                         </select>
-                                        <input class="w-8" type="image" src="images/147__heart.svg" alt="click to vote on album">
                                     </form>
                                 </div>
                             </div>
