@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css?family=Poppins|Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins%7CRoboto" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
     <link href="css/choices.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -22,7 +22,7 @@
             <nav id="nav" class="invisible lg:visible z-1 lg:z-0 absolute lg:relative bg-white lg:bg-transparent m-0 w-full lg:w-auto h-screen
                             lg:h-auto flex flex-col lg:flex-row lg:justify-between text-center lg:mb-8 lg:mr-4 lg:ml-4 inline-block">
                 <ul class="p-0 inline-block">
-                    <li id="artist-view-link" class="list-reset p-2 cursor-pointer block lg:inline-block" data-view="main-view">Home</li>
+                    <li id="home-view-link" class="list-reset p-2 cursor-pointer block lg:inline-block" data-view="main-view">Home</li>
                     <li id="artist-view-link" class="list-reset p-2 cursor-pointer block lg:inline-block" data-view="all-artists">Artists</li>
                     <li id="album-view-link" class="list-reset p-2 cursor-pointer block lg:inline-block" data-view="all-albums">Albums</li>
                     <li id="tracks-view-link" class="list-reset p-2 cursor-pointer block lg:inline-block" data-view="all-tracks">Tracks</li>
@@ -42,11 +42,11 @@
             <div class="flex justify-between text-center border border-solid bg-red p-4 fixed z-1 pin-x pin-t">
                 <div class="flex justify-center">
                     <span class="self-center text-white">Something went wrong, try again later</span>
-                    <img class="w-6 ml-2" src="images/ic_error_outline.svg" alt="" />
+                    <img class="w-6 ml-2" src="images/ic_error_outline.svg" alt="white checkmark" />
                 </div>
                 <button id="close-fail-msg" class="flex block ml-auto">
                     <span class="self-center text-sm text-white">Close</span>
-                    <img class="w-8 h-8" src="images/007__close_white.svg" alt="" />
+                    <img class="w-8 h-8" src="images/007__close_white.svg" alt="click to close message" />
                 </button>
             </div>
         </div>
@@ -58,7 +58,7 @@
                 </div>
                 <button id="close-success-msg" class="flex block ml-auto">
                     <span class="text-white text-sm self-center">Close</span>
-                    <img class="w-8" src="images/007__close_white.svg" />
+                    <img class="w-8" src="images/007__close_white.svg" alt="click to close message"/>
                 </button>
             </div>
         </div>
@@ -86,19 +86,19 @@
                 <p class="mb-4">Are you missing someone or something on the site? Anyone can add material to the site.</p>
                 <div id="form-links" class="grid grid-space grid-col-repeat-250 m-auto">
                     <div class="border border-solid text-center p-2" data-view="all-artists" data-location="artist-form-location">
-                        <img class="w-48 block m-auto" src="images/103__user.svg" />
+                        <img class="w-48 block m-auto" src="images/103__user.svg" alt="click to add a new artist"/>
                         <span class="text-xl">Add a new artist</span>
                     </div>
                     <div class="border border-solid text-center p-2" data-view="all-albums" data-location="album-form-location">
-                        <img class="w-48 block m-auto" src="images/140__music.svg" />
+                        <img class="w-48 block m-auto" src="images/140__music.svg" alt="click to add a new album"/>
                         <span class="text-xl">Add a new album</span>
                     </div>
                     <div class="border border-solid text-center p-2" data-view="all-tracks" data-location="track-form-location">
-                        <img class="w-48 block m-auto" src="images/140__music.svg" />
+                        <img class="w-48 block m-auto" src="images/140__music.svg" alt="click to add a new track"/>
                         <span class="text-xl">Add a new track</span>
                     </div>
                     <div class="border border-solid text-center p-2" data-view="all-playlists" data-location="playlist-form-location">
-                        <img class="w-48 block m-auto" src="images/144__headphone.svg" />
+                        <img class="w-48 block m-auto" src="images/144__headphone.svg" alt="click to add a new playlist"/>
                         <span class="text-xl">Add a new playlist</span>
                     </div>
                 </div>
@@ -227,15 +227,14 @@
                     <!-- album image renders here -->
                     <img class="album-image border border-solid w-48 h-48" />
                     <div class="flex justify-between flex-wrap w-48">
-                        <figcaption class="album-image-caption self-center w-full leading-normal">
+                        <span class="album-image-caption self-center w-full leading-normal">
                             <!-- album title renders here -->
-                        </figcaption>
+                        </span>
                         <button class="delete-album flex border border-solid mr-2 pr-2 pl-2 rounded-sm mb-2 mt-2">
                             <span class="text-sm self-center">Delete album</span>
                             <img class="w-8 align-middle" src="images/007__close.svg" alt="click to delete album" />
                         </button>
                         <form class="album-vote-form">
-                            <label for="album-rating" hidden>choose how high to vote</label>
                             <select class="album-vote" name="album-rating">
                                 <option placeholder>Vote</option>
                                 <option value="1">1</option>
@@ -259,7 +258,7 @@
                     <p class="mb-4">Fields with an asterix (*) must be filled for album to be added</p>
                     <form id="add-album-form" class="w-128">
                         <label class="inline-block mb-2" for="album-title">Album title *</label>
-                        <input id="album-name" name="album-title" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text" />
+                        <input id="album-title" name="album-title" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text" />
                         <label class="inline-block mb-2" for="artist-select">Artist(s) *</label>
                         <select id="artist-select" name="album-artists" multiple="multiple">
                             <!-- all artists from api is rendered as options here -->
@@ -311,7 +310,6 @@
                             <img class="w-8 mr-2 align-middle" src="images/007__close.svg" alt="click to delete track" />
                         </button>
                         <form class="track-vote-form">
-                            <label for="track-rating" hidden>choose how high to vote</label>
                             <select class="track-rating" name="track-rating">
                                 <option placeholder>Vote</option>
                                 <option value="1">1</option>
@@ -392,7 +390,6 @@
                                         <img class="w-8 align-middle" src="images/007__close.svg" alt="click to delete playlist" />
                                     </button>
                                     <form class="playlist-vote-form">
-                                        <label for="playlist-rating" hidden>choose how high to vote</label>
                                         <select class="playlist-vote" name="playlist-rating">
                                             <option placeholder>Vote</option>
                                             <option value="1">1</option>
