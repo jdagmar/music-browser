@@ -227,9 +227,9 @@
                     <!-- album image renders here -->
                     <img class="album-image border border-solid w-48 h-48" />
                     <div class="flex justify-between flex-wrap w-48">
-                        <span class="album-image-caption self-center w-full leading-normal">
+                        <div class="album-image-caption self-center flex justify-between w-full leading-normal">
                             <!-- album title renders here -->
-                        </span>
+                        </div>
                         <button class="delete-album flex border border-solid mr-2 pr-2 pl-2 rounded-sm mb-2 mt-2">
                             <span class="text-sm self-center">Delete album</span>
                             <img class="w-8 align-middle" src="images/007__close.svg" alt="click to delete album" />
@@ -285,11 +285,12 @@
                 <h2 id="track-section-header" class="mb-4"></h2>
                 <div class="border border-solid p-4">
                     <div class="flex justify-between mb-2">
-                        <span class="text-lg font-semibold w-1/3">Title</span>
-                        <span class="text-lg font-semibold w-1/3">Artist</span>
+                        <span class="text-lg font-semibold">Rating</span>
+                        <span class="text-lg font-semibold w-1/3 ml-6">Title</span>
+                        <span class="text-lg font-semibold w-2/5 mr-6">Artist</span>
                         <div>
-                            <span class="text-sm mr-2">Delete</span>
-                            <span class="text-sm">Vote</span>
+                            <span class="text-sm mr-6">Delete</span>
+                            <span class="text-sm mr-4">Vote</span>
                         </div>
                     </div>
                     <ul id="track-list" class="p-0 overflow-auto max-h-30">
@@ -299,7 +300,10 @@
             </section>
             <section class="track-item-template-section hidden">
                 <li class="track-item-template list-reset flex justify-between">
-                    <span class="track-title w-1/3">
+                    <span class="track-rate">
+                        <!-- the averagerating of the track is rendered here -->
+                    </span>
+                    <span class="track-title w-1/4">
                         <!-- title of the track is rendered here -->
                     </span>
                     <span class="track-artist w-1/3">

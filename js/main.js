@@ -334,7 +334,9 @@ const View = {
             albumImage.alt = album.title;
 
             const albumImageCaption = albumContainer.querySelector('.album-image-caption');
-            albumImageCaption.innerHTML = `${album.title} (${Utils.getAverageRating(album)} votes)`;
+            albumImageCaption.innerHTML = `
+                <span class="self-center">${album.title}</span> 
+                <span class="self-center">Rating: ${Utils.getAverageRating(album)}</span>`;
 
             const deleteAlbumButton = albumContainer.querySelector('.delete-album');
             deleteAlbumButton.addEventListener('click', () => {
@@ -370,11 +372,13 @@ const View = {
             const trackItem = document.querySelector('.track-item-template').cloneNode(true);
             trackItem.classList.remove('track-item-template');
 
+            const trackRate = trackItem.querySelector('.track-rate');
             const trackTitle = trackItem.querySelector('.track-title');
             const trackArtist = trackItem.querySelector('.track-artist');
 
-            trackTitle.innerHTML = `${track.title} (${Utils.getAverageRating(track)} votes)`;
+            trackTitle.innerHTML = track.title;
             trackArtist.innerHTML = track.artists.map(artist => artist.name).join(', ');
+            trackRate.innerHTML = Utils.getAverageRating(track);
 
             const deleteTrackButton = trackItem.querySelector('.delete-track');
             deleteTrackButton.addEventListener('click', () => {
@@ -453,7 +457,7 @@ const View = {
             playlistTitle.innerHTML = playlist.title;
 
             const playlistRating = playlistItem.querySelector('.playlist-rating');
-            playlistRating.innerHTML = Utils.getAverageRating(playlist);
+            playlistRating.innerHTML = `Rating: ${Utils.getAverageRating(playlist)}`;
 
             const playlistVoteForm = playlistItem.querySelector('.playlist-vote-form');
             const playlistRatingSelect = new Choices(playlistItem.querySelector('.playlist-vote'), {
