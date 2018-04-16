@@ -63,10 +63,10 @@
                     </button>
                 </div>
             </div>
-            <div id="comment-form-msg">
+            <div id="comment-form-notifications">
                 <div class="fixed z-1 pin-b pin-r">
                     <div class="notification notification-empty-username hidden">
-                        <div class="justify-between empty-user-field bg-red text-white p-2 rounded-sm m-8">
+                        <div class="justify-between bg-red text-white p-2 rounded-sm m-8">
                             <div class="flex justify-center mr-4">
                                 <p class="self-center">Username is required</p>
                                 <img class="w-6 ml-2" src="images/ic_error_outline.svg" alt="white stop sign" />
@@ -78,10 +78,134 @@
                         </div>
                     </div>
                     <div class="notification notification-empty-body hidden">
-                        <div class="justify-between empty-user-field bg-red text-white p-2 rounded-sm m-8">
+                        <div class="justify-between bg-red text-white p-2 rounded-sm m-8">
                             <div class="flex justify-center mr-4">
                                 <p class="self-center">Comment field can't be empty is required</p>
                                 <img class="w-6 ml-2" src="images/ic_error_outline.svg" alt="white stop sign" />
+                            </div>
+                            <button class="hide-notification flex block ml-auto">
+                                <span class="text-white text-sm self-center">Close</span>
+                                <img class="w-8" src="images/007__close_white.svg" alt="click to close message" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="artist-form-notifications" class="mb-auto mr-auto ml-auto mt-6--custom">
+                <div class="fixed z-1 pin-b pin-r">
+                    <div class="notification notification-empty-name hidden">
+                        <div class="justify-between bg-red text-white p-2 rounded-sm m-8">
+                            <div class="flex justify-center mr-4">
+                                <img class="w-6 m-2" src="images/ic_error_outline.svg" alt="white stop sign" />
+                                <span class="self-center mr-2">A name is required to created a new artist</span>
+                            </div>
+                            <button class="hide-notification flex block ml-auto">
+                                <span class="text-white text-sm self-center">Close</span>
+                                <img class="w-8" src="images/007__close_white.svg" alt="click to close message" />
+                            </button>
+                        </div>
+                    </div>
+                    <div class="notification notification-wrong-date hidden">
+                        <div class="justify-between bg-red text-white p-2 rounded-sm m-8">
+                            <div class="flex justify-center mr-4">
+                                <img class="w-6 m-2" src="images/ic_error_outline.svg" alt="white stop sign" />
+                                <span class="self-center mr-2">Birthdate must be formatted as YYYY-MM-DD</span>
+                            </div>
+                            <button class="hide-notification flex block ml-auto">
+                                <span class="text-white text-sm self-center">Close</span>
+                                <img class="w-8" src="images/007__close_white.svg" alt="click to close message" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="album-form-notifications" class="mb-auto mr-auto ml-auto mt-6--custom">
+                <div class="fixed z-1 pin-b pin-r">
+                    <div class="notification notification-empty-title hidden">
+                        <div class="justify-between bg-red text-white p-2 rounded-sm m-8">
+                            <div class="flex justify-center mr-4">
+                                <img class="w-6 m-2" src="images/ic_error_outline.svg" alt="white stop sign" />
+                                <span class="self-center mr-2">A title is required to create a new album</span>
+                            </div>
+                            <button class="hide-notification flex block ml-auto">
+                                <span class="text-white text-sm self-center">Close</span>
+                                <img class="w-8" src="images/007__close_white.svg" alt="click to close message" />
+                            </button>
+                        </div>
+                    </div>
+                    <div class="notification notification-empty-artists hidden">
+                        <div class="justify-between bg-red text-white p-2 rounded-sm m-8">
+                            <div class="flex justify-center mr-4">
+                                <img class="w-6 m-2" src="images/ic_error_outline.svg" alt="white stop sign" />
+                                <span class="self-center mr-2">An album is required to have at least one artist</span>
+                            </div>
+                            <button class="hide-notification flex block ml-auto">
+                                <span class="text-white text-sm self-center">Close</span>
+                                <img class="w-8" src="images/007__close_white.svg" alt="click to close message" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="track-form-notifications" class="mb-auto mr-auto ml-auto mt-6--custom">
+                <div class="fixed z-1 pin-b pin-r">
+                    <div class="notification notification-empty-track-title hidden">
+                        <div class="justify-between bg-red text-white p-2 rounded-sm m-8">
+                            <div class="flex justify-center mr-4">
+                                <img class="w-6 m-2" src="images/ic_error_outline.svg" alt="white stop sign" />
+                                <span class="self-center">A title is required to create a new track</span>
+                            </div>
+                            <button class="hide-notification flex block ml-auto">
+                                <span class="text-white text-sm self-center">Close</span>
+                                <img class="w-8" src="images/007__close_white.svg" alt="click to close message" />
+                            </button>
+                        </div>
+                    </div>
+                    <div class="notification notification-empty-album-title hidden">
+                        <div class="justify-between bg-red text-white p-2 rounded-sm m-8">
+                            <div class="flex justify-center mr-4">
+                                <img class="w-6 m-2" src="images/ic_error_outline.svg" alt="white stop sign" />
+                                <span class="self-center mr-2">A track is required to have an album</span>
+                            </div>
+                            <button class="hide-notification flex block ml-auto">
+                                <span class="text-white text-sm self-center">Close</span>
+                                <img class="w-8" src="images/007__close_white.svg" alt="click to close message" />
+                            </button>
+                        </div>
+                    </div>
+                    <div class="notification notification-empty-track-artists hidden">
+                        <div class="justify-between bg-red text-white p-2 rounded-sm m-8">
+                            <div class="flex justify-center mr-4">
+                                <img class="w-6 m-2" src="images/ic_error_outline.svg" alt="white stop sign" />
+                                <span class="self-center mr-2">A track is required to have at least one artist</span>
+                            </div>
+                            <button class="hide-notification flex block ml-auto">
+                                <span class="text-white text-sm self-center">Close</span>
+                                <img class="w-8" src="images/007__close_white.svg" alt="click to close message" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="playlist-form-notifications" class="mb-auto mr-auto ml-auto mt-6--custom">
+                <div class="fixed z-1 pin-b pin-r">
+                    <div class="notification notification-empty-playlist-title hidden">
+                        <div class="justify-between bg-red text-white p-2 rounded-sm m-8">
+                            <div class="flex justify-center mr-4">
+                                <img class="w-6 m-2" src="images/ic_error_outline.svg" alt="white stop sign" />
+                                <span class="self-center mr-2">A title is required to create a playlist</span>
+                            </div>
+                            <button class="hide-notification flex block ml-auto">
+                                <span class="text-white text-sm self-center">Close</span>
+                                <img class="w-8" src="images/007__close_white.svg" alt="click to close message" />
+                            </button>
+                        </div>
+                    </div>
+                    <div class="notification notification-empty-playlist-username hidden">
+                        <div class="justify-between bg-red text-white p-2 rounded-sm m-8">
+                            <div class="flex justify-center mr-4">
+                                <img class="w-6 m-2" src="images/ic_error_outline.svg" alt="white stop sign" />
+                                <span class="self-center mr-2">Username is required</span>
                             </div>
                             <button class="hide-notification flex block ml-auto">
                                 <span class="text-white text-sm self-center">Close</span>
@@ -241,16 +365,6 @@
                         <input class="border border-solid block w-full mb-4 h-10 rounded" type="submit" value="Create artist" />
                     </form>
                 </div>
-                <div id="artist-form-msg" class="mb-auto mr-auto ml-auto mt-6--custom">
-                    <div class="empty-artist-field hidden bg-red text-white p-2 rounded-sm">
-                        <img class="w-6 m-2" src="images/ic_error_outline.svg" alt="white stop sign" />
-                        <span class="self-center mr-2">A name is required to created a new artist</span>
-                    </div>
-                    <div class="wrong-date-format hidden bg-red text-white p-2 rounded-sm mt-2">
-                        <img class="w-6 m-2" src="images/ic_error_outline.svg" alt="white stop sign" />
-                        <span class="self-center mr-2">Birthdate must be formatted as YYYY-MM-DD</span>
-                    </div>
-                </div>
             </section>
         </div>
         <div id="all-albums" class="hidden max-w-2xl m-auto">
@@ -316,16 +430,6 @@
                         <input id="album-cover" name="album-cover" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text" />
                         <input class="border border-solid block w-full mb-2 h-10 rounded" type="submit" value="Create album" />
                     </form>
-                </div>
-                <div id="album-form-msg" class="mb-auto mr-auto ml-auto mt-6--custom">
-                    <div class="empty-album-field hidden bg-red text-white p-2 rounded-sm">
-                        <img class="w-6 m-2" src="images/ic_error_outline.svg" alt="white stop sign" />
-                        <span class="self-center mr-2">A title is required to create a new album</span>
-                    </div>
-                    <div class="empty-artist-select hidden bg-red text-white p-2 rounded-sm mt-2">
-                        <img class="w-6 m-2" src="images/ic_error_outline.svg" alt="white stop sign" />
-                        <span class="self-center mr-2">An album is required to have at least one artist</span>
-                    </div>
                 </div>
             </section>
         </div>
@@ -410,20 +514,6 @@
                         <input id="track-soundcloud" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text" />
                         <input class="border border-solid block w-full mb-2 h-10 rounded" type="submit" value="Create track" />
                     </form>
-                </div>
-                <div id="track-form-msg" class="mb-auto mr-auto ml-auto mt-6--custom">
-                    <div class="empty-title-field hidden bg-red text-white p-2 rounded-sm">
-                        <img class="w-6 m-2" src="images/ic_error_outline.svg" alt="white stop sign" />
-                        <span class="self-center">A title is required to create a new track</span>
-                    </div>
-                    <div class="empty-album-select hidden bg-red text-white p-2 rounded-sm mt-2">
-                        <img class="w-6 m-2" src="images/ic_error_outline.svg" alt="white stop sign" />
-                        <span class="self-center mr-2">A track is required to have an album</span>
-                    </div>
-                    <div class="empty-artist-select hidden bg-red text-white p-2 rounded-sm mt-2">
-                        <img class="w-6 m-2" src="images/ic_error_outline.svg" alt="white stop sign" />
-                        <span class="self-center mr-2">A track is required to have at least one artist</span>
-                    </div>
                 </div>
             </section>
         </div>
@@ -548,16 +638,6 @@
                         <input id="playlist-image-color" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text" />
                         <input class="border border-solid block w-full mb-2 h-10 rounded" type="submit" value="Create playlist">
                     </form>
-                </div>
-                <div id="playlist-form-msg" class="mb-auto mr-auto ml-auto mt-6--custom">
-                    <div class="empty-title-field hidden bg-red text-white p-2 rounded-sm">
-                        <img class="w-6 m-2" src="images/ic_error_outline.svg" alt="white stop sign" />
-                        <span class="self-center mr-2">A title is required to create a playlist</span>
-                    </div>
-                    <div class="empty-user-field hidden bg-red text-white p-2 rounded-sm mt-2">
-                        <img class="w-6 m-2" src="images/ic_error_outline.svg" alt="white stop sign" />
-                        <span class="self-center mr-2">Username is required</span>
-                    </div>
                 </div>
             </section>
         </div>

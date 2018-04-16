@@ -730,25 +730,24 @@ addArtistForm.addEventListener('submit', (event) => {
     const spotifyURL = addArtistForm.elements['artist-spotify'];
     const artistImage = addArtistForm.elements['artist-image'];
 
-    const artistFormMsg = document.getElementById('artist-form-msg');
-    const msg = artistFormMsg.querySelector('.empty-artist-field');
-    const dateMsg = artistFormMsg.querySelector('.wrong-date-format');
+    const notifactionEmptyName = document.querySelector('.notification-empty-name');
+    const notifactionWrongDate = document.querySelector('.notification-wrong-date');
 
     if (!Utils.isFieldEmpty(name.value)) {
-        msg.classList.add('flex');
+        notifactionEmptyName.classList.remove('hidden');
         return;
     }
 
     if (!Utils.isDateValid(born.value)) {
-        dateMsg.classList.add('flex');
+        notifactionWrongDate.classList.remove('hidden');
         return;
     }
 
     Api.addArtist(name.value, born.value, genres.value, gender.value, countryBorn.value,
         spotifyURL.value, artistImage.value);
 
-    dateMsg.classList.remove('flex');
-    msg.classList.remove('flex');
+    notifactionEmptyName.classList.add('hidden');
+    notifactionWrongDate.classList.add('hidden');
     name.value = '';
     born.value = '';
     genres.value = '';
@@ -772,25 +771,24 @@ addAlbumForm.addEventListener('submit', (event) => {
     const spotifyURL = addAlbumForm.elements['album-spotify'];
     const coverImage = addAlbumForm.elements['album-cover'];
 
-    const albumFormMsg = document.getElementById('album-form-msg');
-    const emptyTitleMsg = albumFormMsg.querySelector('.empty-album-field');
-    const emptyArtistMsg = albumFormMsg.querySelector('.empty-artist-select');
+    const notifactionEmptyTitle = document.querySelector('.notification-empty-title');
+    const notifactionEmptyArtists = document.querySelector('.notification-empty-artists');
 
     if (!Utils.isFieldEmpty(title.value)) {
-        emptyTitleMsg.classList.add('flex');
+        notifactionEmptyTitle .classList.remove('hidden');
         return;
     }
 
     if (!Utils.isFieldEmpty(artists)) {
-        emptyArtistMsg.classList.add('flex');
+        notifactionEmptyArtists.classList.remove('hidden');
         return;
     }
 
     Api.addAlbum(title.value, artists, releaseDate.value, genres.value, spotifyURL.value,
         coverImage.value);
 
-    emptyTitleMsg.classList.remove('flex');
-    emptyArtistMsg.classList.remove('flex');
+    notifactionEmptyTitle.classList.add('hidden');
+    notifactionEmptyArtists.classList.add('hidden');
     title.value = '';
     artistSelect.removeActiveItems().clearInput();
     releaseDate.value = '';
@@ -837,32 +835,31 @@ addTrackForm.addEventListener('submit', (event) => {
     const youtubeURL = addTrackForm.elements['track-youtube'];
     const soundcloudURL = addTrackForm.elements['track-soundcloud'];
 
-    const trackFormMsg = document.getElementById('track-form-msg');
-    const emptyTitleMsg = trackFormMsg.querySelector('.empty-title-field');
-    const emptyAlbumMsg = trackFormMsg.querySelector('.empty-album-select');
-    const emptyArtistMsg = trackFormMsg.querySelector('.empty-artist-select');
+    const notificationEmptyTrackTitle = document.querySelector('.notification-empty-track-title');
+    const notificationEmptyAlbumTitle = document.querySelector('.notification-empty-album-title');
+    const notificationEmptyTrackArtists = document.querySelector('.notification-empty-track-artists');
 
     if (!Utils.isFieldEmpty(title.value)) {
-        emptyTitleMsg.classList.add('flex');
+        notificationEmptyTrackTitle.classList.remove('hidden');
         return;
     }
 
     if (!Utils.isSelectEmpty(album)) {
-        emptyAlbumMsg.classList.add('flex');
+        notificationEmptyAlbumTitle.classList.remove('hidden');
         return;
     }
 
     if (!Utils.isSelectEmpty(artists)) {
-        emptyArtistMsg.classList.add('flex');
+        notificationEmptyTrackArtists.classList.remove('hidden');
         return;
     }
 
     Api.addTrack(title.value, artists, album, genres.value, coverImage.value,
         spotifyURL.value, youtubeURL.value);
 
-    emptyTitleMsg.classList.remove('flex');
-    emptyAlbumMsg.classList.remove('flex');
-    emptyArtistMsg.classList.remove('flex');
+    notifactionEmptyTrackTitle.classList.add('hidden');
+    notificationEmptyAlbumTitle.classList.add('hidden');
+    notificationEmptyTrackArtists.classList.add('hidden');
 
     title.value = '';
     trackArtistSelect.removeActiveItems().clearInput();
@@ -887,24 +884,23 @@ addPlaylistForm.addEventListener('submit', (event) => {
     const coverImage = addPlaylistForm.elements['playlist-cover-image'];
     const createdBy = addPlaylistForm.elements['playlist-created-by'];
 
-    const playlistFormMsg = document.getElementById('playlist-form-msg');
-    const emptyTitleMsg = playlistFormMsg.querySelector('.empty-title-field');
-    const emptyUserMsg = playlistFormMsg.querySelector('.empty-user-field');
+    const notificationEmptyPlaylistTitle = document.querySelector('.notification-empty-playlist-title');
+    const notificationEmptyPlaylistUsername = document.querySelector('.notification-empty-playlist-username');
 
     if (!Utils.isFieldEmpty(title.value)) {
-        emptyTitleMsg.classList.add('flex');
+        notificationEmptyPlaylistTitle.classList.remove('hidden');
         return;
     }
 
     if (!Utils.isFieldEmpty(createdBy.value)) {
-        emptyUserMsg.classList.add('flex');
+        notificationEmptyPlaylistUsername.classList.remove('hidden');
         return;
     }
 
     Api.addPlaylist(title.value, tracks, genres.value, coverImage.value, createdBy.value);
 
-    emptyTitleMsg.classList.remove('flex');
-    emptyUserMsg.classList.remove('flex');
+    notificationEmptyPlaylistTitle.classList.add('hidden');
+    notificationEmptyPlaylistUsername.classList.add('hidden');
     title.value = '';
     playlistTrackSelect.removeActiveItems().clearInput();
     genres.value = '';
