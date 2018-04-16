@@ -58,7 +58,7 @@
                 </div>
                 <button id="close-success-msg" class="flex block ml-auto">
                     <span class="text-white text-sm self-center">Close</span>
-                    <img class="w-8" src="images/007__close_white.svg" alt="click to close message"/>
+                    <img class="w-8" src="images/007__close_white.svg" alt="click to close message" />
                 </button>
             </div>
         </div>
@@ -86,19 +86,19 @@
                 <p class="mb-4">Are you missing someone or something on the site? Anyone can add material to the site.</p>
                 <div id="form-links" class="grid grid-space grid-col-repeat-250 m-auto">
                     <div class="border border-solid text-center p-2" data-view="all-artists" data-location="artist-form-location">
-                        <img class="w-48 block m-auto" src="images/103__user.svg" alt="click to add a new artist"/>
+                        <img class="w-48 block m-auto" src="images/103__user.svg" alt="click to add a new artist" />
                         <span class="text-xl">Add a new artist</span>
                     </div>
                     <div class="border border-solid text-center p-2" data-view="all-albums" data-location="album-form-location">
-                        <img class="w-48 block m-auto" src="images/140__music.svg" alt="click to add a new album"/>
+                        <img class="w-48 block m-auto" src="images/140__music.svg" alt="click to add a new album" />
                         <span class="text-xl">Add a new album</span>
                     </div>
                     <div class="border border-solid text-center p-2" data-view="all-tracks" data-location="track-form-location">
-                        <img class="w-48 block m-auto" src="images/140__music.svg" alt="click to add a new track"/>
+                        <img class="w-48 block m-auto" src="images/140__music.svg" alt="click to add a new track" />
                         <span class="text-xl">Add a new track</span>
                     </div>
                     <div class="border border-solid text-center p-2" data-view="all-playlists" data-location="playlist-form-location">
-                        <img class="w-48 block m-auto" src="images/144__headphone.svg" alt="click to add a new playlist"/>
+                        <img class="w-48 block m-auto" src="images/144__headphone.svg" alt="click to add a new playlist" />
                         <span class="text-xl">Add a new playlist</span>
                     </div>
                 </div>
@@ -211,6 +211,14 @@
                         <input class="border border-solid block w-full mb-4 h-10 rounded" type="submit" value="Create artist" />
                     </form>
                 </div>
+                <div id="artist-form-msg">
+                    <p class="empty-artist-field hidden">
+                        An artist must have a name to be added
+                    </p>
+                    <p class="wrong-date-format hidden">
+                        Wrong format
+                    </p>
+                </div>
             </section>
         </div>
         <div id="all-albums" class="hidden max-w-2xl m-auto">
@@ -276,6 +284,12 @@
                         <input id="album-cover" name="album-cover" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text" />
                         <input class="border border-solid block w-full mb-2 h-10 rounded" type="submit" value="Create album" />
                     </form>
+                </div>
+                <div id="album-form-msg">
+                    <p class="empty-album-field hidden">
+                        An album must have a title to be added
+                    </p>
+                    
                 </div>
             </section>
         </div>

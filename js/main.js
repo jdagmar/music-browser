@@ -671,6 +671,23 @@ const Utils = {
         const bRating = Utils.getAverageRating(b);
 
         return bRating - aRating;
+    },
+    isFieldEmpty(field){
+
+        if(!field.trim()){
+            return false;
+        }
+
+        return true;
+
+    },
+    isDateValid(date){
+
+        if(!/^[0-9]{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/.test(date)){
+            return false;
+        }
+
+        return true;
     }
 }
 
@@ -696,9 +713,25 @@ addArtistForm.addEventListener('submit', (event) => {
     const spotifyURL = addArtistForm.elements['artist-spotify'];
     const artistImage = addArtistForm.elements['artist-image'];
 
+    const artistFormMsg = document.getElementById('artist-form-msg');
+    const msg = artistFormMsg.querySelector('.empty-artist-field');
+    const dateMsg = artistFormMsg.querySelector('.wrong-date-format');
+
+    if(!Utils.isFieldEmpty(name.value)){
+        msg.classList.remove('hidden');
+        return;
+    }
+   
+   if(!Utils.isDateValid(born.value)){
+       dateMsg.classList.remove('hidden');
+       return;
+   }
+
     Api.addArtist(name.value, born.value, genres.value, gender.value, countryBorn.value,
         spotifyURL.value, artistImage.value);
 
+    dateMsg.classList.add('hidden');
+    msg.classList.add('hidden');
     name.value = '';
     born.value = '';
     genres.value = '';
@@ -901,3 +934,5 @@ searchForm.addEventListener('submit', (event) => {
 
     Api.searchAll(searchWord).then(result => View.displaySearchResults(result));
 });
+
+
