@@ -396,7 +396,7 @@ const View = {
 
             trackVoteForm.addEventListener('choice', (event) => {
                 event.preventDefault();
-                const vote = trackVoteForm.elements['track-rating'];
+                const vote = event.detail.choice.value;
                 Api.voteOnTrack(track._id, vote.value);
             });
 
@@ -469,7 +469,7 @@ const View = {
 
             playlistVoteForm.addEventListener('choice', (event) => {
                 event.preventDefault();
-                const vote = playlistVoteForm.elements['playlist-rating'];
+                const vote = event.detail.choice.value;
                 Api.voteOnPlaylist(playlist._id, vote.value);
             });
 
