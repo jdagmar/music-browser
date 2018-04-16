@@ -38,6 +38,10 @@ p, #artist-view-link, input, label, .choices__list--single .choices__item, a {
     margin-bottom: 6rem;
 }
 
+.pin-b-60--custom {
+    bottom: 60px;
+}
+
 .z-1 {
     z-index: 1;
 }
