@@ -352,7 +352,7 @@ const View = {
                 shouldSort: false
             });
 
-            albumVoteForm.addEventListener('choice', (event) => {
+            albumVoteForm.addEventListener('choice', event => {
                 event.preventDefault();
                 const vote = event.detail.choice.value;
                 Api.voteOnAlbum(album._id, vote);
@@ -394,7 +394,7 @@ const View = {
                 shouldSort: false
             });
 
-            trackVoteForm.addEventListener('choice', (event) => {
+            trackVoteForm.addEventListener('choice', event => {
                 event.preventDefault();
                 const vote = event.detail.choice.value;
                 Api.voteOnTrack(track._id, vote.value);
@@ -467,7 +467,7 @@ const View = {
                 shouldSort: false
             });
 
-            playlistVoteForm.addEventListener('choice', (event) => {
+            playlistVoteForm.addEventListener('choice', event => {
                 event.preventDefault();
                 const vote = event.detail.choice.value;
                 Api.voteOnPlaylist(playlist._id, vote.value);
@@ -674,6 +674,10 @@ const View = {
     }
 }
 
+const Controller = {
+
+}
+
 const Utils = {
     getAverageRating(resource) {
         const ratings = resource.ratings;
@@ -708,10 +712,7 @@ const Utils = {
     }
 }
 
-const hamburger = document.getElementById('hamburger');
-hamburger.addEventListener('click', () => {
-    View.toggleMenu();
-});
+
 
 
 
@@ -720,7 +721,7 @@ const genderChoices = new Choices('#artist-gender', {
     searchEnabled: false
 });
 
-addArtistForm.addEventListener('submit', (event) => {
+addArtistForm.addEventListener('submit', event => {
     event.preventDefault();
     const name = addArtistForm.elements['artist-name'];
     const born = addArtistForm.elements['artist-birthdate'];
@@ -762,7 +763,7 @@ const artistSelect = new Choices('#artist-select', {
     position: 'bottom'
 });
 
-addAlbumForm.addEventListener('submit', (event) => {
+addAlbumForm.addEventListener('submit', event => {
     event.preventDefault();
     const title = addAlbumForm.elements['album-title'];
     const artists = artistSelect.getValue(true).join(',');
@@ -802,7 +803,7 @@ const albumSelect = new Choices('#album-select', {
     position: 'bottom'
 });
 
-albumSelect.passedElement.addEventListener('choice', (event) => {
+albumSelect.passedElement.addEventListener('choice', event => {
     const albumId = event.detail.choice.value;
 
     const filteredArtists = trackArtistSelect.store.getChoices().map(choice => {
@@ -824,7 +825,7 @@ const trackArtistSelect = new Choices('#track-artist-select', {
 
 trackArtistSelect.disable();
 
-addTrackForm.addEventListener('submit', (event) => {
+addTrackForm.addEventListener('submit', event => {
     event.preventDefault();
     const title = addTrackForm.elements['track-title'];
     const artists = trackArtistSelect.getValue(true).join(',');
@@ -876,7 +877,7 @@ const playlistTrackSelect = new Choices('#playlist-track-select', {
     position: 'bottom'
 });
 
-addPlaylistForm.addEventListener('submit', (event) => {
+addPlaylistForm.addEventListener('submit', event => {
     event.preventDefault();
     const title = addPlaylistForm.elements['playlist-title'];
     const tracks = playlistTrackSelect.getValue(true).join(',');
@@ -932,7 +933,7 @@ const createAlbumSelect = (albums) => {
     albumSelect.setChoices(choices, 'value', 'label', true);
 }
 
-const createTrackSelect = (tracks) => {
+const createTrackSelect = tracks => {
     const choices = tracks.map(track => {
         return {
             value: track._id,
@@ -1002,7 +1003,7 @@ Api.getAlbums().then(albums => createAlbumSelect(albums));
 Api.getTracks().then(tracks => createTrackSelect(tracks));
 
 const searchForm = document.getElementById('search-form');
-searchForm.addEventListener('submit', (event) => {
+searchForm.addEventListener('submit', event => {
     event.preventDefault();
     View.switchView('search-view');
     const searchField = document.getElementById('search-field');
