@@ -376,6 +376,17 @@ const View = {
             trackArtist.innerHTML = track.artists.map(artist => artist.name).join(', ');
             trackRate.innerHTML = Utils.getAverageRating(track);
 
+            const showMoreButton = trackItem.querySelector('.show-more');
+            const moreContent = trackItem.querySelector('.more-content');
+            
+            showMoreButton.addEventListener('click', () => {
+                if(moreContent.classList.contains('hidden')){
+                    moreContent.classList.remove('hidden');
+                } else {
+                    moreContent.classList.add('hidden');
+                }
+            });
+
             const deleteTrackButton = trackItem.querySelector('.delete-track');
             deleteTrackButton.addEventListener('click', () => {
                 Api.deleteTrack(track._id)

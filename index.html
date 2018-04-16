@@ -440,9 +440,9 @@
                 <div class="border border-solid p-4">
                     <div class="flex justify-between mb-2">
                         <span class="text-lg font-semibold">Rating</span>
-                        <span class="text-lg font-semibold w-1/3 ml-6">Title</span>
-                        <span class="text-lg font-semibold w-2/5 mr-6">Artist</span>
-                        <div>
+                        <span class="text-lg font-semibold w-auto md:w-1/3 ml-6">Title</span>
+                        <span class="text-lg font-semibold w-auto md:w-2/5 mr-6">Artist</span>
+                        <div class="hidden md:flex">
                             <span class="text-sm mr-6">Delete</span>
                             <span class="text-sm mr-4">Vote</span>
                         </div>
@@ -463,7 +463,10 @@
                     <span class="track-artist w-1/3">
                         <!-- artist of the track is rendered here -->
                     </span>
-                    <div class="flex pt-2 pb-2">
+                    <button class="show-more block md:hidden">
+                        <img class="w-8"src="images/004__arrow_down.svg"/>
+                    </button>
+                    <div class="more-content pt-2 pb-2 hidden md:flex">
                         <button class="delete-track">
                             <img class="w-8 mr-2 align-middle" src="images/007__close.svg" alt="click to delete track" />
                         </button>
