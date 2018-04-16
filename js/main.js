@@ -497,9 +497,25 @@ const View = {
                 event.preventDefault();
                 const username = commentForm.elements.username;
                 const body = commentForm.elements.body;
+                const notifactionEmptyUser = document.querySelector('.notification-empty-username');
+                const notifactionEmptyBody = document.querySelector('.notification-empty-body');
+
+                if (!Utils.isFieldEmpty(username.value)) {
+                    notifactionEmptyUser.classList.remove('hidden');
+                    return;
+                }
+
+                if (!Utils.isFieldEmpty(body.value)) {
+                    notifactionEmptyBody.classList.remove('hidden');
+                    return;
+                }
+
                 Api.postPlaylistComment(playlist._id, body.value, username.value)
                     .then(() => Api.getCommentsByPlaylistId(playlist._id))
                     .then(comments => View.displayPlaylistComments(commentSection, comments));
+
+                notifactionEmptyUser.classList.add('hidden');
+                notifactionEmptyBody.classList.add('hidden');
                 username.value = '';
                 body.value = '';
             });
@@ -672,20 +688,20 @@ const Utils = {
 
         return bRating - aRating;
     },
-    isFieldEmpty(field){
-        if(!field.trim()){
+    isFieldEmpty(field) {
+        if (!field.trim()) {
             return false;
         }
         return true;
     },
-    isSelectEmpty(select){
-        if(!select){
+    isSelectEmpty(select) {
+        if (!select) {
             return false;
         }
         return true;
     },
-    isDateValid(date){
-        if(!/^[0-9]{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/.test(date)){
+    isDateValid(date) {
+        if (!/^[0-9]{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/.test(date)) {
             return false;
         }
         return true;
@@ -718,15 +734,15 @@ addArtistForm.addEventListener('submit', (event) => {
     const msg = artistFormMsg.querySelector('.empty-artist-field');
     const dateMsg = artistFormMsg.querySelector('.wrong-date-format');
 
-    if(!Utils.isFieldEmpty(name.value)){
+    if (!Utils.isFieldEmpty(name.value)) {
         msg.classList.add('flex');
         return;
     }
-   
-   if(!Utils.isDateValid(born.value)){
-       dateMsg.classList.add('flex');
-       return;
-   }
+
+    if (!Utils.isDateValid(born.value)) {
+        dateMsg.classList.add('flex');
+        return;
+    }
 
     Api.addArtist(name.value, born.value, genres.value, gender.value, countryBorn.value,
         spotifyURL.value, artistImage.value);
@@ -760,12 +776,12 @@ addAlbumForm.addEventListener('submit', (event) => {
     const emptyTitleMsg = albumFormMsg.querySelector('.empty-album-field');
     const emptyArtistMsg = albumFormMsg.querySelector('.empty-artist-select');
 
-    if(!Utils.isFieldEmpty(title.value)){
+    if (!Utils.isFieldEmpty(title.value)) {
         emptyTitleMsg.classList.add('flex');
         return;
     }
 
-    if(!Utils.isFieldEmpty(artists)){
+    if (!Utils.isFieldEmpty(artists)) {
         emptyArtistMsg.classList.add('flex');
         return;
     }
@@ -826,17 +842,17 @@ addTrackForm.addEventListener('submit', (event) => {
     const emptyAlbumMsg = trackFormMsg.querySelector('.empty-album-select');
     const emptyArtistMsg = trackFormMsg.querySelector('.empty-artist-select');
 
-    if(!Utils.isFieldEmpty(title.value)){
+    if (!Utils.isFieldEmpty(title.value)) {
         emptyTitleMsg.classList.add('flex');
         return;
     }
 
-    if(!Utils.isSelectEmpty(album)){
+    if (!Utils.isSelectEmpty(album)) {
         emptyAlbumMsg.classList.add('flex');
         return;
     }
 
-    if(!Utils.isSelectEmpty(artists)){
+    if (!Utils.isSelectEmpty(artists)) {
         emptyArtistMsg.classList.add('flex');
         return;
     }
@@ -875,16 +891,16 @@ addPlaylistForm.addEventListener('submit', (event) => {
     const emptyTitleMsg = playlistFormMsg.querySelector('.empty-title-field');
     const emptyUserMsg = playlistFormMsg.querySelector('.empty-user-field');
 
-    if(!Utils.isFieldEmpty(title.value)){
+    if (!Utils.isFieldEmpty(title.value)) {
         emptyTitleMsg.classList.add('flex');
         return;
     }
 
-    if(!Utils.isFieldEmpty(createdBy.value)){
+    if (!Utils.isFieldEmpty(createdBy.value)) {
         emptyUserMsg.classList.add('flex');
         return;
     }
-    
+
     Api.addPlaylist(title.value, tracks, genres.value, coverImage.value, createdBy.value);
 
     emptyTitleMsg.classList.remove('flex');
@@ -935,6 +951,13 @@ const createTrackSelect = (tracks) => {
 const navLinks = document.querySelectorAll('#nav [data-view]');
 navLinks.forEach(link =>
     link.addEventListener('click', () => View.switchView(link.getAttribute('data-view'))));
+
+const notifications = Array.from(document.querySelectorAll('.notification'));
+
+notifications.forEach(notification =>
+    notification.querySelector('.hide-notification').addEventListener('click', () => {
+        notification.classList.add('hidden');
+    }));
 
 const formLinks = document.querySelectorAll('#form-links [data-view]');
 formLinks.forEach(link =>
