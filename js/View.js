@@ -45,7 +45,7 @@ const View = {
 
             albumImage.onerror = () => {
                 albumImage.onerror = undefined;
-                albumImage.src = 'images/140__music.svg';
+                albumImage.src = 'images/ic_album_black.svg';
                 albumImage.alt = 'no image was uploaded, fallback image of note icon is in use';
             }
 
