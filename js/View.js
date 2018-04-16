@@ -54,7 +54,7 @@ const View = {
             const albumImageCaption = albumContainer.querySelector('.album-image-caption');
             albumImageCaption.innerHTML = `
                 <span class="self-center">${album.title}</span> 
-                <span class="self-center">Rating: ${Utils.getAverageRating(album)}</span>`;
+                <span class="self-center">Rating: ${Utils.getAverageRating(album)} / 10</span>`;
 
             const deleteAlbumButton = albumContainer.querySelector('.delete-album');
             deleteAlbumButton.addEventListener('click', () => {
@@ -96,7 +96,7 @@ const View = {
 
             trackTitle.innerHTML = track.title;
             trackArtist.innerHTML = track.artists.map(artist => artist.name).join(', ');
-            trackRate.innerHTML = Utils.getAverageRating(track);
+            trackRate.innerHTML = `${Utils.getAverageRating(track)} / 10`;
 
             const showMoreButton = trackItem.querySelector('.show-more');
             const moreContent = trackItem.querySelector('.more-content');
@@ -186,7 +186,7 @@ const View = {
             playlistTitle.innerHTML = playlist.title;
 
             const playlistRating = playlistItem.querySelector('.playlist-rating');
-            playlistRating.innerHTML = `Rating: ${Utils.getAverageRating(playlist)}`;
+            playlistRating.innerHTML = `Rating: ${Utils.getAverageRating(playlist)} / 10`;
 
             const showMoreButton = playlistItem.querySelector('.show-more');
             const moreContent = playlistItem.querySelector('.more-content');
@@ -320,7 +320,7 @@ const View = {
                 topTenPLaylistsItemAuthor.innerHTML = playlist.createdBy;
 
                 const topTenPLaylistsItemRating = topTenPLaylistsItem.querySelector('.top-ten-playlist-rating');
-                topTenPLaylistsItemRating.innerHTML = Utils.getAverageRating(playlist);
+                topTenPLaylistsItemRating.innerHTML = `${Utils.getAverageRating(playlist)} / 10`;
 
                 return topTenPLaylistsItem;
             });
@@ -344,7 +344,7 @@ const View = {
                 topTenTracksItemArtist.innerHTML = tracks.artists.map(artist => artist.name).join(', ');
 
                 const topTenTracksItemRating = topTenTracksItem.querySelector('.top-ten-track-rating');
-                topTenTracksItemRating.innerHTML = Utils.getAverageRating(tracks);
+                topTenTracksItemRating.innerHTML = `${Utils.getAverageRating(tracks)} / 10`;
 
                 return topTenTracksItem;
             });
@@ -368,7 +368,7 @@ const View = {
                 topTenAlbumsItemArtist.innerHTML = albums.artists.map(artist => artist.name).join(', ');
 
                 const topTenAlbumsItemRating = topTenAlbumsItem.querySelector('.top-ten-album-rating');
-                topTenAlbumsItemRating.innerHTML = Utils.getAverageRating(albums);
+                topTenAlbumsItemRating.innerHTML = `${Utils.getAverageRating(albums)} / 10`;
 
                 return topTenAlbumsItem;
             });
