@@ -381,17 +381,37 @@ const View = {
         const foundArtists = result.artists;
         View.displayArtists(searchArtistContainer, foundArtists);
 
+        if(foundArtists.length > 0){
+            const searchArtistHeader = document.getElementById('search-artist-header');
+            searchArtistHeader.innerHTML = `Artists (${foundArtists.length})`;
+        }
+
         const searchAlbumContanier = document.getElementById('search-album-container');
         const foundAlbums = result.albums;
         View.displayAlbums(searchAlbumContanier, foundAlbums);
+
+        if(foundAlbums.length > 0){
+            const searchAlbumHeader = document.getElementById('search-album-header');
+            searchAlbumHeader.innerHTML = `Albums (${foundAlbums.length})`;
+        }
 
         const searchTrackContainer = document.getElementById('search-track-container');
         const foundTracks = result.tracks;
         View.displayTracks(searchTrackContainer, foundTracks);
 
+        if(foundTracks.length > 0){
+            const searchTrackHeader = document.getElementById('search-track-header');
+            searchTrackHeader.innerHTML = `Tracks (${foundTracks.length})`;
+        }
+
         const searchPlaylistContainer = document.getElementById('search-playlist-container');
         const foundPlaylists = result.playlists;
         View.displayPlaylists(searchPlaylistContainer, foundPlaylists);
+
+        if(foundPlaylists.length > 0){
+            const searchPlaylistHeader = document.getElementById('search-playlist-header');
+            searchPlaylistHeader.innerHTML = `Playlists (${foundPlaylists.length})`
+        }
 
     },
     showSpinner(container) {
