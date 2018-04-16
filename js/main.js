@@ -378,9 +378,9 @@ const View = {
 
             const showMoreButton = trackItem.querySelector('.show-more');
             const moreContent = trackItem.querySelector('.more-content');
-            
+
             showMoreButton.addEventListener('click', () => {
-                if(moreContent.classList.contains('hidden')){
+                if (moreContent.classList.contains('hidden')) {
                     moreContent.classList.remove('hidden');
                 } else {
                     moreContent.classList.add('hidden');
@@ -470,7 +470,7 @@ const View = {
             const moreContent = playlistItem.querySelector('.more-content');
 
             showMoreButton.addEventListener('click', () => {
-                if(moreContent.classList.contains('hidden')){
+                if (moreContent.classList.contains('hidden')) {
                     moreContent.classList.remove('hidden');
                 } else {
                     moreContent.classList.add('hidden');
@@ -795,7 +795,7 @@ addAlbumForm.addEventListener('submit', event => {
     const notifactionEmptyArtists = document.querySelector('.notification-empty-artists');
 
     if (!Utils.isFieldEmpty(title.value)) {
-        notifactionEmptyTitle .classList.remove('hidden');
+        notifactionEmptyTitle.classList.remove('hidden');
         return;
     }
 
@@ -966,6 +966,10 @@ const createTrackSelect = tracks => {
 
 const navLinks = document.querySelectorAll('#nav [data-view]');
 navLinks.forEach(link =>
+    link.addEventListener('click', () => View.switchView(link.getAttribute('data-view'))));
+
+const tabLinks = document.querySelectorAll('#tab-menu [data-view]');
+tabLinks.forEach(link =>
     link.addEventListener('click', () => View.switchView(link.getAttribute('data-view'))));
 
 const notifications = Array.from(document.querySelectorAll('.notification'));

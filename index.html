@@ -13,12 +13,9 @@
 </head>
 
 <body>
-    <header class="flex justify-between text-center h-16 m-4 text-center ">
+    <header class="flex justify-between flex-wrap text-center h-16 m-4 text-center ">
         <div>
             <h3 class="inline-block">Music browser</h3>
-            <button id="hamburger" class="w-16 bloc  lg:hidden">
-                <img src="images/031__list.svg" alt="click to open/close mobile menu" />
-            </button>
             <nav id="nav" class="invisible lg:visible z-1 lg:z-0 absolute lg:relative bg-white lg:bg-transparent m-0 w-full lg:w-auto h-screen
                             lg:h-auto flex flex-col lg:flex-row lg:justify-between text-center lg:mb-8 lg:mr-4 lg:ml-4 inline-block">
                 <ul class="p-0 inline-block">
@@ -30,10 +27,10 @@
                 </ul>
             </nav>
         </div>
-        <form id="search-form" class="inline-block h-8 flex m-auto lg:m-0" role="search">
+        <form id="search-form" class="w-full md:w-auto inline-block h-8 flex m-auto lg:m-0" role="search">
             <label for="search-field" hidden>search for a artist, track, album or soundtrack</label>
-            <input id="search-field" class="border border-r-0 border-solid h-8 pl-2" type="search" placeholder="search" />
-            <input class="border border-l-0 w-10 align-middle" type="image" src="images/095__search.svg" alt="click to run search" />
+            <input id="search-field" class="w-full md:w-auto border border-r-0 border-solid h-8 pl-2 appearance-none rounded-none" type="search" placeholder="search" />
+            <input class="border border-l-0 w-10 align-middle appearance-none rounded-none" type="image" src="images/095__search.svg" alt="click to run search" />
         </form>
     </header>
 
@@ -649,6 +646,23 @@
                 </div>
             </section>
         </div>
+        <nav id="tab-menu" class="flex justify-between md:hidden fixed z-1 w-full pin-b bg-white border border-solid">
+            <div data-view="main-view">
+                <img class="w-16" src="images/101__home.svg" />
+            </div>
+            <div data-view="all-artists">
+                <img class="w-16" src="images/103__user.svg" />
+            </div>
+            <div data-view="all-albums">
+                <img class="w-8" src="images/ic_album_black.svg" />
+            </div>
+            <div data-view="all-tracks">
+                <img class="w-16" src="images/140__music.svg" />
+            </div>
+            <div data-view="all-playlists">
+                <img class="w-16" src="images/144__headphone.svg" />
+            </div>
+        </nav>
     </main>
     <footer>
 
