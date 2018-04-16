@@ -30,6 +30,10 @@ p, #artist-view-link, input, label, .choices__list--single .choices__item, a {
     min-width: 16rem;
 }
 
+.mt-04--custom {
+    margin-top: 0.4rem;
+}
+
 .mt-6--custom {
     margin-top: 6rem;
 }
