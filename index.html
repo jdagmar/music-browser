@@ -14,10 +14,9 @@
 
 <body>
     <header class="flex justify-between flex-wrap text-center h-16 m-4 text-center ">
-        <div>
-            <h3 class="inline-block">Music browser</h3>
-            <nav id="nav" class="invisible lg:visible z-1 lg:z-0 absolute lg:relative bg-white lg:bg-transparent m-0 w-full lg:w-auto h-screen
-                            lg:h-auto flex flex-col lg:flex-row lg:justify-between text-center lg:mb-8 lg:mr-4 lg:ml-4 inline-block">
+        <div class="flex">
+            <h3>Music browser</h3>
+            <nav id="nav" class="hidden lg:flex m-0 w-full lg:w-auto h-screen lg:h-auto lg:justify-between text-center lg:mb-8 lg:mr-4 lg:ml-4">
                 <ul class="p-0 inline-block">
                     <li id="home-view-link" class="list-reset p-2 cursor-pointer block lg:inline-block" data-view="main-view">Home</li>
                     <li id="artist-view-link" class="list-reset p-2 cursor-pointer block lg:inline-block" data-view="all-artists">Artists</li>
@@ -29,8 +28,10 @@
         </div>
         <form id="search-form" class="w-full md:w-auto inline-block h-8 flex m-auto lg:m-0" role="search">
             <label for="search-field" hidden>search for a artist, track, album or soundtrack</label>
-            <input id="search-field" class="w-full md:w-auto border border-r-0 border-solid h-8 pl-2 appearance-none rounded-none" type="search" placeholder="search" />
-            <input class="border border-l-0 w-10 align-middle appearance-none rounded-none" type="image" src="images/095__search.svg" alt="click to run search" />
+            <input id="search-field" class="w-full md:w-auto border border-r-0 border-solid h-8 pl-2 appearance-none rounded-none" type="search"
+                placeholder="search" />
+            <input class="border border-l-0 w-10 align-middle appearance-none rounded-none" type="image" src="images/095__search.svg"
+                alt="click to run search" />
         </form>
     </header>
 
@@ -88,7 +89,7 @@
                     </div>
                 </div>
             </div>
-            <div id="artist-form-notifications" class="mb-auto mr-auto ml-auto mt-6--custom">
+            <div id="artist-form-notifications" class="mb-auto mr-auto ml-auto">
                 <div class="fixed z-1 pin-b-60--custom pin-l pin-r">
                     <div class="notification notification-empty-name hidden">
                         <div class="flex justify-between bg-red text-white p-2 rounded-sm m-8">
@@ -116,7 +117,7 @@
                     </div>
                 </div>
             </div>
-            <div id="album-form-notifications" class="mb-auto mr-auto ml-auto mt-6--custom">
+            <div id="album-form-notifications" class="mb-auto mr-auto ml-auto">
                 <div class="fixed z-1 pin-b-60--custom pin-l pin-r">
                     <div class="notification notification-empty-title hidden">
                         <div class="flex justify-between bg-red text-white p-2 rounded-sm m-8">
@@ -144,7 +145,7 @@
                     </div>
                 </div>
             </div>
-            <div id="track-form-notifications" class="mb-auto mr-auto ml-auto mt-6--custom">
+            <div id="track-form-notifications" class="mb-auto mr-auto ml-auto">
                 <div class="fixed z-1 pin-b-60--custom pin-l pin-r">
                     <div class="notification notification-empty-track-title hidden">
                         <div class="flex justify-between bg-red text-white p-2 rounded-sm m-8">
@@ -184,7 +185,7 @@
                     </div>
                 </div>
             </div>
-            <div id="playlist-form-notifications" class="mb-auto mr-auto ml-auto mt-6--custom">
+            <div id="playlist-form-notifications" class="mb-auto mr-auto ml-auto">
                 <div class="fixed z-1 pin-b-60--custom pin-l pin-r">
                     <div class="notification notification-empty-playlist-title hidden">
                         <div class="flex justify-between bg-red text-white p-2 rounded-sm m-8">
@@ -646,28 +647,21 @@
                 </div>
             </section>
         </div>
-        <nav id="tab-menu" class="max-w-sm flex justify-between md:hidden fixed z-1 w-full pin-b bg-white border border-solid">
-            <div data-view="main-view">
-                <img class="w-16" src="images/101__home.svg" />
-            </div>
-            <div data-view="all-artists">
-                <img class="w-16" src="images/103__user.svg" />
-            </div>
-            <div class="flex content-center" data-view="all-albums">
-                <img class="w-8" src="images/ic_album_black.svg" />
-            </div>
-            <div data-view="all-tracks">
-                <img class="w-16" src="images/140__music.svg" />
-            </div>
-            <div data-view="all-playlists">
-                <img class="w-16" src="images/144__headphone.svg" />
-            </div>
+        <nav id="tab-menu" class="flex justify-between md:hidden fixed z-1 w-full h-12 pin-b bg-white border border-solid">
+            <img data-view="main-view" class="w-1/5 block flex-shrink" src="images/101__home.svg" />
+            <img data-view="all-artists" class="w-1/5 block flex-shrink" src="images/103__user.svg" />
+            <img data-view="all-albums" class="w-1/5 block flex-shrink p-2" src="images/ic_album_black.svg" />
+            <img data-view="all-tracks" class="w-1/5 block flex-shrink" src="images/140__music.svg" />
+            <img data-view="all-playlists" class="w-1/5 block flex-shrink" src="images/144__headphone.svg" />
         </nav>
     </main>
     <footer>
 
     </footer>
     <script src="js/choices.min.js"></script>
+    <script src="js/Api.js"></script>
+    <script src="js/View.js"></script>
+    <script src="js/Utils.js"></script>
     <script src="js/main.js"></script>
 </body>
 
