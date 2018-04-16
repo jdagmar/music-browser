@@ -42,7 +42,7 @@
             <div class="flex justify-between text-center border border-solid bg-red p-4 fixed z-1 pin-x pin-t">
                 <div class="flex justify-center">
                     <span class="self-center text-white">Something went wrong, try again later</span>
-                    <img class="w-6 ml-2" src="images/ic_error_outline.svg" alt="white checkmark" />
+                    <img class="w-6 ml-2" src="images/ic_error_outline.svg" alt="white stop sign" />
                 </div>
                 <button id="close-fail-msg" class="flex block ml-auto">
                     <span class="self-center text-sm text-white">Close</span>
@@ -54,7 +54,7 @@
             <div class="flex justify-between text-center border border-solid bg-green p-4 fixed z-1 pin-x pin-t">
                 <div class="flex justify-center">
                     <p class="self-center text-white">Your contribution was added successfully </p>
-                    <img class="w-8 h-8" src="images/008__choose.svg" alt="green checkmark" />
+                    <img class="w-8 h-8" src="images/008__choose.svg" alt="white checkmark" />
                 </div>
                 <button id="close-success-msg" class="flex block ml-auto">
                     <span class="text-white text-sm self-center">Close</span>
@@ -211,13 +211,15 @@
                         <input class="border border-solid block w-full mb-4 h-10 rounded" type="submit" value="Create artist" />
                     </form>
                 </div>
-                <div id="artist-form-msg">
-                    <p class="empty-artist-field hidden">
-                        An artist must have a name to be added
-                    </p>
-                    <p class="wrong-date-format hidden">
-                        Wrong format
-                    </p>
+                <div id="artist-form-msg" class="mb-auto mr-auto ml-auto mt-6--custom">
+                    <div class="empty-artist-field hidden bg-red text-white p-2 rounded-sm">
+                        <img class="w-6 m-2" src="images/ic_error_outline.svg" alt="white stop sign" />
+                        <span class="self-center mr-2">A name is required to created a new artist</span>
+                    </div>
+                    <div class="wrong-date-format hidden bg-red text-white p-2 rounded-sm mt-2">
+                        <img class="w-6 m-2" src="images/ic_error_outline.svg" alt="white stop sign" />
+                        <span class="self-center mr-2">Birthdate must be formatted as YYYY-MM-DD</span>
+                    </div>
                 </div>
             </section>
         </div>
@@ -285,13 +287,15 @@
                         <input class="border border-solid block w-full mb-2 h-10 rounded" type="submit" value="Create album" />
                     </form>
                 </div>
-                <div id="album-form-msg">
-                    <p id="empty-album-field" class="hidden">
-                        An album must have a title to be added
-                    </p>
-                    <p id="empty-artist-select" class="hidden">
-                        An album must have at least on artist
-                    </p>
+                <div id="album-form-msg" class="mb-auto mr-auto ml-auto mt-6--custom">
+                    <div class="empty-album-field hidden bg-red text-white p-2 rounded-sm">
+                        <img class="w-6 m-2" src="images/ic_error_outline.svg" alt="white stop sign" />
+                        <span class="self-center mr-2">A title is required to create a new album</span>
+                    </div>
+                    <div class="empty-artist-select hidden bg-red text-white p-2 rounded-sm mt-2">
+                        <img class="w-6 m-2" src="images/ic_error_outline.svg" alt="white stop sign" />
+                        <span class="self-center mr-2">An album is required to have at least one artist</span>
+                    </div>
                 </div>
             </section>
         </div>
@@ -377,16 +381,19 @@
                         <input class="border border-solid block w-full mb-2 h-10 rounded" type="submit" value="Create track" />
                     </form>
                 </div>
-                <div id="track-form-msg">
-                    <p class="empty-title-field hidden">
-                        A track need to have a title
-                    </p>
-                    <p class="empty-album-select hidden">
-                        A track need to have an artist
-                    </p>
-                    <p class="empty-artist-select hidden">
-                        A track must at least have one artist
-                    </p>
+                <div id="track-form-msg" class="mb-auto mr-auto ml-auto mt-6--custom">
+                    <div class="empty-title-field hidden bg-red text-white p-2 rounded-sm">
+                        <img class="w-6 m-2" src="images/ic_error_outline.svg" alt="white stop sign" />
+                        <span class="self-center">A title is required to create a new track</span>
+                    </div>
+                    <div class="empty-album-select hidden bg-red text-white p-2 rounded-sm mt-2">
+                        <img class="w-6 m-2" src="images/ic_error_outline.svg" alt="white stop sign" />
+                        <span class="self-center mr-2">A track is required to have an album</span>
+                    </div>
+                    <div class="empty-artist-select hidden bg-red text-white p-2 rounded-sm mt-2">
+                        <img class="w-6 m-2" src="images/ic_error_outline.svg" alt="white stop sign" />
+                        <span class="self-center mr-2">A track is required to have at least one artist</span>
+                    </div>
                 </div>
             </section>
         </div>
@@ -512,13 +519,15 @@
                         <input class="border border-solid block w-full mb-2 h-10 rounded" type="submit" value="Create playlist">
                     </form>
                 </div>
-                <div id="playlist-form-msg">
-                    <p class="empty-title-field hidden">
-                        A playlist needs to have a title
-                    </p>
-                    <p class="empty-user-field hidden">
-                        A playlist must have a user
-                    </p>
+                <div id="playlist-form-msg" class="mb-auto mr-auto ml-auto mt-6--custom">
+                    <div class="empty-title-field hidden bg-red text-white p-2 rounded-sm">
+                        <img class="w-6 m-2" src="images/ic_error_outline.svg" alt="white stop sign" />
+                        <span class="self-center mr-2">A title is required to create a playlist</span>
+                    </div>
+                    <div class="empty-user-field hidden bg-red text-white p-2 rounded-sm mt-2">
+                        <img class="w-6 m-2" src="images/ic_error_outline.svg" alt="white stop sign" />
+                        <span class="self-center mr-2">Username is required</span>
+                    </div>
                 </div>
             </section>
         </div>

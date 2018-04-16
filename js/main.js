@@ -719,20 +719,20 @@ addArtistForm.addEventListener('submit', (event) => {
     const dateMsg = artistFormMsg.querySelector('.wrong-date-format');
 
     if(!Utils.isFieldEmpty(name.value)){
-        msg.classList.remove('hidden');
+        msg.classList.add('flex');
         return;
     }
    
    if(!Utils.isDateValid(born.value)){
-       dateMsg.classList.remove('hidden');
+       dateMsg.classList.add('flex');
        return;
    }
 
     Api.addArtist(name.value, born.value, genres.value, gender.value, countryBorn.value,
         spotifyURL.value, artistImage.value);
 
-    dateMsg.classList.add('hidden');
-    msg.classList.add('hidden');
+    dateMsg.classList.remove('flex');
+    msg.classList.remove('flex');
     name.value = '';
     born.value = '';
     genres.value = '';
@@ -756,24 +756,25 @@ addAlbumForm.addEventListener('submit', (event) => {
     const spotifyURL = addAlbumForm.elements['album-spotify'];
     const coverImage = addAlbumForm.elements['album-cover'];
 
-    const emptyTitleMsg = document.getElementById('empty-album-field');
-    const emptyArtistMsg = document.getElementById('empty-artist-select');
+    const albumFormMsg = document.getElementById('album-form-msg');
+    const emptyTitleMsg = albumFormMsg.querySelector('.empty-album-field');
+    const emptyArtistMsg = albumFormMsg.querySelector('.empty-artist-select');
 
     if(!Utils.isFieldEmpty(title.value)){
-        emptyTitleMsg.classList.remove('hidden');
+        emptyTitleMsg.classList.add('flex');
         return;
     }
 
     if(!Utils.isFieldEmpty(artists)){
-        emptyArtistMsg.classList.remove('hidden');
+        emptyArtistMsg.classList.add('flex');
         return;
     }
 
     Api.addAlbum(title.value, artists, releaseDate.value, genres.value, spotifyURL.value,
         coverImage.value);
 
-    emptyTitleMsg.classList.add('hidden');
-    emptyArtistMsg.classList.add('hidden');
+    emptyTitleMsg.classList.remove('flex');
+    emptyArtistMsg.classList.remove('flex');
     title.value = '';
     artistSelect.removeActiveItems().clearInput();
     releaseDate.value = '';
@@ -826,26 +827,26 @@ addTrackForm.addEventListener('submit', (event) => {
     const emptyArtistMsg = trackFormMsg.querySelector('.empty-artist-select');
 
     if(!Utils.isFieldEmpty(title.value)){
-        emptyTitleMsg.classList.remove('hidden');
+        emptyTitleMsg.classList.add('flex');
         return;
     }
 
     if(!Utils.isSelectEmpty(album)){
-        emptyAlbumMsg.classList.remove('hidden');
+        emptyAlbumMsg.classList.add('flex');
         return;
     }
 
     if(!Utils.isSelectEmpty(artists)){
-        emptyArtistMsg.classList.remove('hidden');
+        emptyArtistMsg.classList.add('flex');
         return;
     }
 
     Api.addTrack(title.value, artists, album, genres.value, coverImage.value,
         spotifyURL.value, youtubeURL.value);
 
-    emptyTitleMsg.classList.add('hidden');
-    emptyAlbumMsg.classList.add('hidden');
-    emptyArtistMsg.classList.add('hidden');
+    emptyTitleMsg.classList.remove('flex');
+    emptyAlbumMsg.classList.remove('flex');
+    emptyArtistMsg.classList.remove('flex');
 
     title.value = '';
     trackArtistSelect.removeActiveItems().clearInput();
@@ -875,19 +876,19 @@ addPlaylistForm.addEventListener('submit', (event) => {
     const emptyUserMsg = playlistFormMsg.querySelector('.empty-user-field');
 
     if(!Utils.isFieldEmpty(title.value)){
-        emptyTitleMsg.classList.remove('hidden');
+        emptyTitleMsg.classList.add('flex');
         return;
     }
 
     if(!Utils.isFieldEmpty(createdBy.value)){
-        emptyUserMsg.classList.remove('hidden');
+        emptyUserMsg.classList.add('flex');
         return;
     }
     
     Api.addPlaylist(title.value, tracks, genres.value, coverImage.value, createdBy.value);
 
-    emptyTitleMsg.classList.add('hidden');
-    emptyUserMsg.classList.add('hidden');
+    emptyTitleMsg.classList.remove('flex');
+    emptyUserMsg.classList.remove('flex');
     title.value = '';
     playlistTrackSelect.removeActiveItems().clearInput();
     genres.value = '';
