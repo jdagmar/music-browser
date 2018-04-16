@@ -464,7 +464,7 @@
                         <!-- artist of the track is rendered here -->
                     </span>
                     <button class="show-more block md:hidden">
-                        <img class="w-8"src="images/004__arrow_down.svg"/>
+                        <img class="w-8" src="images/004__arrow_down.svg" />
                     </button>
                     <div class="more-content pt-2 pb-2 hidden md:flex">
                         <button class="delete-track">
@@ -533,7 +533,7 @@
                 <div class="playlist-container-template flex flex-col md:flex-row border border-solid p-2 m-auto min-h-16 w-full">
                     <div class="w-full md:w-2/3 mr-2">
                         <div class="m-2">
-                            <div class="flex justify-between">
+                            <div class="flex justify-between flex-wrap">
                                 <div>
                                     <h2 class="playlist-title inline-block">
                                         <!-- the playlists title is rendered here -->
@@ -544,27 +544,32 @@
                                     <span class="playlist-rating self-center ml-2">
                                         <!-- number of votes for playlist is rendered here -->
                                     </span>
-                                </div>
-                                <div class="flex">
-                                    <button class="delete-playlist flex border border-solid mr-2 pr-2 pl-2 rounded-sm">
-                                        <span class="text-sm self-center">Delete playlist</span>
-                                        <img class="w-8 align-middle" src="images/007__close.svg" alt="click to delete playlist" />
+                                    <button class="show-more inline-block md:hidden">
+                                        <img class="w-8" src="images/004__arrow_down.svg" />
                                     </button>
-                                    <form class="playlist-vote-form">
-                                        <select class="playlist-vote" name="playlist-rating">
-                                            <option placeholder>Vote</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                        </select>
-                                    </form>
+                                </div>
+                                <div class="hidden more-content w-full">
+                                    <div class="flex">
+                                        <button class="delete-playlist flex border border-solid mr-2 pr-2 pl-2 rounded-sm">
+                                            <span class="text-sm self-center">Delete playlist</span>
+                                            <img class="w-8 align-middle" src="images/007__close.svg" alt="click to delete playlist" />
+                                        </button>
+                                        <form class="playlist-vote-form">
+                                            <select class="playlist-vote" name="playlist-rating">
+                                                <option placeholder>Vote</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                            </select>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
 

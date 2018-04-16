@@ -466,6 +466,17 @@ const View = {
             const playlistRating = playlistItem.querySelector('.playlist-rating');
             playlistRating.innerHTML = `Rating: ${Utils.getAverageRating(playlist)}`;
 
+            const showMoreButton = playlistItem.querySelector('.show-more');
+            const moreContent = playlistItem.querySelector('.more-content');
+
+            showMoreButton.addEventListener('click', () => {
+                if(moreContent.classList.contains('hidden')){
+                    moreContent.classList.remove('hidden');
+                } else {
+                    moreContent.classList.add('hidden');
+                }
+            });
+
             const playlistVoteForm = playlistItem.querySelector('.playlist-vote-form');
             const playlistRatingSelect = new Choices(playlistItem.querySelector('.playlist-vote'), {
                 position: 'bottom',
