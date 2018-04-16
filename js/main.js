@@ -673,20 +673,21 @@ const Utils = {
         return bRating - aRating;
     },
     isFieldEmpty(field){
-
         if(!field.trim()){
             return false;
         }
-
         return true;
-
+    },
+    isSelectEmpty(select){
+        if(!select){
+            return false;
+        }
+        return true;
     },
     isDateValid(date){
-
         if(!/^[0-9]{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/.test(date)){
             return false;
         }
-
         return true;
     }
 }
@@ -819,8 +820,32 @@ addTrackForm.addEventListener('submit', (event) => {
     const youtubeURL = addTrackForm.elements['track-youtube'];
     const soundcloudURL = addTrackForm.elements['track-soundcloud'];
 
+    const trackFormMsg = document.getElementById('track-form-msg');
+    const emptyTitleMsg = trackFormMsg.querySelector('.empty-title-field');
+    const emptyAlbumMsg = trackFormMsg.querySelector('.empty-album-select');
+    const emptyArtistMsg = trackFormMsg.querySelector('.empty-artist-select');
+
+    if(!Utils.isFieldEmpty(title.value)){
+        emptyTitleMsg.classList.remove('hidden');
+        return;
+    }
+
+    if(!Utils.isSelectEmpty(album)){
+        emptyAlbumMsg.classList.remove('hidden');
+        return;
+    }
+
+    if(!Utils.isSelectEmpty(artists)){
+        emptyArtistMsg.classList.remove('hidden');
+        return;
+    }
+
     Api.addTrack(title.value, artists, album, genres.value, coverImage.value,
         spotifyURL.value, youtubeURL.value);
+
+    emptyTitleMsg.classList.add('hidden');
+    emptyAlbumMsg.classList.add('hidden');
+    emptyArtistMsg.classList.add('hidden');
 
     title.value = '';
     trackArtistSelect.removeActiveItems().clearInput();
