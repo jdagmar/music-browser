@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div id="comment-form-notifications">
-                <div class="fixed z-1 pin-b pin-r">
+                <div class="fixed z-1 md:pin-b md:pin-r">
                     <div class="notification notification-empty-username hidden">
                         <div class="justify-between bg-red text-white p-2 rounded-sm m-8">
                             <div class="flex justify-center mr-4">
@@ -231,7 +231,7 @@
 
             </div>
         </div>
-        <div id="main-view" class="max-w-2xl m-auto">
+        <div id="main-view" class="max-w-xs md:max-w-2xl m-auto mb-6--custom">
             <section class="mt-4 mb-8">
                 <h2>Be a part of music browser</h2>
                 <p class="mb-4">Are you missing someone or something on the site? Anyone can add material to the site.</p>
@@ -309,7 +309,7 @@
                 </div>
             </section>
         </div>
-        <div id="all-artists" class="hidden max-w-2xl m-auto">
+        <div id="all-artists" class="hidden max-w-xs md:max-w-2xl m-auto mb-6--custom">
             <section>
                 <h2 id="artist-section-header" class="mb-4">
                     <!-- artist (number of artists) will render here -->
@@ -335,7 +335,7 @@
                 <div id="artist-form-location">
                     <h2 class="mb-2">Add a new artist</h2>
                     <p class="mb-4">Fields with an asterix (*) must be filled for artist to be added</p>
-                    <form id="add-artist-form" class="w-128">
+                    <form id="add-artist-form" class="md:w-128">
                         <label class="inline-block mb-2" for="artist-name">Full name *</label>
                         <input id="artist-name" name="artist-name" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text" />
                         <label class="inline-block mb-2" for="artist-birthdate">Birthdate (YYYY-MM-DD)</label>
@@ -364,7 +364,7 @@
                 </div>
             </section>
         </div>
-        <div id="all-albums" class="hidden max-w-2xl m-auto">
+        <div id="all-albums" class="hidden max-w-xs md:max-w-2xl m-auto mb-6--custom">
             <section>
                 <h2 id="album-section-header" class="mb-4">
                     <!-- artist (number of artists) will render here -->
@@ -407,7 +407,7 @@
                 <div id="album-form-location">
                     <h2 class="mb-2">Add a new album</h2>
                     <p class="mb-4">Fields with an asterix (*) must be filled for album to be added</p>
-                    <form id="add-album-form" class="w-128">
+                    <form id="add-album-form" class="md:w-128">
                         <label class="inline-block mb-2" for="album-title">Album title *</label>
                         <input id="album-title" name="album-title" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text" />
                         <label class="inline-block mb-2" for="artist-select">Artist(s) *</label>
@@ -431,7 +431,7 @@
             </section>
         </div>
 
-        <div id="all-tracks" class="hidden max-w-2xl m-auto">
+        <div id="all-tracks" class="hidden max-w-xs md:max-w-2xl m-auto mb-6--custom">
             <section>
                 <h2 id="track-section-header" class="mb-4"></h2>
                 <div class="border border-solid p-4">
@@ -489,7 +489,7 @@
                 <div id="track-form-location">
                     <h2 class="mb-2">Add a new track</h2>
                     <p class="mb-4">Fields with an asterix (*) must be filled for the track to be added</p>
-                    <form id="add-track-form" class="w-128">
+                    <form id="add-track-form" class="md:w-128">
                         <label class="inline-block mb-2" for="track-title">Track title *</label>
                         <input id="track-title" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text" />
                         <label class="inline-block mb-2" for="album-select">Album *</label>
@@ -517,7 +517,7 @@
                 </div>
             </section>
         </div>
-        <div id="all-playlists" class="hidden max-w-2xl m-auto">
+        <div id="all-playlists" class="hidden max-w-xs md:max-w-2xl m-auto mb-6--custom">
             <section>
                 <h2 id="playlist-section-header" class="mb-4">
                     <!-- playlists (number of playlists) are rendered here -->
@@ -626,7 +626,7 @@
                 <div id="playlist-form-location">
                     <h2 class="mb-2">Create a playlist</h2>
                     <p class="mb-4">Fields with an asterix (*) must be filled for the playlist to be added</p>
-                    <form id="add-playlist-form" class="w-128">
+                    <form id="add-playlist-form" class="md:w-128">
                         <label class="inline-block mb-2" for="playlist-title">Playlist title *</label>
                         <input id="playlist-title" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text" />
                         <label class="inline-block mb-2" for="playlist-created-by">Your username *</label>
@@ -646,7 +646,7 @@
                 </div>
             </section>
         </div>
-        <nav id="tab-menu" class="flex justify-between md:hidden fixed z-1 w-full pin-b bg-white border border-solid">
+        <nav id="tab-menu" class="max-w-sm flex justify-between md:hidden fixed z-1 w-full pin-b bg-white border border-solid">
             <div data-view="main-view">
                 <img class="w-16" src="images/101__home.svg" />
             </div>
