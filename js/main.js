@@ -870,8 +870,24 @@ addPlaylistForm.addEventListener('submit', (event) => {
     const coverImage = addPlaylistForm.elements['playlist-cover-image'];
     const createdBy = addPlaylistForm.elements['playlist-created-by'];
 
+    const playlistFormMsg = document.getElementById('playlist-form-msg');
+    const emptyTitleMsg = playlistFormMsg.querySelector('.empty-title-field');
+    const emptyUserMsg = playlistFormMsg.querySelector('.empty-user-field');
+
+    if(!Utils.isFieldEmpty(title.value)){
+        emptyTitleMsg.classList.remove('hidden');
+        return;
+    }
+
+    if(!Utils.isFieldEmpty(createdBy.value)){
+        emptyUserMsg.classList.remove('hidden');
+        return;
+    }
+    
     Api.addPlaylist(title.value, tracks, genres.value, coverImage.value, createdBy.value);
 
+    emptyTitleMsg.classList.add('hidden');
+    emptyUserMsg.classList.add('hidden');
     title.value = '';
     playlistTrackSelect.removeActiveItems().clearInput();
     genres.value = '';
