@@ -43,7 +43,6 @@ const Api = {
         ]).then(result => {
             const nameResults = result[0];
             const genreResults = result[1];
-
             return nameResults.concat(genreResults);
         });
     },
@@ -54,7 +53,6 @@ const Api = {
         ]).then(result => {
             const titleResults = result[0];
             const genreResults = result[1];
-
             return titleResults.concat(genreResults);
         });
     },
@@ -65,7 +63,6 @@ const Api = {
         ]).then(result => {
             const titleResults = result[0];
             const genreResults = result[1];
-
             return titleResults.concat(genreResults);
         });
     },
@@ -78,7 +75,6 @@ const Api = {
             const titleResults = result[0];
             const genreResults = result[1];
             const userResult = result[2];
-
             return titleResults.concat(genreResults).concat(userResult);
         });
     },
@@ -678,6 +674,10 @@ const Controller = {
 
 }
 
+const FormController = {
+
+}
+
 const Utils = {
     getAverageRating(resource) {
         const ratings = resource.ratings;
@@ -711,9 +711,6 @@ const Utils = {
         return true;
     }
 }
-
-
-
 
 
 const addArtistForm = document.getElementById('add-artist-form');
@@ -950,7 +947,6 @@ navLinks.forEach(link =>
     link.addEventListener('click', () => View.switchView(link.getAttribute('data-view'))));
 
 const notifications = Array.from(document.querySelectorAll('.notification'));
-
 notifications.forEach(notification =>
     notification.querySelector('.hide-notification').addEventListener('click', () => {
         notification.classList.add('hidden');
@@ -1011,5 +1007,3 @@ searchForm.addEventListener('submit', event => {
 
     Api.searchAll(searchWord).then(result => View.displaySearchResults(result));
 });
-
-
