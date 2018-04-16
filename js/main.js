@@ -755,9 +755,24 @@ addAlbumForm.addEventListener('submit', (event) => {
     const spotifyURL = addAlbumForm.elements['album-spotify'];
     const coverImage = addAlbumForm.elements['album-cover'];
 
+    const emptyTitleMsg = document.getElementById('empty-album-field');
+    const emptyArtistMsg = document.getElementById('empty-artist-select');
+
+    if(!Utils.isFieldEmpty(title.value)){
+        emptyTitleMsg.classList.remove('hidden');
+        return;
+    }
+
+    if(!Utils.isFieldEmpty(artists)){
+        emptyArtistMsg.classList.remove('hidden');
+        return;
+    }
+
     Api.addAlbum(title.value, artists, releaseDate.value, genres.value, spotifyURL.value,
         coverImage.value);
 
+    emptyTitleMsg.classList.add('hidden');
+    emptyArtistMsg.classList.add('hidden');
     title.value = '';
     artistSelect.removeActiveItems().clearInput();
     releaseDate.value = '';
