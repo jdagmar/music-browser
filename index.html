@@ -451,7 +451,7 @@
                 </div>
             </section>
             <section class="track-item-template-section hidden">
-                <li class="track-item-template list-reset flex justify-between">
+                <li class="track-item-template list-reset flex flex-wrap justify-between mb-2">
                     <span class="track-rate">
                         <!-- the averagerating of the track is rendered here -->
                     </span>
@@ -464,25 +464,28 @@
                     <button class="show-more block md:hidden">
                         <img class="w-8" src="images/004__arrow_down.svg" />
                     </button>
-                    <div class="more-content pt-2 pb-2 hidden md:flex">
-                        <button class="delete-track">
-                            <img class="w-8 mr-2 align-middle" src="images/007__close.svg" alt="click to delete track" />
-                        </button>
-                        <form class="track-vote-form">
-                            <select class="track-rating" name="track-rating">
-                                <option placeholder>Vote</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                            </select>
-                        </form>
+                    <div class="more-content pt-2 pb-2 hidden lg:flex w-full lg:w-auto mr-2 p-2">
+                        <div class="flex justify-between">
+                            <button class="delete-track border lg:border-none border-solid pr-2 pl-2 rounded-sm">
+                                <span class="lg:hidden">Delete</span>
+                                <img class="w-8 mr-2 align-middle" src="images/007__close.svg" alt="click to delete track" />
+                            </button>
+                            <form class="track-vote-form">
+                                <select class="track-rating" name="track-rating">
+                                    <option placeholder>Vote</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </form>
+                        </div>
                     </div>
                 </li>
             </section>
