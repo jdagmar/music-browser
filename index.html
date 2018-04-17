@@ -273,9 +273,9 @@
                     <h3 class="mb-2">Albums</h3>
                     <div class="border border-solid p-4">
                         <div class="flex justify-between">
-                            <span class="font-semibold w-1/3 text-lg">Title</span>
-                            <span class="font-semibold w-1/3 text-lg ml-8">Artist</span>
-                            <span class="font-semibold text-lg">Rating</span>
+                            <span class="font-semibold w-1/3">Title</span>
+                            <span class="font-semibold w-1/3">Artist</span>
+                            <span class="font-semibold">Rating</span>
                         </div>
                         <ul id="top-ten-albums-container" class="p-0">
                             <li class="top-ten-albums-item-template list-reset flex justify-between mt-2">
@@ -290,9 +290,9 @@
                     <h3 class="mb-2">Tracks</h3>
                     <div class="border border-solid p-4">
                         <div class="flex justify-between">
-                            <span class="font-semibold w-1/3 text-lg">Title</span>
-                            <span class="font-semibold w-1/3 text-lg ml-8">Artist</span>
-                            <span class="font-semibold text-lg">Rating</span>
+                            <span class="font-semibold w-1/3">Title</span>
+                            <span class="font-semibold w-1/3">Artist</span>
+                            <span class="font-semibold">Rating</span>
                         </div>
                         <ul id="top-ten-tracks-container" class="p-0">
                             <li class="top-ten-tracks-item-template list-reset flex justify-between mt-2">
@@ -307,9 +307,9 @@
                     <h3 class="mb-2">Playlists</h3>
                     <div class="border border-solid p-4">
                         <div class="flex justify-between">
-                            <span class="font-semibold w-1/3 text-lg">Title</span>
-                            <span class="font-semibold w-1/3 text-lg ml-8">User</span>
-                            <span class="font-semibold text-lg">Rating</span>
+                            <span class="font-semibold w-1/3">Title</span>
+                            <span class="font-semibold w-1/3">User</span>
+                            <span class="font-semibold">Rating</span>
                         </div>
                         <ul id="top-ten-playlists-container" class="p-0">
                             <li class="top-ten-playlist-item-template list-reset flex justify-between mt-2">
@@ -449,13 +449,10 @@
                 <h2 id="track-section-header" class="mb-4"></h2>
                 <div class="border border-solid p-4">
                     <div class="flex justify-between mb-2">
-                        <span class="text-lg font-semibold">Rating</span>
-                        <span class="text-lg font-semibold w-auto lg:w-1/3 ml-6">Title</span>
-                        <span class="text-lg font-semibold w-auto lg:w-2/5 mr-6">Artist</span>
-                        <div class="hidden lg:flex">
-                            <span class="text-sm mr-6">Delete</span>
-                            <span class="text-sm mr-4">Vote</span>
-                        </div>
+                        <span class="font-semibold">Rating</span>
+                        <span class="font-semibold w-auto lg:w-2/5">Title</span>
+                        <span class="font-semibold w-auto lg:w-1/3">Artist</span>
+                        
                     </div>
                     <ul id="track-list" class="p-0 overflow-auto max-h-30">
                         <!-- all tracks are rendered here -->
@@ -467,7 +464,7 @@
                     <span class="track-rate">
                         <!-- the averagerating of the track is rendered here -->
                     </span>
-                    <span class="track-title w-1/4">
+                    <span class="track-title w-1/3">
                         <!-- title of the track is rendered here -->
                     </span>
                     <span class="track-artist w-1/3">
@@ -476,10 +473,10 @@
                     <button class="show-more block lg:hidden">
                         <img class="w-8" src="images/004__arrow_down.svg" />
                     </button>
-                    <div class="more-content pt-2 pb-2 hidden lg:flex w-full lg:w-auto mr-2 p-2">
+                    <div class="more-content pt-2 pb-2 hidden lg:flex w-full lg:w-auto">
                         <div class="flex justify-between">
-                            <button class="delete-track border lg:border-none border-solid pr-2 pl-2 rounded-sm">
-                                <span class="lg:hidden">Delete</span>
+                            <button class="delete-track border lg:border-none border-solid rounded-sm">
+                                <span class="">Delete</span>
                                 <img class="w-8 mr-2 align-middle" src="images/007__close.svg" alt="click to delete track" />
                             </button>
                             <form class="track-vote-form">
