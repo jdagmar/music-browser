@@ -1,6 +1,13 @@
 
 const View = {
     // onArtistDelete = functions which deletes an artist
+    init() {
+        const notifications = Array.from(document.querySelectorAll('.notification'));
+        notifications.forEach(notification =>
+            notification.querySelector('.hide-notification').addEventListener('click', () => {
+                notification.classList.add('hidden');
+            }));
+    },
     displayArtists(artistList, artists, onArtistDelete) {
         const artistSectionHeader = document.getElementById('artist-section-header');
         artistSectionHeader.innerHTML = `Artists (${artists.length})`;
@@ -424,5 +431,100 @@ const View = {
         spinner.classList.add('spinner');
 
         container.appendChild(spinner);
+    },
+    getArtistSelect() {
+        return View._artistSelect;
+    },
+    createArtistSelect(artists) {
+        const artistSelect = new Choices('#artist-select', {
+            position: 'bottom'
+        });
+
+        const choices = artists.map(artist => {
+            return {
+                value: artist._id, label: `<p class="text-lg">${artist.name}</p>`,
+                customProperties: {
+                    albums: artist.albums
+                }
+            }
+        });
+
+        artistSelect.setChoices(choices, 'value', 'label', true);
+        View._artistSelect = artistSelect;
+    },
+    getAlbumSelect() {
+        return View._albumSelect;
+    },
+    createAlbumSelect(albums) {
+        const albumSelect = new Choices('#album-select', {
+            position: 'bottom'
+        });
+
+        const choices = albums.map(album => {
+            return {
+                value: album._id, label: `<p class="text-lg">${album.title}</p>`
+            }
+        });
+
+        albumSelect.setChoices(choices, 'value', 'label', true);
+        View._albumSelect = albumSelect;
+    },
+    getTrackArtistSelect() {
+        return View._trackArtistSelect;
+    },
+    createTrackArtistSelect(artists) {
+        const trackArtistSelect = new Choices('#track-artist-select', {
+            position: 'bottom'
+        });
+
+        View.getAlbumSelect().passedElement.addEventListener('choice', event => {
+            const albumId = event.detail.choice.value;
+
+            const filteredArtists = trackArtistSelect.store.getChoices().map(choice => {
+                return ({
+                    value: choice.value,
+                    label: choice.label,
+                    customProperties: choice.customProperties,
+                    disabled: choice.customProperties.albums.indexOf(albumId) < 0
+                });
+            });
+
+            trackArtistSelect.setChoices(filteredArtists, 'value', 'label', true);
+            trackArtistSelect.enable();
+        });
+
+
+        const choices = artists.map(artist => {
+            return {
+                value: artist._id, label: `<p class="text-lg">${artist.name}</p>`,
+                customProperties: {
+                    albums: artist.albums
+                }
+            }
+        });
+
+        trackArtistSelect.setChoices(choices, 'value', 'label', true)
+        trackArtistSelect.disable();
+        View._trackArtistSelect = trackArtistSelect;
+
+    },
+    getPLaylistTrackSelect() {
+        return View._playlistTrackSelect;
+    },
+    createPlaylistTrackSelect(tracks) {
+        const playlistTrackSelect = new Choices('#playlist-track-select', {
+            position: 'bottom'
+        });
+
+        const choices = tracks.map(track => {
+            return {
+                value: track._id,
+                label: `<p class="font-semibold text-lg">${track.title}</p>
+                        <p>${track.artists.map(artist => artist.name).join(', ')}</p>`,
+            }
+        });
+
+        playlistTrackSelect.setChoices(choices, 'value', 'label', true);
+        View._playlistTrackSelect = playlistTrackSelect;
     }
 }
