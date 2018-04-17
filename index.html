@@ -452,7 +452,7 @@
                         <span class="font-semibold">Rating</span>
                         <span class="font-semibold w-auto lg:w-2/5">Title</span>
                         <span class="font-semibold w-auto lg:w-1/3">Artist</span>
-                        
+
                     </div>
                     <ul id="track-list" class="p-0 overflow-auto max-h-30">
                         <!-- all tracks are rendered here -->
@@ -543,10 +543,14 @@
                 <div class="playlist-container-template flex flex-col lg:flex-row border border-solid p-2 m-auto min-h-16 w-full">
                     <div class="w-full lg:w-2/3 mr-2">
                         <div class="m-2">
-                            <div class="flex justify-between flex-wrap">
-                                <div>
+                            <div class="flex flex-wrap">
+                                <figure class="w-48 h-48 border border-solid">
+                                    <!-- the image of the playlist is rendered here -->
+                                    <img class="playlist-cover w-full h-full" />
+                                </figure>
+                                <div class="ml-4">
                                     <div class="flex w-full lg:w-auto">
-                                        <h2 class="playlist-title inline-block">
+                                        <h2 class="playlist-title mb-2">
                                             <!-- the playlists title is rendered here -->
                                         </h2>
                                         <button class="show-more inline-block lg:hidden">
@@ -576,21 +580,17 @@
                                             </form>
                                         </div>
                                     </div>
-                                    <span class="playlist-creator w-full lg:w-auto">
+                                    <p class="playlist-creator w-full lg:w-auto">
                                         <!-- the user who has created playlist is rendered here -->
-                                    </span>
-                                    <span class="playlist-rating self-center ml-2">
+                                    </p>
+                                    <p class="playlist-rating self-center">
                                         <!-- number of votes for playlist is rendered here -->
-                                    </span>
+                                    </p>
+                                    <p class="playlist-genres">
+                                        <!-- the playlists genres is rendered here -->
+                                    </p>
                                 </div>
                             </div>
-                            <span class="playlist-genres">
-                                <!-- the playlists genres is rendered here -->
-                            </span>
-                            <figure class="w-48 m-auto mt-4">
-                                <!-- the image of the playlist is rendered here -->
-                                <img class="playlist-cover" />
-                            </figure>
                         </div>
                         <div class="flex justify-between m-2 mb-0">
                             <span class="text-lg font-semibold w-1/3">Title</span>

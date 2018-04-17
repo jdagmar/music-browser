@@ -214,11 +214,14 @@ const View = {
             });
 
             const playlistCreator = playlistItem.querySelector('.playlist-creator');
-            playlistCreator.innerHTML = `by ${playlist.createdBy}`
+            playlistCreator.innerHTML = `Created by: ${playlist.createdBy}`
 
             const genres = playlist.genres.map(genres => genres).join(', ');
-            const playlistGenres = playlistItem.querySelector('.playlist-genres');
-            playlistGenres.innerHTML = genres;
+
+            if (genres.length > 0) {
+                const playlistGenres = playlistItem.querySelector('.playlist-genres');
+                playlistGenres.innerHTML = `Genres: ${genres}`;
+            }
 
             const deletePlaylistButton = playlistItem.querySelector('.delete-playlist');
             deletePlaylistButton.addEventListener('click', () => {
@@ -381,7 +384,7 @@ const View = {
         const foundArtists = result.artists;
         View.displayArtists(searchArtistContainer, foundArtists);
 
-        if(foundArtists.length > 0){
+        if (foundArtists.length > 0) {
             const searchArtistHeader = document.getElementById('search-artist-header');
             searchArtistHeader.innerHTML = `Artists (${foundArtists.length})`;
         }
@@ -390,7 +393,7 @@ const View = {
         const foundAlbums = result.albums;
         View.displayAlbums(searchAlbumContanier, foundAlbums);
 
-        if(foundAlbums.length > 0){
+        if (foundAlbums.length > 0) {
             const searchAlbumHeader = document.getElementById('search-album-header');
             searchAlbumHeader.innerHTML = `Albums (${foundAlbums.length})`;
         }
@@ -399,7 +402,7 @@ const View = {
         const foundTracks = result.tracks;
         View.displayTracks(searchTrackContainer, foundTracks);
 
-        if(foundTracks.length > 0){
+        if (foundTracks.length > 0) {
             const searchTrackHeader = document.getElementById('search-track-header');
             searchTrackHeader.innerHTML = `Tracks (${foundTracks.length})`;
         }
@@ -408,7 +411,7 @@ const View = {
         const foundPlaylists = result.playlists;
         View.displayPlaylists(searchPlaylistContainer, foundPlaylists);
 
-        if(foundPlaylists.length > 0){
+        if (foundPlaylists.length > 0) {
             const searchPlaylistHeader = document.getElementById('search-playlist-header');
             searchPlaylistHeader.innerHTML = `Playlists (${foundPlaylists.length})`
         }
