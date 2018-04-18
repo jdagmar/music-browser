@@ -165,7 +165,7 @@ const View = {
         listAllComments.forEach(comment => commentField.appendChild(comment));
     },
     displayPlaylists(playlistList, playlists, onCommentDelete, onPlaylistVote, onPlaylistDelete,
-    onPostPlaylistComment) {
+        onPostPlaylistComment) {
         const playlistSectionHeader = document.getElementById('playlist-section-header');
         playlistSectionHeader.innerHTML = `Playlists (${playlists.length})`;
 
@@ -403,6 +403,8 @@ const View = {
         View.displayTracks(searchTrackContainer, foundTracks);
 
         if (foundTracks.length > 0) {
+            const searchTrackContainerTableHead = document.getElementById('search-track-container-table-head');
+            searchTrackContainerTableHead.classList.remove('hidden');
             const searchTrackHeader = document.getElementById('search-track-header');
             searchTrackHeader.innerHTML = `Tracks (${foundTracks.length})`;
         }
@@ -416,6 +418,15 @@ const View = {
             searchPlaylistHeader.innerHTML = `Playlists (${foundPlaylists.length})`
         }
 
+        const totalResult = foundArtists.length + foundAlbums.length + foundTracks.length + foundPlaylists.length;
+        const nothingFoundMessage = document.getElementById('search-nothing-found-message');
+
+        if (totalResult === 0) {
+            nothingFoundMessage.innerHTML = `Sorry, nothing found on '${result.searchWord}'`;
+        } else {
+            const numberOfResults = (totalResult === 1 ? 'result' : 'results');
+            nothingFoundMessage.innerHTML = `Showing ${totalResult} ${numberOfResults} on '${result.searchWord}'`
+        }
     },
     showSpinner(container) {
         const spinner = document.createElement('img');

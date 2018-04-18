@@ -89,7 +89,8 @@ const Api = {
                 artists: result[0],
                 albums: result[1],
                 tracks: result[2],
-                playlists: result[3]
+                playlists: result[3],
+                searchWord: searchWord
             }
         });
     },

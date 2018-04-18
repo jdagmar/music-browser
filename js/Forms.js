@@ -10,9 +10,14 @@ const Forms = {
         const searchForm = document.getElementById('search-form');
         searchForm.addEventListener('submit', event => {
             event.preventDefault();
-            View.switchView('search-view');
             const searchField = document.getElementById('search-field');
-            const searchWord = searchField.value;
+            const searchWord = searchField.value.trim();
+            
+            if(!searchWord){
+                return;
+            }
+
+            View.switchView('search-view');
             Api.searchAll(searchWord).then(result => View.displaySearchResults(result));
         });
     },
