@@ -31,6 +31,10 @@ p, #artist-view-link, input, label, .choices__list--single .choices__item, a {
     margin-top: 0.4rem;
 }
 
+.mr-3--custom {
+    margin-right: 3rem;
+}
+
 .mb-6--custom {
     margin-bottom: 6rem;
 }

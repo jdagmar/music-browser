@@ -13,30 +13,28 @@
 </head>
 
 <body>
-    <header class="flex justify-between flex-wrap text-center h-16 m-4 text-center ">
+    <header class="flex justify-between flex-wrap text-center h-16 m-4 text-center">
         <div class="flex">
             <h3 class="mt-04--custom">Music browser</h3>
-            <nav id="nav" class="hidden lg:flex m-0 w-full lg:w-auto h-screen lg:h-auto lg:justify-between text-center lg:mb-8 lg:mr-4 lg:ml-4">
-                <ul class="p-0 inline-block">
-                    <li id="home-view-link" class="list-reset p-2 cursor-pointer block lg:inline-block" data-view="main-view">Home</li>
-                    <li id="artist-view-link" class="list-reset p-2 cursor-pointer block lg:inline-block" data-view="all-artists">Artists</li>
-                    <li id="album-view-link" class="list-reset p-2 cursor-pointer block lg:inline-block" data-view="all-albums">Albums</li>
-                    <li id="tracks-view-link" class="list-reset p-2 cursor-pointer block lg:inline-block" data-view="all-tracks">Tracks</li>
-                    <li id="playlists-view-link" class="list-reset p-2 cursor-pointer block lg:inline-block" data-view="all-playlists">Playlists</li>
+            <nav id="nav" class="hidden lg:flex w-full lg:w-auto lg:justify-between lg:mb-8 lg:mr-4 lg:ml-4">
+                <ul class="p-0">
+                    <li class="list-reset p-2 cursor-pointer inline-block" data-view="main-view">Home</li>
+                    <li class="list-reset p-2 cursor-pointer inline-block" data-view="all-artists">Artists</li>
+                    <li class="list-reset p-2 cursor-pointer inline-block" data-view="all-albums">Albums</li>
+                    <li class="list-reset p-2 cursor-pointer inline-block" data-view="all-tracks">Tracks</li>
+                    <li class="list-reset p-2 cursor-pointer inline-block" data-view="all-playlists">Playlists</li>
                 </ul>
             </nav>
         </div>
         <form id="search-form" class="w-full lg:w-auto inline-block h-8 flex m-auto lg:m-0" role="search">
-            <label for="search-field" hidden>search for a artist, track, album or soundtrack</label>
-            <input id="search-field" class="w-full lg:w-auto border border-r-0 border-solid h-8 pl-2 appearance-none rounded-none" type="search"
-                placeholder="search" />
-            <input class="border border-l-0 w-10 align-middle appearance-none rounded-none" type="image" src="images/095__search.svg"
-                alt="click to run search" />
+            <label for="search-field" hidden>search for a artist, track, album or playlist</label>
+            <input id="search-field" class="w-full lg:w-auto border border-r-0 border-solid h-8 pl-2 appearance-none rounded-none" type="search" placeholder="search" />
+            <input class="border border-l-0 w-10 appearance-none rounded-none" type="image" src="images/095__search.svg" alt="click to run search" />
         </form>
     </header>
 
     <main class="m-auto">
-        <section class="user-messages">
+        <section class="user-notifications">
             <div id="failed-loading-msg" class="hidden w-1/2 m-auto">
                 <div class="flex justify-between text-center border border-solid bg-red p-4 fixed z-1--custom pin-x pin-t">
                     <div class="flex justify-center">
@@ -214,42 +212,57 @@
                 </div>
             </div>
         </section>
-        <div id="search-view" class="hidden max-w-xs lg:max-w-2xl m-auto">
-            <h3 id="search-nothing-found-message" class="mb-4"></h3>
-            <h3 id="search-artist-header" class="mb-4"></h3>
+        <div id="search-view" class="hidden max-w-xs md:max-w-2xl m-auto">
+            <h3 id="search-nothing-found-message" class="mb-4">
+                <!-- renders either 'nothing found on searchword' or 'x results on searchword' -->
+            </h3>
+            <h3 id="search-artist-header" class="mb-4">
+                <!-- renders 'artists(x) that matches with searchword' -->
+            </h3>
             <div id="search-artist-container" class="grid--custom grid-col-repeat-250--custom mb-4">
-                <!-- lists all artists that matches with search -->
+                <!-- lists all artists that matches with searchword -->
             </div>
-            <h3 id="search-album-header" class="mb-4"></h3>
+            <h3 id="search-album-header" class="mb-4">
+                <!-- renders 'albums(x) that matches with searchword' -->
+            </h3>
             <div id="search-album-container" class="grid--custom grid-col-repeat-250--custom mb-4">
                 <!-- lists all albums that matches with search -->
             </div>
-            <h3 id="search-playlist-header" class="mb-4 mt-4"></h3>
+            <h3 id="search-playlist-header" class="mb-4 mt-4">
+                <!-- renders 'playlists(x) that matches with searchword' -->
+            </h3>
             <div id="search-playlist-container" class="mb-4">
                 <!-- lists all playlists that matches with search -->
             </div>
             <div id="playlist-container--search" class="grid--custom grid-col-repeat-250--custom mb-4 mt-4">
                 <figure class="playlist-container-template--search w-full">
+                    <!-- playlist coverimage is rendered here -->
                     <img class="playlist-cover--search w-full lg:w-64 lg:h-64 object-cover" />
                     <div>
-                        <p class="playlist-title--search font-semibold"></p>
-                        <p class="playlist-author--search"></p>
+                        <p class="playlist-title--search font-semibold">
+                            <!-- playlist title is rendered here -->
+                        </p>
+                        <p class="playlist-author--search">
+                            <!-- playlists username is rendered here -->
+                        </p>
                     </div>
                 </figure>
             </div>
-            <h3 id="search-track-header" class="mb-4"></h3>
+            <h3 id="search-track-header" class="mb-4">
+                <!-- renders 'tracks(x) that matches with searchword' -->
+            </h3>
             <div id="search-track-container-table-head" class="hidden border border-solid p-4 mb-4 mt-4">
-                <div class="flex justify-between mb-2">
+                <div class="flex mb-2">
                     <span class="text-lg font-semibold">Rating</span>
-                    <span class="text-lg font-semibold w-auto lg:w-1/3 ml-6">Title</span>
-                    <span class="text-lg font-semibold w-auto lg:w-2/5 mr-6">Artist</span>
+                    <span class="text-lg font-semibold ml-8">Title</span>
+                    <span class="text-lg font-semibold w-1/2 ml-auto mr-3--custom">Artist</span>
                 </div>
                 <div id="search-track-container" class="mb-4">
                     <!-- lists all tracks that matches with search -->
                 </div>
             </div>
         </div>
-        <div id="main-view" class="max-w-xs lg:max-w-2xl m-auto mb-6--custom">
+        <div id="main-view" class="max-w-xs md:max-w-2xl m-auto mb-6--custom">
             <section class="mt-4 mb-8">
                 <h2>Be a part of music browser</h2>
                 <p class="mb-4">Are you missing someone or something on the site? Anyone can add material to the site.</p>
@@ -284,9 +297,15 @@
                         </div>
                         <ul id="top-ten-albums-container" class="p-0">
                             <li class="top-ten-albums-item-template list-reset flex justify-between mt-2">
-                                <span class="top-ten-album-title w-1/3"></span>
-                                <span class="top-ten-album-artist w-1/3"></span>
-                                <span class="top-ten-album-rating"></span>
+                                <span class="top-ten-album-title w-1/3">
+                                    <!-- album title renders here -->
+                                </span>
+                                <span class="top-ten-album-artist w-1/3">
+                                    <!-- artist related to album renders here -->
+                                </span>
+                                <span class="top-ten-album-rating">
+                                    <!-- albums rating renders here -->
+                                </span>
                             </li>
                         </ul>
                     </div>
@@ -301,9 +320,15 @@
                         </div>
                         <ul id="top-ten-tracks-container" class="p-0">
                             <li class="top-ten-tracks-item-template list-reset flex justify-between mt-2">
-                                <span class="top-ten-track-title w-1/3"></span>
-                                <span class="top-ten-track-artist w-1/3"></span>
-                                <span class="top-ten-track-rating"></span>
+                                <span class="top-ten-track-title w-1/3">
+                                    <!-- track title renders here -->
+                                </span>
+                                <span class="top-ten-track-artist w-1/3">
+                                    <!-- artist related to track renders here -->
+                                </span>
+                                <span class="top-ten-track-rating">
+                                    <!-- tracks rating renders here -->
+                                </span>
                             </li>
                         </ul>
                     </div>
@@ -318,22 +343,28 @@
                         </div>
                         <ul id="top-ten-playlists-container" class="p-0">
                             <li class="top-ten-playlist-item-template list-reset flex justify-between mt-2">
-                                <a class="top-ten-playlist-title w-1/3 hover:underline"></a>
-                                <span class="top-ten-playlist-author w-1/3"></span>
-                                <span class="top-ten-playlist-rating"></span>
+                                <a class="top-ten-playlist-title w-1/3 hover:underline">
+                                    <!-- playlist title renders here -->
+                                </a>
+                                <span class="top-ten-playlist-author w-1/3">
+                                    <!-- playlists username renders here -->
+                                </span>
+                                <span class="top-ten-playlist-rating">
+                                    <!-- playlists rating renders here -->
+                                </span>
                             </li>
                         </ul>
                     </div>
                 </div>
             </section>
         </div>
-        <div id="all-artists" class="hidden max-w-xs lg:max-w-2xl m-auto mb-6--custom">
+        <div id="all-artists" class="hidden max-w-xs md:max-w-2xl m-auto mb-6--custom">
             <section>
                 <h2 id="artist-section-header" class="mb-4">
-                    <!-- artist (number of artists) will render here -->
+                    <!-- artist(x) will render here -->
                 </h2>
-                <div id="artist-list" class="grid--custom grid-col-repeat-250">
-                    <!-- all artists are rendered here -->
+                <div id="artist-list" class="grid--custom grid-col-repeat-250--custom">
+                    <!-- all artists from api are rendered here -->
                 </div>
             </section>
             <section class="artist-template-section hidden">
@@ -357,11 +388,9 @@
                         <label class="inline-block mb-2" for="artist-name">Full name *</label>
                         <input id="artist-name" name="artist-name" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text" />
                         <label class="inline-block mb-2" for="artist-birthdate">Birthdate (YYYY-MM-DD)</label>
-                        <input id="artist-birthdate" name="artist-birthdate" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text"
-                        />
+                        <input id="artist-birthdate" name="artist-birthdate" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text"/>
                         <label class="inline-block mb-2" for="artist-genres">Genre(s) sh/e is active in</label>
-                        <input id="artist-genres" name="artist-genres" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text"
-                        />
+                        <input id="artist-genres" name="artist-genres" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text"/>
                         <label class="inline-block mb-2" for="artist-gender">Gender *</label>
                         <select id="artist-gender" name="artist-gender">
                             <option placeholder>Gender</option>
@@ -370,26 +399,23 @@
                             <option value="other">Other</option>
                         </select>
                         <label class="inline-block mb-2" for="artist-country">Country of origin</label>
-                        <input id="artist-country" name="artist-country" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text"
-                        />
+                        <input id="artist-country" name="artist-country" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text"/>
                         <label class="inline-block mb-2" for="artist-spotify">Url to artist spotify</label>
-                        <input id="artist-spotify" name="artist-spotify" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text"
-                        />
+                        <input id="artist-spotify" name="artist-spotify" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text"/>
                         <label class="inline-block mb-2" for="artist-image">Url to artist image</label>
-                        <input id="artist-image" name="artist-image" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text"
-                        />
+                        <input id="artist-image" name="artist-image" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text"/>
                         <input class="border border-solid block w-full mb-4 h-10 rounded" type="submit" value="Create artist" />
                     </form>
                 </div>
             </section>
         </div>
-        <div id="all-albums" class="hidden max-w-xs lg:max-w-2xl m-auto mb-6--custom">
+        <div id="all-albums" class="hidden max-w-xs md:max-w-2xl m-auto mb-6--custom">
             <section>
                 <h2 id="album-section-header" class="mb-4">
-                    <!-- artist (number of artists) will render here -->
+                    <!-- 'artists(x)' will render here -->
                 </h2>
-                <div id="album-list" class="grid--custom grid-col-repeat-250">
-                    <!-- all albums are rendered here -->
+                <div id="album-list" class="grid--custom grid-col-repeat-250--custom">
+                    <!-- all albums from api are rendered here -->
                 </div>
             </section>
             <section class="album-template-section hidden">
@@ -434,14 +460,11 @@
                             <!-- all artists from api is rendered as options here -->
                         </select>
                         <label class="inline-block mb-2" for="album-genres">Genre(s)</label>
-                        <input id="album-genres" name="album-genres" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text"
-                        />
+                        <input id="album-genres" name="album-genres" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text"/>
                         <label class="inline-block mb-2" for="album-release">Release year (YYYY)</label>
-                        <input id="album-release" name="album-release" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text"
-                        />
+                        <input id="album-release" name="album-release" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text"/>
                         <label class="inline-block mb-2" for="album-spotify">Spotify-url to album</label>
-                        <input id="album-spotify" name="album-spotify" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text"
-                        />
+                        <input id="album-spotify" name="album-spotify" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text"/>
                         <label class="inline-block mb-2" for="album-cover">Url to coverimage</label>
                         <input id="album-cover" name="album-cover" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text" />
                         <input class="border border-solid block w-full mb-2 h-10 rounded" type="submit" value="Create album" />
@@ -450,15 +473,15 @@
             </section>
         </div>
 
-        <div id="all-tracks" class="hidden max-w-xs lg:max-w-2xl m-auto mb-6--custom">
+        <div id="all-tracks" class="hidden max-w-xs md:max-w-2xl m-auto mb-6--custom">
             <section>
                 <h2 id="track-section-header" class="mb-4"></h2>
                 <div class="border border-solid p-4">
                     <div class="flex justify-between mb-2">
-                        <span class="font-semibold">Rating</span>
-                        <span class="font-semibold w-auto lg:w-2/5">Title</span>
-                        <span class="font-semibold w-auto lg:w-1/3">Artist</span>
-
+                        <span class="font-semibold md:w-1/6">Rating</span>
+                        <span class="font-semibold w-auto md:w-1/3">Title</span>
+                        <span class="font-semibold w-auto md:w-1/3">Artist</span>
+                        <span class="md:w-1/6"></span>
                     </div>
                     <ul id="track-list" class="p-0 overflow-auto max-h-30--custom">
                         <!-- all tracks are rendered here -->
@@ -467,19 +490,19 @@
             </section>
             <section class="track-item-template-section hidden">
                 <li class="track-item-template list-reset flex flex-wrap justify-between mb-2">
-                    <span class="track-rate">
+                    <span class="track-rate self-center md:w-1/6">
                         <!-- the averagerating of the track is rendered here -->
                     </span>
-                    <span class="track-title w-1/3">
+                    <span class="track-title self-center w-1/3">
                         <!-- title of the track is rendered here -->
                     </span>
-                    <span class="track-artist w-1/3">
+                    <span class="track-artist self-center w-1/3">
                         <!-- artist of the track is rendered here -->
                     </span>
                     <button class="show-more block lg:hidden">
                         <img class="w-8" src="images/004__arrow_down.svg" />
                     </button>
-                    <div class="more-content pt-2 pb-2 hidden lg:flex w-full lg:w-auto">
+                    <div class="more-content pt-2 pb-2 hidden lg:flex w-full md:w-1/6">
                         <div class="flex justify-between">
                             <button class="delete-track flex justify-between border border-solid rounded-sm pr-2 pl-2 mr-2">
                                 <span class="self-center">Delete</span>
@@ -532,7 +555,7 @@
                 </div>
             </section>
         </div>
-        <div id="all-playlists" class="hidden max-w-xs lg:max-w-2xl m-auto mb-6--custom">
+        <div id="all-playlists" class="hidden max-w-xs md:max-w-2xl m-auto mb-6--custom">
             <section>
                 <h2 id="playlist-section-header" class="mb-4">
                     <!-- playlists (number of playlists) are rendered here -->
@@ -592,7 +615,7 @@
                                         <!-- the playlists genres is rendered here -->
                                     </p>
                                     <p class="playlist-tracklist-count lg:w-64 break-words">
-
+                                        <!-- (x) songs are rendered here -->
                                     </p>
                                 </div>
                             </div>
