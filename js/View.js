@@ -221,7 +221,7 @@ const View = {
             });
 
             const playlistCreator = playlistItem.querySelector('.playlist-creator');
-            playlistCreator.innerHTML = `Created by: ${playlist.createdBy}`
+            playlistCreator.innerHTML = `Created by ${playlist.createdBy}`
 
             const genres = playlist.genres.map(genres => genres).join(', ');
 
@@ -383,6 +383,37 @@ const View = {
         topTenAlbumsContainer.innerHTML = '';
         topTenAlbums.forEach(topTenAlbumsItem => topTenAlbumsContainer.appendChild(topTenAlbumsItem));
     },
+    displayPlaylistsAsGrid(searchTrackContainer, playlists) {
+        const listAllPaylistsInSearch = playlists.map(playlist => {
+            const playlistItemInSearchResult = document.querySelector('.playlist-container-template--search').cloneNode(true);
+            playlistItemInSearchResult.classList.remove('search-playlist-container-template');
+
+            const playlistCoverSearch = playlistItemInSearchResult.querySelector('.playlist-cover--search');
+            playlistCoverSearch.src = playlist.coverImage;
+            playlistCoverSearch.alt = `Playlist imagecover for ${playlist.title}`;
+
+            playlistItemInSearchResult.addEventListener('click', () => {
+                View.switchView('all-playlists');
+
+                setTimeout(() => {
+                    const playlistLocation = document.getElementById(`playlist-${playlist._id}`);
+                    playlistLocation.scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+
+            const playlistTitleSearch = playlistItemInSearchResult.querySelector('.playlist-title--search');
+            playlistTitleSearch.innerHTML = playlist.title;
+
+            const playlistAuthorSearch = playlistItemInSearchResult.querySelector('.playlist-author--search');
+            playlistAuthorSearch.innerHTML = `Created by ${playlist.createdBy}`;
+
+            return playlistItemInSearchResult;
+        });
+        const playlistContainerInSearch = document.getElementById('playlist-container--search');
+        playlistContainerInSearch.innerHTML = '';
+        listAllPaylistsInSearch.forEach(playlistItemInSearchResult => playlistContainerInSearch.appendChild(playlistItemInSearchResult));
+
+    },
     displaySearchResults(result) {
         const searchArtistContainer = document.getElementById('search-artist-container');
         const foundArtists = result.artists;
@@ -415,7 +446,7 @@ const View = {
 
         const searchPlaylistContainer = document.getElementById('search-playlist-container');
         const foundPlaylists = result.playlists;
-        View.displayPlaylists(searchPlaylistContainer, foundPlaylists);
+        View.displayPlaylistsAsGrid(searchPlaylistContainer, foundPlaylists);
 
         if (foundPlaylists.length > 0) {
             const searchPlaylistHeader = document.getElementById('search-playlist-header');

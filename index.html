@@ -221,28 +221,32 @@
                 <!-- lists all artists that matches with search -->
             </div>
             <h3 id="search-album-header" class="mb-4"></h3>
-            <div id="search-album-container" class="grid grid-col-repeat-250  mb-4">
+            <div id="search-album-container" class="grid grid-col-repeat-250 mb-4">
                 <!-- lists all albums that matches with search -->
             </div>
+            <h3 id="search-playlist-header" class="mb-4 mt-4"></h3>
+            <div id="search-playlist-container" class="mb-4">
+                <!-- lists all playlists that matches with search -->
+            </div>
+            <div id="playlist-container--search" class="grid grid-col-repeat-250 mb-4 mt-4">
+                <figure class="playlist-container-template--search w-full">
+                    <img class="playlist-cover--search w-full lg:w-64 lg:h-64 object-cover" />
+                    <div>
+                        <p class="playlist-title--search font-semibold"></p>
+                        <p class="playlist-author--search"></p>
+                    </div>
+                </figure>
+            </div>
             <h3 id="search-track-header" class="mb-4"></h3>
-
-            <div id="search-track-container-table-head" class="hidden border border-solid p-4">
+            <div id="search-track-container-table-head" class="hidden border border-solid p-4 mb-4 mt-4">
                 <div class="flex justify-between mb-2">
                     <span class="text-lg font-semibold">Rating</span>
                     <span class="text-lg font-semibold w-auto lg:w-1/3 ml-6">Title</span>
                     <span class="text-lg font-semibold w-auto lg:w-2/5 mr-6">Artist</span>
-                    <div class="hidden lg:flex">
-                        <span class="text-sm mr-6">Delete</span>
-                        <span class="text-sm mr-4">Vote</span>
-                    </div>
                 </div>
                 <div id="search-track-container" class="mb-4">
                     <!-- lists all tracks that matches with search -->
                 </div>
-            </div>
-            <h3 id="search-playlist-header" class="mb-4"></h3>
-            <div id="search-playlist-container" class="mb-4">
-                <!-- lists all playlists that matches with search -->
             </div>
         </div>
         <div id="main-view" class="max-w-xs lg:max-w-2xl m-auto mb-6--custom">

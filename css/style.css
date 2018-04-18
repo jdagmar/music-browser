@@ -10,6 +10,10 @@ p, #artist-view-link, input, label, .choices__list--single .choices__item, a {
     object-fit: cover; 
 }
 
+.object-cover {
+    object-fit: cover;
+}
+
 .comment-field li:last-child {
     border: none;
 }
