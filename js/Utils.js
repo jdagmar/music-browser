@@ -25,7 +25,7 @@ const Utils = {
         return true;
     },
     isDateValid(date) {
-        if (!/^[0-9]{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/.test(date)) {
+        if (date && !/^[0-9]{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/.test(date)) {
             return false;
         }
         return true;
