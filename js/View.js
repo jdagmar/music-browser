@@ -1,6 +1,5 @@
 
 const View = {
-    // onArtistDelete = functions which deletes an artist
     init() {
         const notifications = Array.from(document.querySelectorAll('.notification'));
         notifications.forEach(notification =>
@@ -39,7 +38,7 @@ const View = {
         artistList.innerHTML = '';
         listAllArtist.forEach(artistContainer => artistList.appendChild(artistContainer));
     },
-    displayAlbums(albumList, albums, onAlbumVote) {
+    displayAlbums(albumList, albums, onAlbumVote, onAlbumDelete) {
         const albumSectionHeader = document.getElementById('album-section-header');
         albumSectionHeader.innerHTML = `Albums (${albums.length})`;
 
@@ -65,8 +64,7 @@ const View = {
 
             const deleteAlbumButton = albumContainer.querySelector('.delete-album');
             deleteAlbumButton.addEventListener('click', () => {
-                Api.deleteAlbum(album._id)
-                    .then(() => albumContainer.parentNode.removeChild(albumContainer));
+                onAlbumDelete(album._id, albumContainer);
             });
 
             const albumVoteForm = albumContainer.querySelector('.album-vote-form');
@@ -89,7 +87,7 @@ const View = {
         albumList.innerHTML = '';
         listAllAlbums.forEach(albumContainer => albumList.appendChild(albumContainer));
     },
-    displayTracks(trackList, tracks) {
+    displayTracks(trackList, tracks, onTrackVote, onTrackDelete) {
         const trackSectionHeader = document.getElementById('track-section-header');
         trackSectionHeader.innerHTML = `Tracks (${tracks.length})`;
 
@@ -118,8 +116,7 @@ const View = {
 
             const deleteTrackButton = trackItem.querySelector('.delete-track');
             deleteTrackButton.addEventListener('click', () => {
-                Api.deleteTrack(track._id)
-                    .then(() => trackItem.parentNode.removeChild(trackItem));
+                onTrackDelete(track._id, trackItem);
             });
 
             const trackVoteForm = trackItem.querySelector('.track-vote-form');
@@ -133,7 +130,7 @@ const View = {
             trackVoteForm.addEventListener('choice', event => {
                 event.preventDefault();
                 const vote = event.detail.choice.value;
-                Api.voteOnTrack(track._id, vote.value);
+                onTrackVote(track._id, vote.value);
             });
 
             return trackItem;
@@ -142,7 +139,7 @@ const View = {
         trackList.innerHTML = '';
         listAllTracks.forEach(trackItem => trackList.appendChild(trackItem));
     },
-    displayPlaylistComments(commentSection, comments) {
+    displayPlaylistComments(commentSection, comments, onCommentDelete) {
         const listAllComments = comments.map(comment => {
             const commentItem = document.querySelector('.comment-item-template').cloneNode(true);
             commentItem.classList.remove('comment-item-template');
@@ -154,9 +151,7 @@ const View = {
             const deleteCommentButton = commentItem.querySelector('.delete-comment');
 
             deleteCommentButton.addEventListener('click', () => {
-                Api.deletePlaylistComment(comment._id)
-                    .then(() => Api.getCommentsByPlaylistId(comment.playlist))
-                    .then(comments => View.displayPlaylistComments(commentSection, comments));
+                onCommentDelete(comment, commentSection);
             });
 
             return commentItem;
@@ -169,7 +164,8 @@ const View = {
         commentField.innerHTML = '';
         listAllComments.forEach(comment => commentField.appendChild(comment));
     },
-    displayPlaylists(playlistList, playlists) {
+    displayPlaylists(playlistList, playlists, onCommentDelete, onPlaylistVote, onPlaylistDelete,
+    onPostPlaylistComment) {
         const playlistSectionHeader = document.getElementById('playlist-section-header');
         playlistSectionHeader.innerHTML = `Playlists (${playlists.length})`;
 
@@ -217,7 +213,7 @@ const View = {
             playlistVoteForm.addEventListener('choice', event => {
                 event.preventDefault();
                 const vote = event.detail.choice.value;
-                Api.voteOnPlaylist(playlist._id, vote.value);
+                onPlaylistVote(playlist, vote);
             });
 
             const playlistCreator = playlistItem.querySelector('.playlist-creator');
@@ -232,14 +228,13 @@ const View = {
 
             const deletePlaylistButton = playlistItem.querySelector('.delete-playlist');
             deletePlaylistButton.addEventListener('click', () => {
-                Api.deletePlaylist(playlist._id)
-                    .then(() => playlistItem.parentNode.removeChild(playlistItem));
+                onPlaylistDelete(playlist, playlistItem);
             });
 
             const playlistContainer = playlistItem.querySelector('.playlist');
 
             const commentSection = playlistItem.querySelector('.comment-section');
-            View.displayPlaylistComments(commentSection, playlist.comments);
+            View.displayPlaylistComments(commentSection, playlist.comments, onCommentDelete);
 
             const commentForm = playlistItem.querySelector('.comment-form');
 
@@ -260,9 +255,7 @@ const View = {
                     return;
                 }
 
-                Api.postPlaylistComment(playlist._id, body.value, username.value)
-                    .then(() => Api.getCommentsByPlaylistId(playlist._id))
-                    .then(comments => View.displayPlaylistComments(commentSection, comments));
+                onPostPlaylistComment(playlist, body, username, commentSection, onCommentDelete);
 
                 notifactionEmptyUser.classList.add('hidden');
                 notifactionEmptyBody.classList.add('hidden');
@@ -492,7 +485,6 @@ const View = {
             trackArtistSelect.setChoices(filteredArtists, 'value', 'label', true);
             trackArtistSelect.enable();
         });
-
 
         const choices = artists.map(artist => {
             return {
