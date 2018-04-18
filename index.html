@@ -38,7 +38,7 @@
     <main class="m-auto">
         <section class="user-messages">
             <div id="failed-loading-msg" class="hidden w-1/2 m-auto">
-                <div class="flex justify-between text-center border border-solid bg-red p-4 fixed z-1 pin-x pin-t">
+                <div class="flex justify-between text-center border border-solid bg-red p-4 fixed z-1--custom pin-x pin-t">
                     <div class="flex justify-center">
                         <span class="self-center text-white">Something went wrong, try again later</span>
                         <img class="w-6 ml-2" src="images/ic_error_outline.svg" alt="white stop sign" />
@@ -50,7 +50,7 @@
                 </div>
             </div>
             <div id="add-success-msg" class="hidden w-full">
-                <div class="flex justify-between text-center border border-solid bg-green p-4 fixed z-1 pin-x pin-t">
+                <div class="flex justify-between text-center border border-solid bg-green p-4 fixed z-1--custom pin-x pin-t">
                     <div class="flex justify-center">
                         <p class="self-center text-white">Your contribution was added successfully </p>
                         <img class="w-8 h-8" src="images/008__choose.svg" alt="white checkmark" />
@@ -62,7 +62,7 @@
                 </div>
             </div>
             <div id="comment-form-notifications">
-                <div class="fixed z-1 pin-b-60--custom pin-l pin-r">
+                <div class="fixed z-1--custom pin-b-60--custom pin-l pin-r">
                     <div class="notification notification-empty-username hidden">
                         <div class="flex justify-between bg-red text-white p-2 rounded-sm m-8">
                             <div class="flex justify-center mr-4">
@@ -90,7 +90,7 @@
                 </div>
             </div>
             <div id="artist-form-notifications" class="mb-auto mr-auto ml-auto">
-                <div class="fixed z-1 pin-b-60--custom pin-l pin-r">
+                <div class="fixed z-1--custom pin-b-60--custom pin-l pin-r">
                     <div class="notification notification-empty-name hidden w-full lg:ml-auto lg:w-2/5">
                         <div class="flex justify-between bg-red text-white p-2 rounded-sm m-8">
                             <div class="flex justify-center">
@@ -118,7 +118,7 @@
                 </div>
             </div>
             <div id="album-form-notifications" class="mb-auto mr-auto ml-auto">
-                <div class="fixed z-1 pin-b-60--custom pin-l pin-r">
+                <div class="fixed z-1--custom pin-b-60--custom pin-l pin-r">
                     <div class="notification notification-empty-title hidden">
                         <div class="flex justify-between bg-red text-white p-2 rounded-sm m-8">
                             <div class="flex justify-center mr-4">
@@ -146,7 +146,7 @@
                 </div>
             </div>
             <div id="track-form-notifications" class="mb-auto mr-auto ml-auto">
-                <div class="fixed z-1 pin-b-60--custom pin-l pin-r">
+                <div class="fixed z-1--custom pin-b-60--custom pin-l pin-r">
                     <div class="notification notification-empty-track-title hidden">
                         <div class="flex justify-between bg-red text-white p-2 rounded-sm m-8">
                             <div class="flex justify-center mr-4">
@@ -186,7 +186,7 @@
                 </div>
             </div>
             <div id="playlist-form-notifications" class="mb-auto mr-auto ml-auto">
-                <div class="fixed z-1 pin-b-60--custom pin-l pin-r">
+                <div class="fixed z-1--custom pin-b-60--custom pin-l pin-r">
                     <div class="notification notification-empty-playlist-title hidden">
                         <div class="flex justify-between bg-red text-white p-2 rounded-sm m-8">
                             <div class="flex justify-center mr-4">
@@ -217,18 +217,18 @@
         <div id="search-view" class="hidden max-w-xs lg:max-w-2xl m-auto">
             <h3 id="search-nothing-found-message" class="mb-4"></h3>
             <h3 id="search-artist-header" class="mb-4"></h3>
-            <div id="search-artist-container" class="grid grid-col-repeat-250 mb-4">
+            <div id="search-artist-container" class="grid--custom grid-col-repeat-250--custom mb-4">
                 <!-- lists all artists that matches with search -->
             </div>
             <h3 id="search-album-header" class="mb-4"></h3>
-            <div id="search-album-container" class="grid grid-col-repeat-250 mb-4">
+            <div id="search-album-container" class="grid--custom grid-col-repeat-250--custom mb-4">
                 <!-- lists all albums that matches with search -->
             </div>
             <h3 id="search-playlist-header" class="mb-4 mt-4"></h3>
             <div id="search-playlist-container" class="mb-4">
                 <!-- lists all playlists that matches with search -->
             </div>
-            <div id="playlist-container--search" class="grid grid-col-repeat-250 mb-4 mt-4">
+            <div id="playlist-container--search" class="grid--custom grid-col-repeat-250--custom mb-4 mt-4">
                 <figure class="playlist-container-template--search w-full">
                     <img class="playlist-cover--search w-full lg:w-64 lg:h-64 object-cover" />
                     <div>
@@ -253,7 +253,7 @@
             <section class="mt-4 mb-8">
                 <h2>Be a part of music browser</h2>
                 <p class="mb-4">Are you missing someone or something on the site? Anyone can add material to the site.</p>
-                <div id="form-links" class="grid grid-space grid-col-repeat-250 m-auto">
+                <div id="form-links" class="grid--custom grid-space--custom grid-col-repeat-250--custom m-auto">
                     <div class="border border-solid text-center p-2 cursor-pointer" data-view="all-artists" data-location="artist-form-location">
                         <img class="w-48 block m-auto" src="images/103__user.svg" alt="click to add a new artist" />
                         <span class="text-xl">Add a new artist</span>
@@ -332,14 +332,14 @@
                 <h2 id="artist-section-header" class="mb-4">
                     <!-- artist (number of artists) will render here -->
                 </h2>
-                <div id="artist-list" class="grid grid-col-repeat-250">
+                <div id="artist-list" class="grid--custom grid-col-repeat-250">
                     <!-- all artists are rendered here -->
                 </div>
             </section>
             <section class="artist-template-section hidden">
                 <figure class="artist-container-template inline-block m-auto w-full">
                     <!-- artist image renders here -->
-                    <img class="artist-image border border-solid w-full lg:w-64 lg:h-64" />
+                    <img class="artist-image object-cover--custom border border-solid w-full lg:w-64 lg:h-64" />
                     <figcaption class="artist-image-caption">
                         <!-- artist name renders here -->
                     </figcaption>
@@ -353,7 +353,7 @@
                 <div id="artist-form-location">
                     <h2 class="mb-2">Add a new artist</h2>
                     <p class="mb-4">Fields with an asterix (*) must be filled for artist to be added</p>
-                    <form id="add-artist-form" class="lg:w-128">
+                    <form id="add-artist-form" class="lg:w-32--custom">
                         <label class="inline-block mb-2" for="artist-name">Full name *</label>
                         <input id="artist-name" name="artist-name" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text" />
                         <label class="inline-block mb-2" for="artist-birthdate">Birthdate (YYYY-MM-DD)</label>
@@ -388,14 +388,14 @@
                 <h2 id="album-section-header" class="mb-4">
                     <!-- artist (number of artists) will render here -->
                 </h2>
-                <div id="album-list" class="grid grid-col-repeat-250">
+                <div id="album-list" class="grid--custom grid-col-repeat-250">
                     <!-- all albums are rendered here -->
                 </div>
             </section>
             <section class="album-template-section hidden">
                 <figure class="album-container-template m-auto w-full">
                     <!-- album image renders here -->
-                    <img class="album-image border border-solid w-full lg:w-64 lg:h-64 m-auto" />
+                    <img class="album-image object-cover--custom border border-solid w-full lg:w-64 lg:h-64 m-auto" />
                     <div class="flex justify-between flex-wrap w-64">
                         <div class="album-image-caption self-center flex justify-between w-full leading-normal">
                             <!-- album title renders here -->
@@ -426,7 +426,7 @@
                 <div id="album-form-location">
                     <h2 class="mb-2">Add a new album</h2>
                     <p class="mb-4">Fields with an asterix (*) must be filled for album to be added</p>
-                    <form id="add-album-form" class="lg:w-128">
+                    <form id="add-album-form" class="w-full">
                         <label class="inline-block mb-2" for="album-title">Album title *</label>
                         <input id="album-title" name="album-title" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text" />
                         <label class="inline-block mb-2" for="artist-select">Artist(s) *</label>
@@ -460,7 +460,7 @@
                         <span class="font-semibold w-auto lg:w-1/3">Artist</span>
 
                     </div>
-                    <ul id="track-list" class="p-0 overflow-auto max-h-30">
+                    <ul id="track-list" class="p-0 overflow-auto max-h-30--custom">
                         <!-- all tracks are rendered here -->
                     </ul>
                 </div>
@@ -508,7 +508,7 @@
                 <div id="track-form-location">
                     <h2 class="mb-2">Add a new track</h2>
                     <p class="mb-4">Fields with an asterix (*) must be filled for the track to be added</p>
-                    <form id="add-track-form" class="lg:w-128">
+                    <form id="add-track-form" class="w-full">
                         <label class="inline-block mb-2" for="track-title">Track title *</label>
                         <input id="track-title" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text" />
                         <label class="inline-block mb-2" for="album-select">Album *</label>
@@ -537,18 +537,18 @@
                 <h2 id="playlist-section-header" class="mb-4">
                     <!-- playlists (number of playlists) are rendered here -->
                 </h2>
-                <div id="playlists-container" class="grid grid-space rid-row-repeat-400">
+                <div id="playlists-container" class="grid--custom grid-space--custom rid-row-repeat-400">
                     <!-- all playlists are rendered here -->
                 </div>
             </section>
             <section class="playlist-template-section hidden">
-                <div class="playlist-container-template flex flex-col lg:flex-row border border-solid p-2 m-auto min-h-16 w-full">
+                <div class="playlist-container-template flex flex-col lg:flex-row border border-solid p-2 m-auto min-h-16--custom w-full">
                     <div class="w-full lg:w-2/3 mr-2">
                         <div class="m-2">
                             <div class="relative flex flex-col lg:flex-row">
                                 <figure class="w-full h-full lg:w-48 lg:h-48 border border-solid">
                                     <!-- the image of the playlist is rendered here -->
-                                    <img class="playlist-cover w-full h-full" />
+                                    <img class="playlist-cover object-cover--custom w-full h-full" />
                                 </figure>
                                 <div class="lg:ml-4 w-full lg:w-auto mt-4 lg:mt-0">
                                     <div class="flex w-full lg:w-auto">
@@ -559,7 +559,7 @@
                                             <img class="w-8" src="images/004__arrow_down.svg" />
                                         </button>
                                     </div>
-                                    <div class="hidden lg:block more-content w-full lg:w-auto lg:pin-r lg:pin-t z-1 lg:absolute mb-4">
+                                    <div class="hidden lg:block more-content w-full lg:w-auto lg:pin-r lg:pin-t z-1--custom lg:absolute mb-4">
                                         <div class="flex">
                                             <button class="delete-playlist flex border border-solid mr-2 pr-2 pl-2 rounded-sm">
                                                 <span class="text-sm self-center">Delete</span>
@@ -601,8 +601,8 @@
                             <span class="text-lg font-semibold w-1/3">Title</span>
                             <span class="text-lg font-semibold w-1/3">Artist</span>
                         </div>
-                        <ul class="playlist p-0 mt-2 max-h-30 overflow-scroll">
-                            <li class="playlist-item-template flex justify-between list-reset mr-2 ml-2 mt-4 mb-4">
+                        <ul class="playlist p-0 mt-2 max-h-30--custom overflow-scroll">
+                            <li class="playlist-item-template hidden flex justify-between list-reset mr-2 ml-2 mt-4 mb-4">
                                 <p class="track-title w-1/3">
                                     <!-- the title of the track is rendered here -->
                                 </p>
@@ -623,7 +623,7 @@
                         </form>
                         <div class="comment-section">
                             <h3 class="comment-field-heading mb-4 mt-4">comments</h3>
-                            <ul class="p-0 comment-field max-h-30 overflow-scroll">
+                            <ul class="p-0 comment-field max-h-30--custom overflow-scroll">
                                 <li class="comment-item-template flex flex-col list-reset mt-2 border-b border-solid">
                                     <p class="username mb-2 font-semibold">
                                         <!-- username of the comments is rendered here -->
@@ -645,7 +645,7 @@
                 <div id="playlist-form-location">
                     <h2 class="mb-2">Create a playlist</h2>
                     <p class="mb-4">Fields with an asterix (*) must be filled for the playlist to be added</p>
-                    <form id="add-playlist-form" class="lg:w-128">
+                    <form id="add-playlist-form" class="w-full">
                         <label class="inline-block mb-2" for="playlist-title">Playlist title *</label>
                         <input id="playlist-title" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text" />
                         <label class="inline-block mb-2" for="playlist-created-by">Your username *</label>
@@ -663,7 +663,7 @@
                 </div>
             </section>
         </div>
-        <nav id="tab-menu" class="flex justify-between lg:hidden fixed z-1 w-full h-12 pin-b bg-white border border-solid">
+        <nav id="tab-menu" class="flex justify-between lg:hidden fixed z-1--custom w-full h-12 pin-b bg-white border border-solid">
             <img data-view="main-view" class="w-1/5 block flex-shrink" src="images/101__home.svg" />
             <img data-view="all-artists" class="w-1/5 block flex-shrink" src="images/103__user.svg" />
             <img data-view="all-albums" class="w-1/5 block flex-shrink p-2" src="images/ic_album_black.svg" />
