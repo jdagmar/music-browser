@@ -545,25 +545,25 @@
                 <div class="playlist-container-template flex flex-col lg:flex-row border border-solid p-2 m-auto min-h-16 w-full">
                     <div class="w-full lg:w-2/3 mr-2">
                         <div class="m-2">
-                            <div class="flex flex-wrap">
-                                <figure class="w-48 h-48 border border-solid">
+                            <div class="relative flex flex-col lg:flex-row">
+                                <figure class="w-full h-full lg:w-48 lg:h-48 border border-solid">
                                     <!-- the image of the playlist is rendered here -->
                                     <img class="playlist-cover w-full h-full" />
                                 </figure>
-                                <div class="ml-4">
+                                <div class="lg:ml-4 w-full lg:w-auto mt-4 lg:mt-0">
                                     <div class="flex w-full lg:w-auto">
-                                        <h2 class="playlist-title mb-2">
+                                        <h3 class="playlist-title mb-2 lg:w-64 break-words">
                                             <!-- the playlists title is rendered here -->
-                                        </h2>
-                                        <button class="show-more inline-block lg:hidden">
+                                        </h3>
+                                        <button class="show-more inline-block block lg:hidden">
                                             <img class="w-8" src="images/004__arrow_down.svg" />
                                         </button>
                                     </div>
-                                    <div class="hidden lg:block more-content w-full z-1 fixed lg:absolute bg-white">
+                                    <div class="hidden lg:block more-content w-full lg:w-auto lg:pin-r lg:pin-t z-1 lg:absolute mb-4">
                                         <div class="flex">
                                             <button class="delete-playlist flex border border-solid mr-2 pr-2 pl-2 rounded-sm">
-                                                <span class="text-sm self-center">Delete playlist</span>
-                                                <img class="w-8 align-middle" src="images/007__close.svg" alt="click to delete playlist" />
+                                                <span class="text-sm self-center">Delete</span>
+                                                <img class="w-8" src="images/007__close.svg" alt="click to delete playlist" />
                                             </button>
                                             <form class="playlist-vote-form">
                                                 <select class="playlist-vote" name="playlist-rating">
@@ -582,14 +582,17 @@
                                             </form>
                                         </div>
                                     </div>
-                                    <p class="playlist-creator w-full lg:w-auto">
+                                    <p class="playlist-creator w-full lg:w-auto lg:w-64 break-words">
                                         <!-- the user who has created playlist is rendered here -->
                                     </p>
-                                    <p class="playlist-rating self-center">
+                                    <p class="playlist-rating self-center lg:w-64 break-words">
                                         <!-- number of votes for playlist is rendered here -->
                                     </p>
-                                    <p class="playlist-genres">
+                                    <p class="playlist-genres lg:w-64 break-words">
                                         <!-- the playlists genres is rendered here -->
+                                    </p>
+                                    <p class="playlist-tracklist-count lg:w-64 break-words">
+
                                     </p>
                                 </div>
                             </div>
@@ -610,7 +613,7 @@
                         </ul>
                     </div>
                     <div class="lg:m-2 w-full lg:w-1/3">
-                        <h2 class="mb-2">Comment on this playlist</h2>
+                        <h3 class="mb-2">Comment on this playlist</h3>
                         <form class="comment-form">
                             <label class="inline-block mb-2" for="username">Name</label>
                             <input class="border border-solid w-full mb-2 p-2 rounded" name="username" id="username" type="text" />

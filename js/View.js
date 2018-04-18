@@ -191,6 +191,10 @@ const View = {
             const playlistRating = playlistItem.querySelector('.playlist-rating');
             playlistRating.innerHTML = `Rating: ${Utils.getAverageRating(playlist)} / 10`;
 
+            const playlistTracklistCount = playlistItem.querySelector('.playlist-tracklist-count');
+            const numberOfSongs = (playlist.tracks.length === 1 ? 'track' : 'tracks');
+            playlistTracklistCount.innerHTML = `${playlist.tracks.length} ${numberOfSongs}`;
+
             const showMoreButton = playlistItem.querySelector('.show-more');
             const moreContent = playlistItem.querySelector('.more-content');
 
