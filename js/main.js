@@ -1,48 +1,60 @@
+const onArtistDelete = (artistId, artistContainer) => {
+    Api.deleteArtist(artistId)
+        .then(() => artistContainer.parentNode.removeChild(artistContainer));
+};
+
+const onAlbumDelete = (albumId, albumContainer) => {
+    Api.deleteAlbum(albumId)
+        .then(() => albumContainer.parentNode.removeChild(albumContainer));
+}
+
+const onTrackDelete = (trackId, trackItem) => {
+    Api.deleteTrack(trackId)
+        .then(() => trackItem.parentNode.removeChild(trackItem));
+}
+
+const onPlaylistDelete = (playlist, playlistItem) =>
+    Api.deletePlaylist(playlist._id)
+        .then(() => playlistItem.parentNode.removeChild(playlistItem));
+
+const onCommentDelete = (comment, commentSection) =>
+    Api.deletePlaylistComment(comment._id)
+        .then(() => Api.getCommentsByPlaylistId(comment.playlist))
+        .then(comments => View.displayPlaylistComments(commentSection, comments))
+
+const onPostPlaylistComment = (playlist, body, username, commentSection, onCommentDelete) =>
+    Api.postPlaylistComment(playlist._id, body.value, username.value)
+        .then(() => Api.getCommentsByPlaylistId(playlist._id))
+        .then(comments => View.displayPlaylistComments(commentSection, comments, onCommentDelete))
+
+const onAlbumVote = (albumId, vote) => Api.voteOnAlbum(albumId, vote);
+const onTrackVote = (trackId, vote) => Api.voteOnTrack(trackId, vote);
+const onPlaylistVote = (playlist, vote) => Api.voteOnPlaylist(playlist._id, vote);
 
 const artistList = document.getElementById('artist-list');
 View.showSpinner(artistList);
-Api.getArtists().then(artists => View.displayArtists(artistList, artists,
-    (artistId, artistContainer) => {
-        Api.deleteArtist(artistId)
-            .then(() => artistContainer.parentNode.removeChild(artistContainer));
-    }));
+Api.getArtists().then(artists => View.displayArtists(artistList, artists, onArtistDelete));
 
 const albumList = document.getElementById('album-list');
 View.showSpinner(albumList);
 Api.getAlbums().then(albums => View.displayAlbums(albumList, albums,
-    (albumId, vote) => Api.voteOnAlbum(albumId, vote),
-    (albumId, albumContainer) => {
-        Api.deleteAlbum(albumId)
-            .then(() => albumContainer.parentNode.removeChild(albumContainer));
-    },
-));
+    onAlbumVote
+    , onAlbumDelete));
 
 const trackList = document.getElementById('track-list');
 View.showSpinner(trackList);
 Api.getTracks().then(tracks => View.displayTracks(trackList, tracks,
-    (trackId, vote) => Api.voteOnTrack(trackId, vote),
-    (trackId, trackItem) => {
-        Api.deleteTrack(trackId)
-            .then(() => trackItem.parentNode.removeChild(trackItem));
-    },
+    onTrackVote,
+    onTrackDelete
 ));
 
 const playlistList = document.getElementById('playlists-container');
 View.showSpinner(playlistList);
 Api.getPlaylists().then(playlists => View.displayPlaylists(playlistList, playlists,
-    (comment, commentSection) =>
-        Api.deletePlaylistComment(comment._id)
-            .then(() => Api.getCommentsByPlaylistId(comment.playlist))
-            .then(comments => View.displayPlaylistComments(commentSection, comments)),
-    (playlist, vote) =>
-        Api.voteOnPlaylist(playlist._id, vote),
-    (playlist, playlistItem) =>
-        Api.deletePlaylist(playlist._id)
-            .then(() => playlistItem.parentNode.removeChild(playlistItem)),
-    (playlist, body, username, commentSection, onCommentDelete) =>
-        Api.postPlaylistComment(playlist._id, body.value, username.value)
-            .then(() => Api.getCommentsByPlaylistId(playlist._id))
-            .then(comments => View.displayPlaylistComments(commentSection, comments, onCommentDelete)),
+    onCommentDelete,
+    onPlaylistVote,
+    onPlaylistDelete,
+    onPostPlaylistComment,
 ));
 
 const topTenPLaylistsContainer = document.getElementById('top-ten-playlists-container');
@@ -58,7 +70,26 @@ View.showSpinner(topTenAlbumsContainer);
 Api.getAlbums().then(albums => View.displayTopTenAlbums(topTenAlbumsContainer, albums));
 
 Promise.all([Api.getAlbums(), Api.getArtists(), Api.getTracks()]).then(result => {
-    Forms.init(result[0], result[1], result[2]);
+    Forms.init(result[0], result[1], result[2],
+        searchWord =>
+            Api.searchAll(searchWord)
+                .then(result => View.displaySearchResults(result)),
+        artistForm =>
+            Api.addArtist(artistForm.name, artistForm.born, artistForm.genres, artistForm.gender, artistForm.countryBorn,
+                artistForm.spotifyURL, artistForm.artistImage)
+                .then(() => Api.getArtists().then(artists => View.displayArtists(artistList, artists, onArtistDelete))),
+        albumForm =>
+            Api.addAlbum(albumForm.title, albumForm.artists, albumForm.releaseDate, albumForm.genres, albumForm.spotifyURL,
+                albumForm.coverImage)
+                .then(() => Api.getAlbums().then(albums => View.displayAlbums(albumList, albums, onAlbumDelete))),
+        trackForm => Api.addTrack(trackForm.title, trackForm.artists, trackForm.album, trackForm.genres, trackForm.coverImage,
+            trackForm.spotifyURL, trackForm.youtubeURL)
+            .then(() => Api.getTracks().then(tracks => View.displayTracks(trackList, tracks, onTrackVote, onTrackDelete))),
+        playlistForm => Api.addPlaylist(playlistForm.title, playlistForm.tracks, playlistForm.genres, playlistForm.coverImage,
+            playlistForm.createdBy)
+            .then(() => Api.getPlaylists().then(playlists => View.displayPlaylists(playlistList, playlists, onCommentDelete,
+                onPlaylistVote, onPlaylistDelete, onPostPlaylistComment)))
+    )
 });
 
 View.init();

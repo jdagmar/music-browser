@@ -15,7 +15,7 @@ const Api = {
         });
     }),
     get(type) {
-        return Api.responseToJson(fetch(`https://folksa.ga/api/${type}?key=flat_eric&limit=200&populateArtists=true`))
+        return Api.responseToJson(fetch(`https://folksa.ga/api/${type}?key=flat_eric&limit=500&populateArtists=true`))
             .catch(() => {
                 return [];
             });

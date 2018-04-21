@@ -1,12 +1,12 @@
 const Forms = {
-    init(albums, artists, tracks) {
-        Forms.createSearchForm();
-        Forms.createArtistForm();
-        Forms.createAlbumForm(artists);
-        Forms.createTrackForm(albums, artists);
-        Forms.createPlaylistForm(tracks);
+    init(albums, artists, tracks, onSearch, onArtistAdd, onAlbumAdd, onTrackAdd, onPlaylistAdd) {
+        Forms.createSearchForm(onSearch);
+        Forms.createArtistForm(onArtistAdd);
+        Forms.createAlbumForm(artists, onAlbumAdd);
+        Forms.createTrackForm(albums, artists, onTrackAdd);
+        Forms.createPlaylistForm(tracks, onPlaylistAdd);
     },
-    createSearchForm() {
+    createSearchForm(onSearch){
         const searchForm = document.getElementById('search-form');
         searchForm.addEventListener('submit', event => {
             event.preventDefault();
@@ -18,10 +18,10 @@ const Forms = {
             }
 
             View.switchView('search-view');
-            Api.searchAll(searchWord).then(result => View.displaySearchResults(result));
+            onSearch(searchWord);
         });
     },
-    createArtistForm() {
+    createArtistForm(onArtistAdd) {
         const addArtistForm = document.getElementById('add-artist-form');
         const genderChoices = new Choices('#artist-gender', {
             searchEnabled: false
@@ -50,8 +50,8 @@ const Forms = {
                 return;
             }
 
-            Api.addArtist(name.value, born.value, genres.value, gender.value, countryBorn.value,
-                spotifyURL.value, artistImage.value);
+            onArtistAdd({name: name.value, born: born.value, genres: genres.value, gendr:gender.value, 
+            countryBorn:countryBorn.value, spotifyUrl: spotifyURL.value, artistImage: artistImage.value});
 
             notifactionEmptyName.classList.add('hidden');
             notifactionWrongDate.classList.add('hidden');
@@ -64,7 +64,7 @@ const Forms = {
             artistImage.value = '';
         });
     },
-    createAlbumForm(artists) {
+    createAlbumForm(artists, onAlbumAdd) {
         View.createArtistSelect(artists);
         const addAlbumForm = document.getElementById('add-album-form');
 
@@ -90,8 +90,8 @@ const Forms = {
                 return;
             }
 
-            Api.addAlbum(title.value, artists, releaseDate.value, genres.value, spotifyURL.value,
-                coverImage.value);
+            onAlbumAdd({title: title.value, artist: artists, releaseDate: releaseDate.value, genre:genres.value, 
+                spotifyURL: spotifyURL.value, coverImage: coverImage.value});
 
             notifactionEmptyTitle.classList.add('hidden');
             notifactionEmptyArtists.classList.add('hidden');
@@ -103,7 +103,7 @@ const Forms = {
             coverImage.value = '';
         });
     },
-    createTrackForm(albums, artists) {
+    createTrackForm(albums, artists, onTrackAdd) {
         View.createAlbumSelect(albums);
         View.createTrackArtistSelect(artists);
         const addTrackForm = document.getElementById('add-track-form');
@@ -117,7 +117,6 @@ const Forms = {
             const coverImage = addTrackForm.elements['track-cover-image'];
             const spotifyURL = addTrackForm.elements['track-spotify'];
             const youtubeURL = addTrackForm.elements['track-youtube'];
-            const soundcloudURL = addTrackForm.elements['track-soundcloud'];
 
             const notificationEmptyTrackTitle = document.querySelector('.notification-empty-track-title');
             const notificationEmptyAlbumTitle = document.querySelector('.notification-empty-album-title');
@@ -138,8 +137,8 @@ const Forms = {
                 return;
             }
 
-            Api.addTrack(title.value, artists, album, genres.value, coverImage.value,
-                spotifyURL.value, youtubeURL.value);
+            onTrackAdd({title:title.value, artists: artists, album: album, genres: genres.value, 
+                coverImage: coverImage.value, spotifyURL: spotifyURL.value, youtubeURL: youtubeURL.value});
 
             notificationEmptyTrackTitle.classList.add('hidden');
             notificationEmptyAlbumTitle.classList.add('hidden');
@@ -152,10 +151,9 @@ const Forms = {
             coverImage.value = '';
             spotifyURL.value = '';
             youtubeURL.value = '';
-            soundcloudURL.value = '';
         });
     },
-    createPlaylistForm(tracks) {
+    createPlaylistForm(tracks, onPlaylistAdd) {
         View.createPlaylistTrackSelect(tracks);
         const addPlaylistForm = document.getElementById('add-playlist-form');
 
@@ -180,7 +178,8 @@ const Forms = {
                 return;
             }
 
-            Api.addPlaylist(title.value, tracks, genres.value, coverImage.value, createdBy.value);
+            onPlaylistAdd({title: title.value, tracks: tracks, genres:genres.value, coverImage: coverImage.value,
+            createdBy: createdBy.value})
 
             notificationEmptyPlaylistTitle.classList.add('hidden');
             notificationEmptyPlaylistUsername.classList.add('hidden');
