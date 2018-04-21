@@ -381,17 +381,16 @@
                 </figure>
             </section>
             <section class="flex mt-8">
-                <div id="artist-form-location">
+                <div id="artist-form-location" class="w-full lg:w-1/2">
                     <h2 class="mb-2">Add a new artist</h2>
-                    <p class="mb-4">Fields with an asterix (*) must be filled for artist to be added</p>
-                    <form id="add-artist-form" class="lg:w-32--custom">
-                        <label class="inline-block mb-2" for="artist-name">Full name *</label>
+                    <form id="add-artist-form">
+                        <label class="inline-block mb-2" for="artist-name">Full artist- or bandname (required)</label>
                         <input id="artist-name" name="artist-name" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text" />
                         <label class="inline-block mb-2" for="artist-birthdate">Birthdate (YYYY-MM-DD)</label>
                         <input id="artist-birthdate" name="artist-birthdate" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text"/>
                         <label class="inline-block mb-2" for="artist-genres">Genre(s) sh/e is active in</label>
                         <input id="artist-genres" name="artist-genres" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text"/>
-                        <label class="inline-block mb-2" for="artist-gender">Gender *</label>
+                        <label class="inline-block mb-2" for="artist-gender">Gender</label>
                         <select id="artist-gender" name="artist-gender">
                             <option placeholder>Gender</option>
                             <option value="female">Female</option>
@@ -449,13 +448,12 @@
                 </figure>
             </section>
             <section class="flex mt-8">
-                <div id="album-form-location">
+                <div id="album-form-location" class="w-full lg:w-1/2">
                     <h2 class="mb-2">Add a new album</h2>
-                    <p class="mb-4">Fields with an asterix (*) must be filled for album to be added</p>
-                    <form id="add-album-form" class="w-full">
-                        <label class="inline-block mb-2" for="album-title">Album title *</label>
+                    <form id="add-album-form">
+                        <label class="inline-block mb-2" for="album-title">Album title (required)</label>
                         <input id="album-title" name="album-title" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text" />
-                        <label class="inline-block mb-2" for="artist-select">Artist(s) *</label>
+                        <label class="inline-block mb-2" for="artist-select">Artist(s) (required)</label>
                         <select id="artist-select" name="album-artists" multiple="multiple">
                             <!-- all artists from api is rendered as options here -->
                         </select>
@@ -528,17 +526,16 @@
                 </li>
             </section>
             <section class="flex mt-8">
-                <div id="track-form-location">
+                <div id="track-form-location" class="w-full lg:w-1/2">
                     <h2 class="mb-2">Add a new track</h2>
-                    <p class="mb-4">Fields with an asterix (*) must be filled for the track to be added</p>
-                    <form id="add-track-form" class="w-full">
-                        <label class="inline-block mb-2" for="track-title">Track title *</label>
+                    <form id="add-track-form">
+                        <label class="inline-block mb-2" for="track-title">Track title (required)</label>
                         <input id="track-title" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text" />
-                        <label class="inline-block mb-2" for="album-select">Album *</label>
+                        <label class="inline-block mb-2" for="album-select">Album (required)</label>
                         <select id="album-select" name="tracks-album">
                             <!-- all albums from api is rendered here -->
                         </select>
-                        <label class="inline-block mb-2" for="track-artist-select">Artist(s) *</label>
+                        <label class="inline-block mb-2" for="track-artist-select">Artist(s) (required)</label>
                         <select id="track-artist-select" name="track-artists" multiple="multiple">
                             <!-- all artists from choosen album is rendered here -->
                         </select>
@@ -665,13 +662,12 @@
                 </div>
             </section>
             <section class="flex mt-8">
-                <div id="playlist-form-location">
+                <div id="playlist-form-location" class="w-full lg:w-1/2">
                     <h2 class="mb-2">Create a playlist</h2>
-                    <p class="mb-4">Fields with an asterix (*) must be filled for the playlist to be added</p>
-                    <form id="add-playlist-form" class="w-full">
-                        <label class="inline-block mb-2" for="playlist-title">Playlist title *</label>
+                    <form id="add-playlist-form">
+                        <label class="inline-block mb-2" for="playlist-title">Playlist title (required)</label>
                         <input id="playlist-title" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text" />
-                        <label class="inline-block mb-2" for="playlist-created-by">Your username *</label>
+                        <label class="inline-block mb-2" for="playlist-created-by">Your username (required)</label>
                         <input id="playlist-created-by" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text" />
                         <label class="inline-block mb-2" for="playlist-track-select">Tracks</label>
                         <select id="playlist-track-select" name="playlist-track-select" multiple="multiple">
