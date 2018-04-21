@@ -437,8 +437,11 @@ const View = {
 
         const foundTracks = result.tracks;
         View.displayTracks(searchResultsContainers.searchTrackContainer, foundTracks);
+
         const searchTrackContainerTableHead = document.getElementById('search-track-container-table-head');
-        searchTrackContainerTableHead.classList.remove('hidden');
+        foundTracks.length > 0 ? searchTrackContainerTableHead.classList.remove('hidden') : 
+        searchTrackContainerTableHead.classList.add('hidden');
+          
         const searchTrackHeader = document.getElementById('search-track-header');
         searchTrackHeader.innerHTML = foundTracks.length > 0 ? `Tracks (${foundTracks.length})` : '';
 
