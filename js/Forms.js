@@ -19,6 +19,7 @@ const Forms = {
 
             View.switchView('search-view');
             onSearch(searchWord);
+            searchField.value = '';
         });
     },
     createArtistForm(onArtistAdd) {
