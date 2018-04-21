@@ -51,7 +51,7 @@ p, #artist-view-link, input, label, .choices__list--single .choices__item, a {
     display: grid;
 }
 
-.grid-space--custom {
+.grid-space-1--custom {
     grid-gap: 1rem;
 }
 
