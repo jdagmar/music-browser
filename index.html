@@ -375,9 +375,9 @@
                     <figcaption class="artist-image-caption">
                         <!-- artist name renders here -->
                     </figcaption>
-                    <button class="delete-artist flex border border-solid mr-2 pr-2 pl-2 rounded-sm mb-2 mt-2">
+                    <button class="delete-artist flex justify-between border border-solid mr-2 pr-2 pl-2 rounded-sm mb-2 mt-2 hover:border-grey-darkest">
                         <span class="text-sm self-center">Delete artist</span>
-                        <img class="w-8 mr-2 align-middle" src="images/007__close.svg" alt="click to delete artist" />
+                        <img class="w-8" src="images/007__close.svg" alt="click to delete artist" />
                     </button>
                 </figure>
             </section>
@@ -404,7 +404,7 @@
                         <input id="artist-spotify" name="artist-spotify" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text"/>
                         <label class="inline-block mb-2" for="artist-image">Url to artist image</label>
                         <input id="artist-image" name="artist-image" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text"/>
-                        <input class="border border-solid block w-full mb-4 h-10 rounded" type="submit" value="Create artist" />
+                        <input class="border border-solid block w-full mb-4 h-10 rounded hover:border-grey-darkest" type="submit" value="Create artist" />
                     </form>
                 </div>
             </section>
@@ -426,9 +426,9 @@
                         <div class="album-image-caption self-center flex justify-between w-full leading-normal">
                             <!-- album title renders here -->
                         </div>
-                        <button class="delete-album flex border border-solid mr-2 pr-2 pl-2 rounded-sm mb-2 mt-2">
+                        <button class="delete-album flex justify-between border border-solid mr-2 pr-2 pl-2 rounded-sm mb-2 mt-2 hover:border-grey-darkest">
                             <span class="text-sm self-center">Delete album</span>
-                            <img class="w-8 align-middle" src="images/007__close.svg" alt="click to delete album" />
+                            <img class="w-8" src="images/007__close.svg" alt="click to delete album" />
                         </button>
                         <form class="album-vote-form">
                             <select class="album-vote" name="album-rating">
@@ -466,7 +466,7 @@
                         <input id="album-spotify" name="album-spotify" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text"/>
                         <label class="inline-block mb-2" for="album-cover">Url to coverimage</label>
                         <input id="album-cover" name="album-cover" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text" />
-                        <input class="border border-solid block w-full mb-2 h-10 rounded" type="submit" value="Create album" />
+                        <input class="border border-solid block w-full mb-2 h-10 rounded hover:border-grey-darkest" type="submit" value="Create album" />
                     </form>
                 </div>
             </section>
@@ -503,7 +503,7 @@
                     </button>
                     <div class="more-content pt-2 pb-2 hidden lg:flex w-full md:w-1/6">
                         <div class="flex justify-between">
-                            <button class="delete-track flex justify-between border border-solid rounded-sm pr-2 pl-2 mr-2">
+                            <button class="delete-track flex justify-between border border-solid rounded-sm pr-2 pl-2 mr-2 hover:border-grey-darkest">
                                 <span class="self-center">Delete</span>
                                 <img class="w-8 mr-2" src="images/007__close.svg" alt="click to delete track" />
                             </button>
@@ -548,7 +548,7 @@
                         <input id="track-spotify" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text" />
                         <label class="inline-block mb-2" for="track-youtube">Youtube-url to track</label>
                         <input id="track-youtube" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text" />
-                        <input class="border border-solid block w-full mb-2 h-10 rounded" type="submit" value="Create track" />
+                        <input class="border border-solid block w-full mb-2 h-10 rounded hover:border-grey-darkest" type="submit" value="Create track" />
                     </form>
                 </div>
             </section>
@@ -582,7 +582,7 @@
                                     </div>
                                     <div class="hidden lg:block more-content w-full lg:w-auto lg:pin-r lg:pin-t z-1--custom lg:absolute mb-4">
                                         <div class="flex">
-                                            <button class="delete-playlist flex border border-solid mr-2 pr-2 pl-2 rounded-sm">
+                                            <button class="delete-playlist flex border border-solid mr-2 pr-2 pl-2 rounded-sm hover:border-grey-darkest">
                                                 <span class="text-sm self-center">Delete</span>
                                                 <img class="w-8" src="images/007__close.svg" alt="click to delete playlist" />
                                             </button>
@@ -640,7 +640,7 @@
                             <input class="border border-solid w-full mb-2 p-2 rounded" name="username" id="username" type="text" />
                             <label class="inline-block mb-2" for="comment">Comment</label>
                             <textarea class="border border-solid w-full rounded pl-2" name="body" id="comment" rows="4" cols="60"></textarea>
-                            <input class="border border-solid w-full mb-2 p-2 rounded" type="submit" value="Post comment" />
+                            <input class="border border-solid w-full mb-2 p-2 rounded hover:border-grey-darkest" type="submit" value="Post comment" />
                         </form>
                         <div class="comment-section">
                             <h3 class="comment-field-heading mb-4 mt-4">comments</h3>
@@ -652,9 +652,9 @@
                                     <p class="comment-text">
                                         <!-- the comment is rendered here -->
                                     </p>
-                                    <button class="delete-comment ml-auto flex border border-solid mr-2 pr-2 pl-2 rounded-sm mb-2">
+                                    <button class="delete-comment ml-auto flex justify-between border border-solid mr-2 pr-2 pl-2 rounded-sm mb-2 hover:border-grey-darkest">
                                         <span class="text-sm self-center">Delete comment</span>
-                                        <img class="w-8 align-middle" src="images/007__close.svg" alt="click to delete comment" />
+                                        <img class="w-8" src="images/007__close.svg" alt="click to delete comment" />
                                     </button>
                                 </li>
                             </ul>
@@ -678,7 +678,7 @@
                         <input id="playlist-genres" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text" />
                         <label class="inline-block mb-2" for="playlist-cover-image">Link to coverimage</label>
                         <input id="playlist-cover-image" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text" />
-                        <input class="border border-solid block w-full mb-2 h-10 rounded" type="submit" value="Create playlist">
+                        <input class="border border-solid block w-full mb-2 h-10 rounded hover:border-grey-darkest" type="submit" value="Create playlist">
                     </form>
                 </div>
             </section>
