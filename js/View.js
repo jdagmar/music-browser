@@ -404,6 +404,12 @@ const View = {
             playlistCoverSearch.src = playlist.coverImage;
             playlistCoverSearch.alt = `Playlist imagecover for ${playlist.title}`;
 
+            playlistCoverSearch.onerror = () => {
+                playlistCoverSearch.onerror = undefined;
+                playlistCoverSearch.src = 'images/144__headphone.svg';
+                playlistCoverSearch.alt = 'no image was uploaded, fallback image of user icon is in use';
+            }
+
             playlistItemInSearchResult.addEventListener('click', () => {
                 View.switchView('all-playlists');
 
