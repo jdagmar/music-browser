@@ -8,7 +8,7 @@ p, #artist-view-link, input, label, .choices__list--single .choices__item, a {
 
 .comment-field li:last-child {
     border: none;
-}
+} 
 
 /* 'custommade' tailwind classes */
 .object-cover--custom {

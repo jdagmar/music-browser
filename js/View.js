@@ -300,7 +300,19 @@ const View = {
             .forEach(view =>
                 document.getElementById(view).classList.add('hidden'));
 
-        document.getElementById(currentView).classList.remove('hidden');
+        const viewElement = document.getElementById(currentView);
+        viewElement.classList.remove('hidden');
+
+        Array.from(document.querySelectorAll(`[data-view]`)).forEach(viewLink => {
+            viewLink.classList.remove('underline');
+            viewLink.classList.remove('bg-grey-light');
+        });
+
+        Array.from(document.querySelectorAll(`#tab-menu [data-view="${currentView}"]`))
+            .forEach(viewLink => viewLink.classList.add('bg-grey-light'));
+
+        Array.from(document.querySelectorAll(`#nav [data-view="${currentView}"]`))
+            .forEach(viewLink => viewLink.classList.add('underline'));
     },
     displayTopTenPlaylists(topTenPLaylistsContainer, playlists) {
         playlists.sort(Utils.compareAverageRating);
@@ -439,9 +451,9 @@ const View = {
         View.displayTracks(searchResultsContainers.searchTrackContainer, foundTracks);
 
         const searchTrackContainerTableHead = document.getElementById('search-track-container-table-head');
-        foundTracks.length > 0 ? searchTrackContainerTableHead.classList.remove('hidden') : 
-        searchTrackContainerTableHead.classList.add('hidden');
-          
+        foundTracks.length > 0 ? searchTrackContainerTableHead.classList.remove('hidden') :
+            searchTrackContainerTableHead.classList.add('hidden');
+
         const searchTrackHeader = document.getElementById('search-track-header');
         searchTrackHeader.innerHTML = foundTracks.length > 0 ? `Tracks (${foundTracks.length})` : '';
 
