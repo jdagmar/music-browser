@@ -383,7 +383,7 @@ const View = {
         topTenAlbumsContainer.innerHTML = '';
         topTenAlbums.forEach(topTenAlbumsItem => topTenAlbumsContainer.appendChild(topTenAlbumsItem));
     },
-    displayPlaylistsAsGrid(searchTrackContainer, playlists) {
+    displayPlaylistsAsGrid(playlistContainerInSearch, playlists) {
         const listAllPaylistsInSearch = playlists.map(playlist => {
             const playlistItemInSearchResult = document.querySelector('.playlist-container-template--search').cloneNode(true);
             playlistItemInSearchResult.classList.remove('search-playlist-container-template');
@@ -409,49 +409,43 @@ const View = {
 
             return playlistItemInSearchResult;
         });
-        const playlistContainerInSearch = document.getElementById('playlist-container--search');
+
         playlistContainerInSearch.innerHTML = '';
         listAllPaylistsInSearch.forEach(playlistItemInSearchResult => playlistContainerInSearch.appendChild(playlistItemInSearchResult));
 
     },
+    getSearchResultsContainers() {
+        return {
+            searchArtistContainer: document.getElementById('search-artist-container'),
+            searchAlbumContanier: document.getElementById('search-album-container'),
+            searchTrackContainer: document.getElementById('search-track-container'),
+            searchPlaylistContainer: document.getElementById('search-playlist-container')
+        }
+    },
     displaySearchResults(result) {
-        const searchArtistContainer = document.getElementById('search-artist-container');
+        const searchResultsContainers = View.getSearchResultsContainers();
+
         const foundArtists = result.artists;
-        View.displayArtists(searchArtistContainer, foundArtists);
+        View.displayArtists(searchResultsContainers.searchArtistContainer, foundArtists);
+        const searchArtistHeader = document.getElementById('search-artist-header');
+        searchArtistHeader.innerHTML = foundArtists.length > 0 ? `Artists (${foundArtists.length})` : '';
 
-        if (foundArtists.length > 0) {
-            const searchArtistHeader = document.getElementById('search-artist-header');
-            searchArtistHeader.innerHTML = `Artists (${foundArtists.length})`;
-        }
-
-        const searchAlbumContanier = document.getElementById('search-album-container');
         const foundAlbums = result.albums;
-        View.displayAlbums(searchAlbumContanier, foundAlbums);
+        View.displayAlbums(searchResultsContainers.searchAlbumContanier, foundAlbums);
+        const searchAlbumHeader = document.getElementById('search-album-header');
+        searchAlbumHeader.innerHTML = foundAlbums.length > 0 ? `Albums (${foundAlbums.length})` : '';
 
-        if (foundAlbums.length > 0) {
-            const searchAlbumHeader = document.getElementById('search-album-header');
-            searchAlbumHeader.innerHTML = `Albums (${foundAlbums.length})`;
-        }
-
-        const searchTrackContainer = document.getElementById('search-track-container');
         const foundTracks = result.tracks;
-        View.displayTracks(searchTrackContainer, foundTracks);
+        View.displayTracks(searchResultsContainers.searchTrackContainer, foundTracks);
+        const searchTrackContainerTableHead = document.getElementById('search-track-container-table-head');
+        searchTrackContainerTableHead.classList.remove('hidden');
+        const searchTrackHeader = document.getElementById('search-track-header');
+        searchTrackHeader.innerHTML = foundTracks.length > 0 ? `Tracks (${foundTracks.length})` : '';
 
-        if (foundTracks.length > 0) {
-            const searchTrackContainerTableHead = document.getElementById('search-track-container-table-head');
-            searchTrackContainerTableHead.classList.remove('hidden');
-            const searchTrackHeader = document.getElementById('search-track-header');
-            searchTrackHeader.innerHTML = `Tracks (${foundTracks.length})`;
-        }
-
-        const searchPlaylistContainer = document.getElementById('search-playlist-container');
         const foundPlaylists = result.playlists;
-        View.displayPlaylistsAsGrid(searchPlaylistContainer, foundPlaylists);
-
-        if (foundPlaylists.length > 0) {
-            const searchPlaylistHeader = document.getElementById('search-playlist-header');
-            searchPlaylistHeader.innerHTML = `Playlists (${foundPlaylists.length})`
-        }
+        View.displayPlaylistsAsGrid(searchResultsContainers.searchPlaylistContainer, foundPlaylists);
+        const searchPlaylistHeader = document.getElementById('search-playlist-header');
+        searchPlaylistHeader.innerHTML = foundPlaylists.length > 0 ? `Playlists (${foundPlaylists.length})` : '';
 
         const totalResult = foundArtists.length + foundAlbums.length + foundTracks.length + foundPlaylists.length;
         const nothingFoundMessage = document.getElementById('search-nothing-found-message');

@@ -71,9 +71,13 @@ Api.getAlbums().then(albums => View.displayTopTenAlbums(topTenAlbumsContainer, a
 
 Promise.all([Api.getAlbums(), Api.getArtists(), Api.getTracks()]).then(result => {
     Forms.init(result[0], result[1], result[2],
-        searchWord =>
+        searchWord => {
+            const containers = View.getSearchResultsContainers();
+            Object.keys(containers).map(key => View.showSpinner(containers[key]));
+
             Api.searchAll(searchWord)
-                .then(result => View.displaySearchResults(result)),
+                .then(result => View.displaySearchResults(result))
+        },   
         artistForm =>
             Api.addArtist(artistForm.name, artistForm.born, artistForm.genres, artistForm.gender, artistForm.countryBorn,
                 artistForm.spotifyURL, artistForm.artistImage)
