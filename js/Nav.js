@@ -11,7 +11,7 @@ const Nav = {
         const formLinks = document.querySelectorAll('#form-links [data-view]');
         formLinks.forEach(link =>
             link.addEventListener('click', () => {
-                View.switchView(link.getAttribute('data-view'))
+                View.switchView(link.getAttribute('data-view'));
                 const location = document.getElementById(link.getAttribute('data-location'));
 
                 setTimeout(() => {
