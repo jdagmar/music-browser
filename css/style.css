@@ -6,6 +6,11 @@ p, a, input, label, textarea, #artist-view-link, .choices__list--single .choices
     font-family: 'Roboto';
 }
 
+.playlist-item-template {
+    display: hidden;
+    margin: 0px;
+}
+
 .comment-field li:last-child {
     border: none;
 } 
