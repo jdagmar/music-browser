@@ -6,14 +6,14 @@ const Forms = {
         Forms.createTrackForm(albums, artists, onTrackAdd);
         Forms.createPlaylistForm(tracks, onPlaylistAdd);
     },
-    createSearchForm(onSearch){
+    createSearchForm(onSearch) {
         const searchForm = document.getElementById('search-form');
         searchForm.addEventListener('submit', event => {
             event.preventDefault();
             const searchField = document.getElementById('search-field');
             const searchWord = searchField.value.trim();
-            
-            if(!searchWord){
+
+            if (!searchWord) {
                 return;
             }
 
@@ -41,18 +41,26 @@ const Forms = {
             const notifactionEmptyName = document.querySelector('.notification-empty-name');
             const notifactionWrongDate = document.querySelector('.notification-wrong-date');
 
+            let isValid = true;
+
             if (!Utils.isFieldEmpty(name.value)) {
                 notifactionEmptyName.classList.remove('hidden');
-                return;
+                isValid = false;
             }
 
             if (!Utils.isDateValid(born.value)) {
                 notifactionWrongDate.classList.remove('hidden');
+                isValid = false;
+            }
+
+            if (!isValid) {
                 return;
             }
 
-            onArtistAdd({name: name.value, born: born.value, genres: genres.value, gendr:gender.value, 
-            countryBorn:countryBorn.value, spotifyUrl: spotifyURL.value, artistImage: artistImage.value});
+            onArtistAdd({
+                name: name.value, born: born.value, genres: genres.value, gendr: gender.value,
+                countryBorn: countryBorn.value, spotifyUrl: spotifyURL.value, artistImage: artistImage.value
+            });
 
             notifactionEmptyName.classList.add('hidden');
             notifactionWrongDate.classList.add('hidden');
@@ -81,18 +89,26 @@ const Forms = {
             const notifactionEmptyTitle = document.querySelector('.notification-empty-title');
             const notifactionEmptyArtists = document.querySelector('.notification-empty-artists');
 
+            let isValid = true;
+
             if (!Utils.isFieldEmpty(title.value)) {
                 notifactionEmptyTitle.classList.remove('hidden');
-                return;
+                isValid = false;
             }
 
             if (!Utils.isFieldEmpty(artists)) {
                 notifactionEmptyArtists.classList.remove('hidden');
+                isValid = false;
+            }
+
+            if (!isValid) {
                 return;
             }
 
-            onAlbumAdd({title: title.value, artist: artists, releaseDate: releaseDate.value, genre:genres.value, 
-                spotifyURL: spotifyURL.value, coverImage: coverImage.value});
+            onAlbumAdd({
+                title: title.value, artist: artists, releaseDate: releaseDate.value, genre: genres.value,
+                spotifyURL: spotifyURL.value, coverImage: coverImage.value
+            });
 
             notifactionEmptyTitle.classList.add('hidden');
             notifactionEmptyArtists.classList.add('hidden');
@@ -123,23 +139,31 @@ const Forms = {
             const notificationEmptyAlbumTitle = document.querySelector('.notification-empty-album-title');
             const notificationEmptyTrackArtists = document.querySelector('.notification-empty-track-artists');
 
+            let isValid = true;
+
             if (!Utils.isFieldEmpty(title.value)) {
                 notificationEmptyTrackTitle.classList.remove('hidden');
-                return;
+                isValid = false;
             }
 
             if (!Utils.isSelectEmpty(album)) {
                 notificationEmptyAlbumTitle.classList.remove('hidden');
-                return;
+                isValid = false;
             }
 
             if (!Utils.isSelectEmpty(artists)) {
                 notificationEmptyTrackArtists.classList.remove('hidden');
+                isValid = false;
+            }
+
+            if (!isValid) {
                 return;
             }
 
-            onTrackAdd({title:title.value, artists: artists, album: album, genres: genres.value, 
-                coverImage: coverImage.value, spotifyURL: spotifyURL.value, youtubeURL: youtubeURL.value});
+            onTrackAdd({
+                title: title.value, artists: artists, album: album, genres: genres.value,
+                coverImage: coverImage.value, spotifyURL: spotifyURL.value, youtubeURL: youtubeURL.value
+            });
 
             notificationEmptyTrackTitle.classList.add('hidden');
             notificationEmptyAlbumTitle.classList.add('hidden');
@@ -169,18 +193,26 @@ const Forms = {
             const notificationEmptyPlaylistTitle = document.querySelector('.notification-empty-playlist-title');
             const notificationEmptyPlaylistUsername = document.querySelector('.notification-empty-playlist-username');
 
+            let isValid = true;
+
             if (!Utils.isFieldEmpty(title.value)) {
                 notificationEmptyPlaylistTitle.classList.remove('hidden');
-                return;
+                isValid = false;
             }
 
             if (!Utils.isFieldEmpty(createdBy.value)) {
                 notificationEmptyPlaylistUsername.classList.remove('hidden');
+                isValid = false;
+            }
+
+            if (!isValid) {
                 return;
             }
 
-            onPlaylistAdd({title: title.value, tracks: tracks, genres:genres.value, coverImage: coverImage.value,
-            createdBy: createdBy.value})
+            onPlaylistAdd({
+                title: title.value, tracks: tracks, genres: genres.value, coverImage: coverImage.value,
+                createdBy: createdBy.value
+            })
 
             notificationEmptyPlaylistTitle.classList.add('hidden');
             notificationEmptyPlaylistUsername.classList.add('hidden');
