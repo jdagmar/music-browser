@@ -124,7 +124,7 @@ const View = {
             const trackArtist = trackItem.querySelector('.track-artist');
 
             trackTitle.innerHTML = track.title;
-            trackArtist.innerHTML = track.artists.map(artist => artist.name).join(', ');
+            trackArtist.innerHTML = track.artists.length > 0 ? track.artists.map(artist => artist.name).join(', ') : 'No artist found'
             trackRate.innerHTML = `${Utils.getAverageRating(track)} / 10`;
 
             const showMoreButton = trackItem.querySelector('.show-more');
