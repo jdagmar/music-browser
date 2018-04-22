@@ -1,7 +1,7 @@
 ## Music browser :headphones:
 made by Jessica Gustavsson 
 
-See [repo here](https://github.com/jdagmar/music-browser) or [live here](https://jdagmar.github.io/music-browser/)
+See [repo here](https://github.com/jdagmar/music-browser) or [live here](https://jdagmar.github.io/music-browser/)!
 
 ### Built with
 #### Basic Styling
