@@ -75,7 +75,7 @@ const View = {
 
             const albumRating = albumContainer.querySelector('.album-rating');
             albumRating.innerHTML = `Rating: ${Utils.getAverageRating(album)} / 10`;
-            
+
             const albumSpotifyLink = albumContainer.querySelector('.album-spotify-url');
             const albumSpotifyUrl = album.spotifyURL;
             albumSpotifyLink.href = albumSpotifyUrl;
@@ -216,8 +216,9 @@ const View = {
             playlistRating.innerHTML = `Rating: ${Utils.getAverageRating(playlist)} / 10`;
 
             const playlistTracklistCount = playlistItem.querySelector('.playlist-tracklist-count');
-            const numberOfSongs = (playlist.tracks.length === 1 ? 'track' : 'tracks');
-            playlistTracklistCount.innerHTML = `${playlist.tracks.length} ${numberOfSongs}`;
+            const tracksCounter = playlist.tracks.length;
+            const numberOfSongs = (tracksCounter === 1 ? 'track' : 'tracks');
+            playlistTracklistCount.innerHTML = (tracksCounter < 0 ? `${playlist.tracks.length} ${numberOfSongs}` : '');
 
             const showMoreButton = playlistItem.querySelector('.show-more');
             const moreContent = playlistItem.querySelector('.more-content');
@@ -295,6 +296,13 @@ const View = {
                 username.value = '';
                 body.value = '';
             });
+
+            if (playlist.tracks.length === 0) {
+                const playlistTrackHead = playlistItem.querySelector('.playlist-track-head');
+                playlistTrackHead.classList.add('hidden');
+                const noTracksMessage = playlistItem.querySelector('.no-tracks');
+                noTracksMessage.innerHTML = `${playlist.createdBy} haven't added any tracks yet`;
+            }
 
             playlist.tracks.map(track => {
                 const playlistTrack = playlistContainer.querySelector('.playlist-item-template').cloneNode(true);
