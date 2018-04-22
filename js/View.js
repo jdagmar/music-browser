@@ -175,7 +175,7 @@ const View = {
             const deleteCommentButton = commentItem.querySelector('.delete-comment');
 
             deleteCommentButton.addEventListener('click', () => {
-                onCommentDelete(comment, commentSection);
+                onCommentDelete(comment, commentItem);
             });
 
             return commentItem;
@@ -183,7 +183,7 @@ const View = {
 
         const commentField = commentSection.querySelector('.comment-field');
         const commentFieldHeading = commentSection.querySelector('.comment-field-heading');
-        commentFieldHeading.innerHTML = `Comments (${comments.length})`;
+        commentFieldHeading.innerHTML = comments.length > 0 ? `Comments (${comments.length})` : 'No comments yet';
 
         commentField.innerHTML = '';
         listAllComments.forEach(comment => commentField.appendChild(comment));

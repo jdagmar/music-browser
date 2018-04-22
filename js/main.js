@@ -17,10 +17,9 @@ const onPlaylistDelete = (playlist, playlistItem) =>
     Api.deletePlaylist(playlist._id)
         .then(() => playlistItem.parentNode.removeChild(playlistItem));
 
-const onCommentDelete = (comment, commentSection) =>
+const onCommentDelete = (comment, commentItem) =>
     Api.deletePlaylistComment(comment._id)
-        .then(() => Api.getCommentsByPlaylistId(comment.playlist))
-        .then(comments => View.displayPlaylistComments(commentSection, comments))
+        .then(() => commentItem.parentNode.removeChild(commentItem));
 
 const onPostPlaylistComment = (playlist, body, username, commentSection, onCommentDelete) =>
     Api.postPlaylistComment(playlist._id, body.value, username.value)
