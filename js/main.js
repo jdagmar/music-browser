@@ -71,6 +71,8 @@ Api.getAlbums().then(albums => View.displayTopTenAlbums(topTenAlbumsContainer, a
 Promise.all([Api.getAlbums(), Api.getArtists(), Api.getTracks()]).then(result => {
     Forms.init(result[0], result[1], result[2],
         searchWord => {
+            /* gets all containers in searchView and then adds a loadingspinner to
+            containers with searchresults */
             const containers = View.getSearchResultsContainers();
             Object.keys(containers).map(key => View.showSpinner(containers[key]));
 

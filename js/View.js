@@ -1,6 +1,7 @@
 
 const View = {
     init() {
+        // adds dismissbutton to all notifications which can be dismissed
         const notifications = Array.from(document.querySelectorAll('.notification'));
         notifications.forEach(notification =>
             notification.querySelector('.hide-notification').addEventListener('click', () => {
@@ -13,9 +14,11 @@ const View = {
             artistContainer.classList.remove('artist-container-template');
 
             const artistImage = artistContainer.querySelector('.artist-image');
-            artistImage.src = artist.image || artist.coverImage;
+            artistImage.src = artist.coverImage;
             artistImage.alt = artist.name;
 
+            /* if user don't include image of artist och submits a invalid image src
+            a placeholder image is set */
             artistImage.onerror = () => {
                 artistImage.onerror = undefined;
                 artistImage.src = 'images/103__user.svg';
@@ -29,6 +32,8 @@ const View = {
             const artistSpotifyUrl = artist.spotifyURL;
             artistSpotifyLink.href = artistSpotifyUrl;
 
+            /* if artist has a spotifyUrl and that url is formatted correctly a link to
+            the artist spotify is rendered */
             if (artistSpotifyUrl !== undefined && Utils.isSpotifyUrlValid(artistSpotifyUrl)) {
                 artistSpotifyLink.innerHTML =
                     `Open in Spotify <img class="align-text-bottom w-4"
@@ -51,15 +56,16 @@ const View = {
             albumContainer.classList.remove('album-container-template');
 
             const albumImage = albumContainer.querySelector('.album-image');
-            albumImage.src = album.image || album.coverImage;
+            albumImage.src = album.coverImage;
+            albumImage.alt = album.title;
 
+            /* if user don't include albumcover of and submits a invalid image src
+            (ie returns undefines) a placeholder image is set */
             albumImage.onerror = () => {
                 albumImage.onerror = undefined;
                 albumImage.src = 'images/ic_album_black.svg';
                 albumImage.alt = 'no image was uploaded, fallback image of note icon is in use';
             }
-
-            albumImage.alt = album.title;
 
             const albumTitle = albumContainer.querySelector('.album-title');
             albumTitle.innerHTML = album.title;
@@ -74,6 +80,8 @@ const View = {
             const albumSpotifyUrl = album.spotifyURL;
             albumSpotifyLink.href = albumSpotifyUrl;
 
+            /* if artist has a spotifyUrl and that url is formatted correctly a link to
+            the artist spotify is rendered */
             if (albumSpotifyUrl !== undefined && Utils.isSpotifyUrlValid(albumSpotifyUrl)) {
                 albumSpotifyLink.innerHTML =
                     `Open in Spotify <img class="align-text-bottom w-4"
@@ -85,7 +93,7 @@ const View = {
                 onAlbumDelete(album._id, albumContainer);
             });
 
-            const albumVoteForm = albumContainer.querySelector('.album-vote-form');
+            // makes a new choices.js instance
             const albumRatingSelect = new Choices(albumContainer.querySelector('.album-vote'), {
                 position: 'bottom',
                 searchEnabled: false,
@@ -93,6 +101,7 @@ const View = {
                 shouldSort: false
             });
 
+            const albumVoteForm = albumContainer.querySelector('.album-vote-form');
             albumVoteForm.addEventListener('choice', event => {
                 event.preventDefault();
                 const vote = event.detail.choice.value;
@@ -115,12 +124,12 @@ const View = {
             const trackArtist = trackItem.querySelector('.track-artist');
 
             trackTitle.innerHTML = track.title;
+            // renders either track artist or 'artist not found' if the artist is deleted from Api
             trackArtist.innerHTML = track.artists.length > 0 ? track.artists.map(artist => artist.name).join(', ') : 'No artist found'
             trackRate.innerHTML = `${Utils.getAverageRating(track)} / 10`;
 
             const showMoreButton = trackItem.querySelector('.show-more');
             const moreContent = trackItem.querySelector('.more-content');
-
             showMoreButton.addEventListener('click', () => {
                 if (moreContent.classList.contains('hidden')) {
                     moreContent.classList.remove('hidden');
@@ -134,7 +143,7 @@ const View = {
                 onTrackDelete(track._id, trackItem);
             });
 
-            const trackVoteForm = trackItem.querySelector('.track-vote-form');
+            // creates a new choices.js instance
             const trackRatingSelect = new Choices(trackItem.querySelector('.track-rating'), {
                 position: 'bottom',
                 searchEnabled: false,
@@ -142,6 +151,7 @@ const View = {
                 shouldSort: false
             });
 
+            const trackVoteForm = trackItem.querySelector('.track-vote-form');
             trackVoteForm.addEventListener('choice', event => {
                 event.preventDefault();
                 const vote = event.detail.choice.value;
@@ -158,13 +168,14 @@ const View = {
         const listAllComments = comments.map(comment => {
             const commentItem = document.querySelector('.comment-item-template').cloneNode(true);
             commentItem.classList.remove('comment-item-template');
+
             const username = commentItem.querySelector('.username');
             username.innerHTML = comment.username;
+
             const commentText = commentItem.querySelector('.comment-text');
             commentText.innerHTML = comment.body;
 
             const deleteCommentButton = commentItem.querySelector('.delete-comment');
-
             deleteCommentButton.addEventListener('click', () => {
                 onCommentDelete(comment, commentItem);
             });
@@ -184,18 +195,20 @@ const View = {
         const listAllPlaylists = playlists.map(playlist => {
             const playlistItem = document.querySelector('.playlist-container-template').cloneNode(true);
             playlistItem.classList.remove('playlist-container-template');
+            // saves id for each playlist so it can be linked to in search/top-ten-playlists
             playlistItem.id = `playlist-${playlist._id}`;
 
             const playlistCover = playlistItem.querySelector('.playlist-cover');
             playlistCover.src = playlist.coverImage;
+            playlistCover.alt = `Coverimage for the playlist ${playlist.title}`;
 
+            /* if user don't include image of artist and submits a invalid image src
+            a placeholder image is set */
             playlistCover.onerror = () => {
                 playlistCover.onerror = undefined;
                 playlistCover.src = 'images/144__headphone.svg';
                 playlistCover.alt = 'no image was uploaded, fallback image of headphones icon is in use';
             }
-
-            playlistCover.alt = `Coverimage for the playlist ${playlist.title}`;
 
             const playlistTitle = playlistItem.querySelector('.playlist-title');
             playlistTitle.innerHTML = playlist.title;
@@ -219,7 +232,7 @@ const View = {
                 }
             });
 
-            const playlistVoteForm = playlistItem.querySelector('.playlist-vote-form');
+            // creates a new choices.js instance
             const playlistRatingSelect = new Choices(playlistItem.querySelector('.playlist-vote'), {
                 position: 'bottom',
                 searchEnabled: false,
@@ -227,6 +240,7 @@ const View = {
                 shouldSort: false
             });
 
+            const playlistVoteForm = playlistItem.querySelector('.playlist-vote-form');
             playlistVoteForm.addEventListener('choice', event => {
                 event.preventDefault();
                 const vote = event.detail.choice.value;
@@ -259,8 +273,10 @@ const View = {
                 event.preventDefault();
                 const username = commentForm.elements.username;
                 const body = commentForm.elements.body;
+
                 const notifactionEmptyUser = document.querySelector('.notification-empty-username');
                 const notifactionEmptyBody = document.querySelector('.notification-empty-body');
+
                 let isValid = true;
 
                 if (!Utils.isFieldEmpty(username.value)) {
@@ -273,10 +289,13 @@ const View = {
                     isValid = false;
                 }
 
+                /* makes sure all error notifications are shown if none of the required 
+                fields are filled in on submit */
                 if (!isValid) {
                     return;
                 }
 
+                // in order to isolate Forms from Api onPostPlaylistComment is used as callback
                 onPostPlaylistComment(playlist, body, username, commentSection, onCommentDelete);
 
                 notifactionEmptyUser.classList.add('hidden');
@@ -285,6 +304,8 @@ const View = {
                 body.value = '';
             });
 
+            /* if playlist is missing tracks the 'tablehead' in tracklist is hidden and user 
+            gets a message */
             if (playlist.tracks.length === 0) {
                 const playlistTrackHead = playlistItem.querySelector('.playlist-track-head');
                 playlistTrackHead.classList.add('hidden');
@@ -328,6 +349,7 @@ const View = {
         const viewElement = document.getElementById(currentView);
         viewElement.classList.remove('hidden');
 
+        // adds styling on nav-/tablink when page is active
         Array.from(document.querySelectorAll(`[data-view]`)).forEach(viewLink => {
             viewLink.classList.remove('underline');
             viewLink.classList.remove('bg-grey-light');
@@ -351,6 +373,7 @@ const View = {
                 const topTenPLaylistsItemTitle = topTenPLaylistsItem.querySelector('.top-ten-playlist-title');
                 topTenPLaylistsItemTitle.innerHTML = playlist.title;
 
+                // links to all-playlist view and scrolls to the scrollpostion for playlist
                 topTenPLaylistsItemTitle.addEventListener('click', () => {
                     this.switchView('all-playlists');
 
@@ -429,12 +452,15 @@ const View = {
             playlistCoverSearch.src = playlist.coverImage;
             playlistCoverSearch.alt = `Playlist imagecover for ${playlist.title}`;
 
+            /* if user don't include a playlist coverimage and submits a invalid image src
+            a placeholder image is set */
             playlistCoverSearch.onerror = () => {
                 playlistCoverSearch.onerror = undefined;
                 playlistCoverSearch.src = 'images/144__headphone.svg';
                 playlistCoverSearch.alt = 'no image was uploaded, fallback image of user icon is in use';
             }
 
+            // links to all-playlist view and scrolls to the scrollpostion for playlist
             playlistItemInSearchResult.addEventListener('click', () => {
                 View.switchView('all-playlists');
 
@@ -457,6 +483,7 @@ const View = {
         listAllPaylistsInSearch.forEach(playlistItemInSearchResult => playlistContainerInSearch.appendChild(playlistItemInSearchResult));
 
     },
+    // returns all searchsections inside searchView
     getSearchResultsContainers() {
         return {
             searchArtistContainer: document.getElementById('search-artist-container'),
@@ -515,10 +542,12 @@ const View = {
         return View._artistSelect;
     },
     createArtistSelect(artists) {
+        // creates a choices.js instance
         const artistSelect = new Choices('#artist-select', {
             position: 'bottom'
         });
 
+        // creates <option>s containing all artists from Api
         const choices = artists.map(artist => {
             return {
                 value: artist._id, label: `<p class="text-lg">${artist.name}</p>`,
@@ -528,6 +557,7 @@ const View = {
             }
         });
 
+        // placing the <option>s inside of artistSelect
         artistSelect.setChoices(choices, 'value', 'label', true);
         View._artistSelect = artistSelect;
     },
@@ -535,16 +565,19 @@ const View = {
         return View._albumSelect;
     },
     createAlbumSelect(albums) {
+        // creates a choices.js instance
         const albumSelect = new Choices('#album-select', {
             position: 'bottom'
         });
 
+        // creates <option>s containing all albums from Api
         const choices = albums.map(album => {
             return {
                 value: album._id, label: `<p class="text-lg">${album.title}</p>`
             }
         });
 
+        // placing the <option>s inside of artistSelect
         albumSelect.setChoices(choices, 'value', 'label', true);
         View._albumSelect = albumSelect;
     },
@@ -552,10 +585,13 @@ const View = {
         return View._trackArtistSelect;
     },
     createTrackArtistSelect(artists) {
+        // creates a choices.js instance
         const trackArtistSelect = new Choices('#track-artist-select', {
             position: 'bottom'
         });
 
+        /* creates <option>s containing all artists from Api but only matching artist(s)
+        to the album the user selects */
         View.getAlbumSelect().passedElement.addEventListener('choice', event => {
             const albumId = event.detail.choice.value;
 
@@ -572,6 +608,7 @@ const View = {
             trackArtistSelect.enable();
         });
 
+        // creates <option>s containing all artists from Api
         const choices = artists.map(artist => {
             return {
                 value: artist._id, label: `<p class="text-lg">${artist.name}</p>`,
@@ -581,6 +618,7 @@ const View = {
             }
         });
 
+        // placing the <option>s inside of the selects
         trackArtistSelect.setChoices(choices, 'value', 'label', true)
         trackArtistSelect.disable();
         View._trackArtistSelect = trackArtistSelect;
@@ -590,10 +628,12 @@ const View = {
         return View._playlistTrackSelect;
     },
     createPlaylistTrackSelect(tracks) {
+        // creates a choices.js instance
         const playlistTrackSelect = new Choices('#playlist-track-select', {
             position: 'bottom'
         });
 
+        // creates <option>s containing all tracks from Api
         const choices = tracks.map(track => {
             return {
                 value: track._id,
@@ -602,6 +642,7 @@ const View = {
             }
         });
 
+        // placing the <option>s inside of playlistTrackSelect
         playlistTrackSelect.setChoices(choices, 'value', 'label', true);
         View._playlistTrackSelect = playlistTrackSelect;
     }

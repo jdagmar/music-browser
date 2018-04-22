@@ -13,6 +13,7 @@ const Forms = {
             const searchField = document.getElementById('search-field');
             const searchWord = searchField.value.trim();
 
+            // if searchfield is empty on submit the function won't run
             if (!searchWord) {
                 return;
             }
@@ -23,6 +24,8 @@ const Forms = {
         });
     },
     createArtistForm(onArtistAdd) {
+        /* selects genderselect in add-artist form and makes it a 
+        choices.js instance */
         const addArtistForm = document.getElementById('add-artist-form');
         const genderChoices = new Choices('#artist-gender', {
             searchEnabled: false
@@ -53,12 +56,15 @@ const Forms = {
                 isValid = false;
             }
 
+            /* makes sure all error notifications are shown if none of the required 
+            fields are filled in on submit */
             if (!isValid) {
                 return;
             }
 
+            // in order to isolate Forms from Api onArtistAdd is used as callback
             onArtistAdd({
-                name: name.value, born: born.value, genres: genres.value, gendr: gender.value,
+                name: name.value, born: born.value, genres: genres.value, gender: gender.value,
                 countryBorn: countryBorn.value, spotifyUrl: spotifyURL.value, artistImage: artistImage.value
             });
 
@@ -74,6 +80,7 @@ const Forms = {
         });
     },
     createAlbumForm(artists, onAlbumAdd) {
+        // creates a choices.js select with all artists in Api
         View.createArtistSelect(artists);
         const addAlbumForm = document.getElementById('add-album-form');
 
@@ -101,10 +108,13 @@ const Forms = {
                 isValid = false;
             }
 
+            /* makes sure all error notifications are shown if none of the required 
+            fields are filled in on submit */
             if (!isValid) {
                 return;
             }
 
+            // in order to isolate Forms from Api onAlbumAdd is used as callback
             onAlbumAdd({
                 title: title.value, artist: artists, releaseDate: releaseDate.value, genre: genres.value,
                 spotifyURL: spotifyURL.value, coverImage: coverImage.value
@@ -121,6 +131,7 @@ const Forms = {
         });
     },
     createTrackForm(albums, artists, onTrackAdd) {
+        // creates choices.js selects with all artists with matching albums in API
         View.createAlbumSelect(albums);
         View.createTrackArtistSelect(artists);
         const addTrackForm = document.getElementById('add-track-form');
@@ -156,10 +167,13 @@ const Forms = {
                 isValid = false;
             }
 
+            /* makes sure all error notifications are shown if none of the required 
+            fields are filled in on submit */
             if (!isValid) {
                 return;
             }
 
+            // in order to isolate Forms from Api onTrackAdd is used as callback
             onTrackAdd({
                 title: title.value, artists: artists, album: album, genres: genres.value,
                 coverImage: coverImage.value, spotifyURL: spotifyURL.value, youtubeURL: youtubeURL.value
@@ -179,6 +193,7 @@ const Forms = {
         });
     },
     createPlaylistForm(tracks, onPlaylistAdd) {
+        // creates a choices.js select with all tracks with matching artists in API
         View.createPlaylistTrackSelect(tracks);
         const addPlaylistForm = document.getElementById('add-playlist-form');
 
@@ -205,10 +220,13 @@ const Forms = {
                 isValid = false;
             }
 
+            /* makes sure all error notifications are shown if none of the required 
+            fields are filled in on submit */
             if (!isValid) {
                 return;
             }
 
+            // in order to isolate Forms from Api onPlaylistAdd is used as callback
             onPlaylistAdd({
                 title: title.value, tracks: tracks, genres: genres.value, coverImage: coverImage.value,
                 createdBy: createdBy.value

@@ -3,10 +3,15 @@ const Api = {
     getAlbums: () => Api.get('albums'),
     getTracks: () => Api.get('tracks'),
     getPlaylists: () => Api.get('playlists').then(playlists => {
+
+        // playlists are matched with comments
         const commentPromises = playlists.map(playlist => {
             return Api.getCommentsByPlaylistId(playlist._id);
         });
 
+        /* playlist comments loads and then the full playlist 
+        is displayed to avoid having one loadingspinner for playlist content 
+        and then another one for the commentsection */
         return Promise.all(commentPromises).then(playlistComments => {
             return playlists.map((playlist, index) => {
                 playlist.comments = playlistComments[index];
@@ -72,13 +77,18 @@ const Api = {
             Api.searchByGenre('playlists', searchWord),
             Api.searchByPlaylistByUser(searchWord),
         ]).then(result => {
+            /* the searchfunctions may give the same results, ie if user searches for ABBA and 
+            there is a playlist called something containing ABBA and the playlists creator
+            has a name containing ABBA we will get 2 identical playlists results, but all
+            duplicates are filtered out here */
             const titleResults = result[0];
             const genreResults = result[1].filter(genreResult => titleResults.find(titleResult =>
                 titleResult._id === genreResult._id));
             const userResults = result[2].filter(userResult => {
                 const genreMatches = genreResults.find(genreResult => genreResult._id === userResult._id);
                 const titleMatches = titleResults.find(titleResult => titleResult._id === userResult._id);
-
+            
+                // returns true if playlistId isn't found in either genresResults or titleResults
                 return !(genreMatches || titleMatches);
             });
 
@@ -251,6 +261,7 @@ voteOnAlbum: (id, vote) => Api.vote('albums', id, vote),
             return {};
         });
 },
+// converts response to JSON if fetch was successfull
 responseToJson(responsePromise) {
     return responsePromise
         .then(response => {

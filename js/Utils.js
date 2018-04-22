@@ -7,6 +7,7 @@ const Utils = {
         return averageRating;
     },
     compareAverageRating(a, b) {
+        // sorts out the highest ratest album/track/playlist
         const aRating = Utils.getAverageRating(a);
         const bRating = Utils.getAverageRating(b);
 
@@ -25,12 +26,14 @@ const Utils = {
         return true;
     },
     isDateValid(date) {
+        // checks if date is formatted as YYYY-MM-DD
         if (date && !/^[0-9]{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/.test(date)) {
             return false;
         }
         return true;
     },
     isSpotifyUrlValid(url){
+        // checks if url is a url to spotify
         if(/^(spotify:|https:\/\/[a-z]+\.spotify\.com\/)/.test(url)){
             return true;
         }
