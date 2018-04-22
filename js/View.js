@@ -72,6 +72,16 @@ const View = {
                 <span class="self-center">${album.title}</span> 
                 <span class="self-center">Rating: ${Utils.getAverageRating(album)} / 10</span>`;
 
+            const albumSpotifyLink = albumContainer.querySelector('.album-spotify-url');
+            const albumSpotifyUrl = album.spotifyURL;
+            albumSpotifyLink.href = albumSpotifyUrl;
+
+            if (albumSpotifyUrl !== undefined && Utils.isSpotifyUrlValid(albumSpotifyUrl)) {
+                albumSpotifyLink.innerHTML =
+                    `See album on Spotify <img class="align-text-bottom"
+                        src="images/ic_library_music_black.svg"/>`;
+            };
+
             const deleteAlbumButton = albumContainer.querySelector('.delete-album');
             deleteAlbumButton.addEventListener('click', () => {
                 onAlbumDelete(album._id, albumContainer);
