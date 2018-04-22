@@ -423,40 +423,50 @@
                 <h2 id="album-section-header" class="mb-4">
                     <!-- 'artists(x)' will render here -->
                 </h2>
-                <div id="album-list" class="grid--custom grid-col-repeat-250--custom max-h-30--custom overflow-auto scrolling-touch -ml-4 -mr-4 border border-solid pl-8 p-2">
+                <div id="album-list" class="grid--custom grid-col-repeat-250--custom grid-space-1--custom max-h-30--custom overflow-auto scrolling-touch border border-solid p-2">
                     <!-- all albums from api are rendered here -->
                 </div>
             </section>
             <section class="album-template-section hidden">
-                <figure class="album-container-template m-auto w-full">
+                <figure class="album-container-template m-auto w-full flex flex-col lg:flex-row border border-solid p-2 m-4">
                     <!-- album image renders here -->
-                    <img class="album-image object-cover--custom border border-solid w-full lg:w-64 lg:h-64 m-auto" />
-                    <div class="flex justify-between flex-wrap w-64">
-                        <div class="album-image-caption self-center flex justify-between w-full leading-normal">
-                            <!-- album title renders here -->
+                    <img class="album-image object-cover--custom w-full lg:w-2/5 lg:h-48" />
+                    <div class="flex justify-between flex-wrap lg:flex-col lg:ml-4 w-full lg:w-3/5">
+                        <div class="album-image-caption leading-normal">
+                            <h3 class="album-title">
+                                <!-- album title is rendered here -->
+                            </h3>
+                            <p class="album-artists">
+                                <!-- albums artists are rendered here -->
+                            </p>
+                            <p class="album-rating">
+                                <!-- albums rating is rendered here -->
+                            </p>
+                            <a class="album-spotify-url no-underline text-black text-sm hover:underline" target="_blank">
+                                <!-- link to artist spotify is rendered here -->
+                            </a>
                         </div>
-                        <a class="album-spotify-url no-underline text-black hover:underline" target="_blank">
-                            <!-- link to artist spotify is rendered here -->
-                        </a>
-                        <button class="delete-album flex justify-between border border-solid mr-2 pr-2 pl-2 rounded-sm mb-2 mt-2 hover:border-grey-darkest">
-                            <span class="text-sm self-center">Delete album</span>
-                            <img class="w-8" src="images/007__close.svg" alt="click to delete album" />
-                        </button>
-                        <form class="album-vote-form">
-                            <select class="album-vote" name="album-rating">
-                                <option placeholder>Vote</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                            </select>
-                        </form>
+                        <div class="flex flex-row w-full lg:w-auto justify-end mt-4">
+                            <button class="delete-album flex justify-between border border-solid mr-2 pr-2 pl-2 rounded-sm hover:border-grey-darkest">
+                                <span class="text-sm self-center">Delete album</span>
+                                <img class="w-8" src="images/007__close.svg" alt="click to delete album" />
+                            </button>
+                            <form class="album-vote-form">
+                                <select class="album-vote" name="album-rating">
+                                    <option placeholder>Vote</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </form>
+                        </div>
                     </div>
                 </figure>
             </section>

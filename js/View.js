@@ -67,18 +67,22 @@ const View = {
 
             albumImage.alt = album.title;
 
-            const albumImageCaption = albumContainer.querySelector('.album-image-caption');
-            albumImageCaption.innerHTML = `
-                <span class="self-center">${album.title}</span> 
-                <span class="self-center">Rating: ${Utils.getAverageRating(album)} / 10</span>`;
+            const albumTitle = albumContainer.querySelector('.album-title');
+            albumTitle.innerHTML = album.title;
 
+            const albumArtists = albumContainer.querySelector('.album-artists');
+            albumArtists.innerHTML = album.artists.map(artist => artist.name).join(', ');
+
+            const albumRating = albumContainer.querySelector('.album-rating');
+            albumRating.innerHTML = `Rating: ${Utils.getAverageRating(album)} / 10`;
+            
             const albumSpotifyLink = albumContainer.querySelector('.album-spotify-url');
             const albumSpotifyUrl = album.spotifyURL;
             albumSpotifyLink.href = albumSpotifyUrl;
 
             if (albumSpotifyUrl !== undefined && Utils.isSpotifyUrlValid(albumSpotifyUrl)) {
                 albumSpotifyLink.innerHTML =
-                    `See album on Spotify <img class="align-text-bottom"
+                    `Open in Spotify <img class="align-text-bottom w-4"
                         src="images/ic_library_music_black.svg"/>`;
             };
 

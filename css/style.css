@@ -59,6 +59,12 @@ p, a, input, label, textarea, #artist-view-link, .choices__list--single .choices
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr))
 }
 
+@media screen and (min-width: 992px){
+    #album-list {
+        grid-template-columns: repeat(auto-fill, minmax(450px, 1fr))
+    }
+}
+
 /* loadingspinner */
 .spinner {
     margin: 20px auto;
