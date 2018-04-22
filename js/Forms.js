@@ -1,3 +1,4 @@
+'use strict';
 const Forms = {
     init(albums, artists, tracks, onSearch, onArtistAdd, onAlbumAdd, onTrackAdd, onPlaylistAdd) {
         Forms.createSearchForm(onSearch);
@@ -36,13 +37,14 @@ const Forms = {
             const name = addArtistForm.elements['artist-name'];
             const born = addArtistForm.elements['artist-birthdate'];
             const genres = addArtistForm.elements['artist-genres'];
-            const gender = addArtistForm.elements['artist-gender'];
+            const gender = genderChoices.getValue(true);
             const countryBorn = addArtistForm.elements['artist-country'];
             const spotifyURL = addArtistForm.elements['artist-spotify'];
             const artistImage = addArtistForm.elements['artist-image'];
 
             const notifactionEmptyName = document.querySelector('.notification-empty-name');
             const notifactionWrongDate = document.querySelector('.notification-wrong-date');
+            const notificationEmptyGender = document.querySelector('.notification-empty-gender');
 
             let isValid = true;
 
@@ -53,6 +55,13 @@ const Forms = {
 
             if (!Utils.isDateValid(born.value)) {
                 notifactionWrongDate.classList.remove('hidden');
+                isValid = false;
+            }
+
+            /* not possible to use isSelectEmpty or similar since placeholder value
+            gets chosen */
+            if (gender === 'Gender'){
+                notificationEmptyGender.classList.remove('hidden');
                 isValid = false;
             }
 
@@ -70,6 +79,7 @@ const Forms = {
 
             notifactionEmptyName.classList.add('hidden');
             notifactionWrongDate.classList.add('hidden');
+            notificationEmptyGender.classList.add('hidden');
             name.value = '';
             born.value = '';
             genres.value = '';

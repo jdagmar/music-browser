@@ -107,6 +107,18 @@
                             </button>
                         </div>
                     </div>
+                    <div class="notification notification-empty-gender hidden w-full">
+                        <div class="flex justify-between bg-red text-white p-2 rounded-sm m-2">
+                            <div class="flex justify-center">
+                                <img class="w-6 m-2" src="images/ic_error_outline.svg" alt="white stop sign" />
+                                <span class="self-center mr-2 text-sm">Gender is required</span>
+                            </div>
+                            <button class="hide-notification flex block ml-auto">
+                                <span class="text-white text-sm self-center">Close</span>
+                                <img class="w-8" src="images/007__close_white.svg" alt="click to close message" />
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div id="album-form-notifications" class="mb-auto mr-auto ml-auto">
@@ -396,7 +408,7 @@
                         <label class="inline-block mb-2" for="artist-genres">Genre(s) sh/e is active in</label>
                         <input id="artist-genres" name="artist-genres" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text"
                         />
-                        <label class="inline-block mb-2" for="artist-gender">Gender</label>
+                        <label class="inline-block mb-2" for="artist-gender">Gender (required)</label>
                         <select id="artist-gender" name="artist-gender">
                             <option placeholder>Gender</option>
                             <option value="female">Female</option>
