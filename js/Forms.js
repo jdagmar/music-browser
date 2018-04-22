@@ -212,7 +212,7 @@ const Forms = {
             onPlaylistAdd({
                 title: title.value, tracks: tracks, genres: genres.value, coverImage: coverImage.value,
                 createdBy: createdBy.value
-            })
+            });
 
             notificationEmptyPlaylistTitle.classList.add('hidden');
             notificationEmptyPlaylistUsername.classList.add('hidden');

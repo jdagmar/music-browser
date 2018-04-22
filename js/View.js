@@ -248,14 +248,19 @@ const View = {
                 const body = commentForm.elements.body;
                 const notifactionEmptyUser = document.querySelector('.notification-empty-username');
                 const notifactionEmptyBody = document.querySelector('.notification-empty-body');
+                let isValid = true;
 
                 if (!Utils.isFieldEmpty(username.value)) {
                     notifactionEmptyUser.classList.remove('hidden');
-                    return;
+                    isValid = false;
                 }
 
                 if (!Utils.isFieldEmpty(body.value)) {
                     notifactionEmptyBody.classList.remove('hidden');
+                    isValid = false;
+                }
+
+                if(!isValid){
                     return;
                 }
 
