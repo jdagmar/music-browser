@@ -40,8 +40,8 @@ p, a, input, label, textarea, #artist-view-link, .choices__list--single .choices
     margin-right: 3rem;
 }
 
-.mb-6--custom {
-    margin-bottom: 6rem;
+.mb-4--custom {
+    margin-bottom: 4rem;
 }
 
 .pin-b-60--custom {

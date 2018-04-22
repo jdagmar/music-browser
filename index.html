@@ -206,7 +206,7 @@
                 </div>
             </div>
         </section>
-        <div id="search-view" class="hidden m-auto">
+        <div id="search-view" class="hidden m-auto mb-4--custom">
             <h3 id="search-nothing-found-message" class="mb-4">
                 <!-- renders either 'nothing found on searchword' or 'x results on searchword' -->
             </h3>
@@ -229,7 +229,7 @@
                 <!-- lists all playlists that matches with search -->
             </div>
             <div id="playlist-container--search" class="hidden">
-                <figure class="playlist-container-template--search w-full">
+                <figure class="playlist-container-template--search w-full cursor-pointer">
                     <!-- playlist coverimage is rendered here -->
                     <img class="playlist-cover--search w-full lg:w-64 lg:h-64 object-cover border border-solid" />
                     <div>
@@ -257,29 +257,29 @@
                 </div>
             </div>
         </div>
-        <div id="main-view" class="m-auto mb-6--custom">
+        <div id="main-view" class="m-auto mb-4--custom">
             <section class="mt-4 mb-8">
                 <h2>Be a part of music browser</h2>
                 <p class="mb-4">Are you missing someone or something on the site? Anyone can add material to the site.</p>
                 <div id="form-links" class="grid--custom grid-space-1--custom grid-col-repeat-250--custom m-auto">
                     <div class="border border-solid text-center p-2 cursor-pointer hover:border-grey-darkest hover:font-semibold" data-view="all-artists"
                         data-location="artist-form-location">
-                        <img class="w-48 block m-auto" src="images/103__user.svg" alt="click to add a new artist" />
+                        <img class="w-48 h-48 block m-auto" src="images/103__user.svg" alt="click to add a new artist" />
                         <span class="text-xl">Add a new artist</span>
                     </div>
                     <div class="flex flex-col border border-solid text-center p-2 cursor-pointer hover:border-grey-darkest hover:font-semibold"
                         data-view="all-albums" data-location="album-form-location">
-                        <img class="w-32 block m-auto" src="images/ic_album_black.svg" alt="click to add a new album" />
+                        <img class="w-32 h-48 block m-auto" src="images/ic_album_black.svg" alt="click to add a new album" />
                         <span class="text-xl">Add a new album</span>
                     </div>
                     <div class="border border-solid text-center p-2 cursor-pointer hover:border-grey-darkest hover:font-semibold" data-view="all-tracks"
                         data-location="track-form-location">
-                        <img class="w-48 block m-auto" src="images/140__music.svg" alt="click to add a new track" />
+                        <img class="w-48 h-48 block m-auto" src="images/140__music.svg" alt="click to add a new track" />
                         <span class="text-xl">Add a new track</span>
                     </div>
                     <div class="border border-solid text-center p-2 cursor-pointer hover:border-grey-darkest hover:font-semibold" data-view="all-playlists"
                         data-location="playlist-form-location">
-                        <img class="w-48 block m-auto" src="images/144__headphone.svg" alt="click to add a new playlist" />
+                        <img class="w-48 h-48 block m-auto" src="images/144__headphone.svg" alt="click to add a new playlist" />
                         <span class="text-xl">Add a new playlist</span>
                     </div>
                 </div>
@@ -357,23 +357,25 @@
                 </div>
             </section>
         </div>
-        <div id="all-artists" class="hidden m-auto mb-6--custom">
+        <div id="all-artists" class="hidden m-auto mb-4--custom">
             <section>
                 <h2 id="artist-section-header" class="mb-4">
                     <!-- artist(x) will render here -->
                 </h2>
-                <div id="artist-list" class="grid--custom grid-col-repeat-250--custom max-h-30--custom overflow-auto scrolling-touch -ml-4 -mr-4 border border-solid pl-8 p-2">
+                <div id="artist-list" class="grid--custom grid-col-repeat-250--custom max-h-30--custom overflow-auto scrolling-touch -ml-4 -mr-4 border border-solid p-2">
                     <!-- all artists from api are rendered here -->
                 </div>
             </section>
             <section class="artist-template-section hidden">
-                <figure class="artist-container-template inline-block m-auto w-full h-full">
-                    <!-- artist image renders here -->
-                    <img class="artist-image object-cover--custom border border-solid w-full lg:w-64 lg:h-64" />
-                    <figcaption class="artist-image-caption">
-                        <!-- artist name renders here -->
-                    </figcaption>
-                    <div class="flex justify-between w-full lg:w-64">
+                <div class="artist-container-template inline-block m-auto w-full h-full">
+                    <figure class="m-auto lg:mb-6 lg:w-64 lg:h-64">
+                        <!-- artist image renders here -->
+                        <img class="artist-image border border-solid object-cover--custom w-full h-full" />
+                        <figcaption class="artist-image-caption">
+                            <!-- artist name renders here -->
+                        </figcaption>
+                    </figure>
+                    <div class="flex justify-between lg:m-4 lg:w-64">
                         <button class="delete-artist flex justify-between border border-solid mr-2 pr-2 pl-2 rounded-sm mb-2 mt-2 hover:border-grey-darkest">
                             <span class="text-sm self-center">Delete artist</span>
                             <img class="w-8" src="images/007__close.svg" alt="click to delete artist" />
@@ -382,7 +384,7 @@
                             <!-- link to artist spotify is rendered here -->
                         </a>
                     </div>
-                </figure>
+                </div>
             </section>
             <section class="flex mt-8">
                 <div id="artist-form-location" class="w-full lg:w-1/2">
@@ -418,7 +420,7 @@
                 </div>
             </section>
         </div>
-        <div id="all-albums" class="hidden m-auto mb-6--custom">
+        <div id="all-albums" class="hidden m-auto mb-4--custom">
             <section>
                 <h2 id="album-section-header" class="mb-4">
                     <!-- 'artists(x)' will render here -->
@@ -428,11 +430,13 @@
                 </div>
             </section>
             <section class="album-template-section hidden">
-                <figure class="album-container-template m-auto w-full flex flex-col lg:flex-row border border-solid p-2 m-4">
-                    <!-- album image renders here -->
-                    <img class="album-image object-cover--custom w-full lg:w-2/5 lg:h-48" />
+                <div class="album-container-template m-auto w-full flex flex-col lg:flex-row border border-solid p-2 m-4">
+                    <figure class="w-full h-full lg:w-2/5 lg:h-48">
+                        <!-- album image renders here -->
+                        <img class="album-image object-cover--custom w-full h-full" />
+                    </figure>
                     <div class="flex justify-between flex-wrap lg:flex-col lg:ml-4 w-full lg:w-3/5">
-                        <div class="album-image-caption leading-normal">
+                        <div class="leading-normal">
                             <h3 class="album-title">
                                 <!-- album title is rendered here -->
                             </h3>
@@ -468,7 +472,7 @@
                             </form>
                         </div>
                     </div>
-                </figure>
+                </div>
             </section>
             <section class="flex mt-8">
                 <div id="album-form-location" class="w-full lg:w-1/2">
@@ -498,7 +502,7 @@
             </section>
         </div>
 
-        <div id="all-tracks" class="hidden m-auto mb-6--custom">
+        <div id="all-tracks" class="hidden m-auto mb-4--custom">
             <section>
                 <h2 id="track-section-header" class="mb-4"></h2>
                 <div class="border border-solid p-4">
@@ -528,7 +532,7 @@
                         <img class="w-8" src="images/004__arrow_down.svg" />
                     </button>
                     <div class="more-content pt-2 pb-2 hidden lg:flex w-full md:w-1/6">
-                        <div class="flex justify-between">
+                        <div class="flex">
                             <button class="delete-track flex justify-between border border-solid rounded-sm pr-2 pl-2 mr-2 hover:border-grey-darkest">
                                 <span class="self-center">Delete</span>
                                 <img class="w-8 mr-2" src="images/007__close.svg" alt="click to delete track" />
@@ -580,7 +584,7 @@
                 </div>
             </section>
         </div>
-        <div id="all-playlists" class="hidden m-auto mb-6--custom">
+        <div id="all-playlists" class="hidden m-auto mb-4--custom">
             <section>
                 <h2 id="playlist-section-header" class="mb-4">
                     <!-- playlists (number of playlists) are rendered here -->
@@ -645,7 +649,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="playlist-track-head">
+                        <div class="playlist-track-head mt-4">
                             <div class="flex justify-between m-2 mb-0">
                                 <span class="text-lg font-semibold w-1/2">Title</span>
                                 <span class="text-lg font-semibold w-1/2">Artist</span>
