@@ -257,23 +257,21 @@ const Api = {
             .catch(Api.errorHandler)
     },
     errorHandler(response) {
-        const failedLoadingMsg = document.getElementById('failed-loading-msg');
-        failedLoadingMsg.classList.remove('hidden');
+        const notificationGlobalFail = document.querySelector('.notification-global-fail');
+        notificationGlobalFail.classList.remove('hidden');
 
-        const closeFailMsgButton = document.getElementById('close-fail-msg');
-        closeFailMsgButton.addEventListener('click', () => {
-            failedLoadingMsg.classList.add('hidden');
-        });
+        setTimeout(() => {
+            notificationGlobalFail.classList.add('hidden');
+        }, 3000);
 
         return Promise.reject(respone);
     },
     successHandler() {
-        const successAddMsg = document.getElementById('add-success-msg');
-        successAddMsg.classList.remove('hidden');
+        const notificationGlobalSuccess = document.querySelector('.notification-global-success');
+        notificationGlobalSuccess.classList.remove('hidden');
 
-        const closeSuccessMsgButton = document.getElementById('close-success-msg');
-        closeSuccessMsgButton.addEventListener('click', () => {
-            successAddMsg.classList.add('hidden');
-        });
+        setTimeout(() => {
+            notificationGlobalSuccess.classList.add('hidden');
+        }, 3000);
     }
 }
