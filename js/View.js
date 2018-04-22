@@ -28,6 +28,16 @@ const View = {
             const artistImageCaption = artistContainer.querySelector('.artist-image-caption');
             artistImageCaption.innerHTML = artist.name;
 
+            const artistSpotifyLink = artistContainer.querySelector('.artist-spotify-url');
+            const artistSpotifyUrl = artist.spotifyURL;
+            artistSpotifyLink.href = artistSpotifyUrl;
+
+            if (artistSpotifyUrl !== undefined && Utils.isSpotifyUrlValid(artistSpotifyUrl)) {
+                artistSpotifyLink.innerHTML =
+                    `See artist on Spotify <img class="align-text-bottom"
+                    src="images/ic_library_music_black.svg"/>`;
+            };
+
             const deleteArtistButton = artistContainer.querySelector('.delete-artist');
             deleteArtistButton.addEventListener('click', () => {
                 onArtistDelete(artist._id, artistContainer);
@@ -260,7 +270,7 @@ const View = {
                     isValid = false;
                 }
 
-                if(!isValid){
+                if (!isValid) {
                     return;
                 }
 

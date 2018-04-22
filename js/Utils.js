@@ -29,5 +29,11 @@ const Utils = {
             return false;
         }
         return true;
+    },
+    isSpotifyUrlValid(url){
+        if(/^(spotify:|https:\/\/[a-z]+\.spotify\.com\/)/.test(url)){
+            return true;
+        }
+        return false;
     }
 }
