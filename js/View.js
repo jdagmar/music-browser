@@ -34,7 +34,7 @@ const View = {
 
             if (artistSpotifyUrl !== undefined && Utils.isSpotifyUrlValid(artistSpotifyUrl)) {
                 artistSpotifyLink.innerHTML =
-                    `See artist on Spotify <img class="align-text-bottom"
+                    `Open in Spotify <img class="align-text-bottom w-4"
                     src="images/ic_library_music_black.svg"/>`;
             };
 

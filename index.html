@@ -28,8 +28,10 @@
         </div>
         <form id="search-form" class="w-full lg:w-auto inline-block h-8 flex m-auto lg:m-0" role="search">
             <label for="search-field" hidden>search for a artist, track, album or playlist</label>
-            <input id="search-field" class="w-full lg:w-auto border border-r-0 border-solid h-8 pl-2 appearance-none rounded-none" type="search" placeholder="search" />
-            <input class="border border-l-0 w-10 appearance-none rounded-none" type="image" src="images/095__search.svg" alt="click to run search" />
+            <input id="search-field" class="w-full lg:w-auto border border-r-0 border-solid h-8 pl-2 appearance-none rounded-none" type="search"
+                placeholder="search" />
+            <input class="border border-l-0 w-10 appearance-none rounded-none" type="image" src="images/095__search.svg" alt="click to run search"
+            />
         </form>
     </header>
 
@@ -260,19 +262,23 @@
                 <h2>Be a part of music browser</h2>
                 <p class="mb-4">Are you missing someone or something on the site? Anyone can add material to the site.</p>
                 <div id="form-links" class="grid--custom grid-space-1--custom grid-col-repeat-250--custom m-auto">
-                    <div class="border border-solid text-center p-2 cursor-pointer hover:border-grey-darkest hover:font-semibold" data-view="all-artists" data-location="artist-form-location">
+                    <div class="border border-solid text-center p-2 cursor-pointer hover:border-grey-darkest hover:font-semibold" data-view="all-artists"
+                        data-location="artist-form-location">
                         <img class="w-48 block m-auto" src="images/103__user.svg" alt="click to add a new artist" />
                         <span class="text-xl">Add a new artist</span>
                     </div>
-                    <div class="flex flex-col border border-solid text-center p-2 cursor-pointer hover:border-grey-darkest hover:font-semibold" data-view="all-albums" data-location="album-form-location">
+                    <div class="flex flex-col border border-solid text-center p-2 cursor-pointer hover:border-grey-darkest hover:font-semibold"
+                        data-view="all-albums" data-location="album-form-location">
                         <img class="w-32 block m-auto" src="images/ic_album_black.svg" alt="click to add a new album" />
                         <span class="text-xl">Add a new album</span>
                     </div>
-                    <div class="border border-solid text-center p-2 cursor-pointer hover:border-grey-darkest hover:font-semibold" data-view="all-tracks" data-location="track-form-location">
+                    <div class="border border-solid text-center p-2 cursor-pointer hover:border-grey-darkest hover:font-semibold" data-view="all-tracks"
+                        data-location="track-form-location">
                         <img class="w-48 block m-auto" src="images/140__music.svg" alt="click to add a new track" />
                         <span class="text-xl">Add a new track</span>
                     </div>
-                    <div class="border border-solid text-center p-2 cursor-pointer hover:border-grey-darkest hover:font-semibold" data-view="all-playlists" data-location="playlist-form-location">
+                    <div class="border border-solid text-center p-2 cursor-pointer hover:border-grey-darkest hover:font-semibold" data-view="all-playlists"
+                        data-location="playlist-form-location">
                         <img class="w-48 block m-auto" src="images/144__headphone.svg" alt="click to add a new playlist" />
                         <span class="text-xl">Add a new playlist</span>
                     </div>
@@ -367,13 +373,15 @@
                     <figcaption class="artist-image-caption">
                         <!-- artist name renders here -->
                     </figcaption>
-                    <a class="artist-spotify-url no-underline text-black hover:underline" target="_blank">
-                        <!-- link to artist spotify is rendered here -->
-                    </a>
-                    <button class="delete-artist flex justify-between border border-solid mr-2 pr-2 pl-2 rounded-sm mb-2 mt-2 hover:border-grey-darkest">
-                        <span class="text-sm self-center">Delete artist</span>
-                        <img class="w-8" src="images/007__close.svg" alt="click to delete artist" />
-                    </button>
+                    <div class="flex justify-between w-full lg:w-64">
+                        <button class="delete-artist flex justify-between border border-solid mr-2 pr-2 pl-2 rounded-sm mb-2 mt-2 hover:border-grey-darkest">
+                            <span class="text-sm self-center">Delete artist</span>
+                            <img class="w-8" src="images/007__close.svg" alt="click to delete artist" />
+                        </button>
+                        <a class="artist-spotify-url no-underline text-black text-sm self-center hover:underline" target="_blank">
+                            <!-- link to artist spotify is rendered here -->
+                        </a>
+                    </div>
                 </figure>
             </section>
             <section class="flex mt-8">
@@ -383,9 +391,11 @@
                         <label class="inline-block mb-2" for="artist-name">Full artist- or bandname (required)</label>
                         <input id="artist-name" name="artist-name" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text" />
                         <label class="inline-block mb-2" for="artist-birthdate">Birthdate (YYYY-MM-DD)</label>
-                        <input id="artist-birthdate" name="artist-birthdate" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text"/>
+                        <input id="artist-birthdate" name="artist-birthdate" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text"
+                        />
                         <label class="inline-block mb-2" for="artist-genres">Genre(s) sh/e is active in</label>
-                        <input id="artist-genres" name="artist-genres" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text"/>
+                        <input id="artist-genres" name="artist-genres" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text"
+                        />
                         <label class="inline-block mb-2" for="artist-gender">Gender</label>
                         <select id="artist-gender" name="artist-gender">
                             <option placeholder>Gender</option>
@@ -394,12 +404,16 @@
                             <option value="other">Other</option>
                         </select>
                         <label class="inline-block mb-2" for="artist-country">Country of origin</label>
-                        <input id="artist-country" name="artist-country" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text"/>
+                        <input id="artist-country" name="artist-country" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text"
+                        />
                         <label class="inline-block mb-2" for="artist-spotify">Url to artist spotify</label>
-                        <input id="artist-spotify" name="artist-spotify" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text"/>
+                        <input id="artist-spotify" name="artist-spotify" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text"
+                        />
                         <label class="inline-block mb-2" for="artist-image">Url to artist image</label>
-                        <input id="artist-image" name="artist-image" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text"/>
-                        <input class="border border-solid block w-full mb-4 h-10 rounded hover:border-grey-darkest" type="submit" value="Create artist" />
+                        <input id="artist-image" name="artist-image" class="border border-solid block w-full mb-4 h-10 rounded pl-2" type="text"
+                        />
+                        <input class="border border-solid block w-full mb-4 h-10 rounded hover:border-grey-darkest" type="submit" value="Create artist"
+                        />
                     </form>
                 </div>
             </section>
@@ -457,14 +471,18 @@
                             <!-- all artists from api is rendered as options here -->
                         </select>
                         <label class="inline-block mb-2" for="album-genres">Genre(s)</label>
-                        <input id="album-genres" name="album-genres" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text"/>
+                        <input id="album-genres" name="album-genres" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text"
+                        />
                         <label class="inline-block mb-2" for="album-release">Release year (YYYY)</label>
-                        <input id="album-release" name="album-release" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text"/>
+                        <input id="album-release" name="album-release" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text"
+                        />
                         <label class="inline-block mb-2" for="album-spotify">Spotify-url to album</label>
-                        <input id="album-spotify" name="album-spotify" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text"/>
+                        <input id="album-spotify" name="album-spotify" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text"
+                        />
                         <label class="inline-block mb-2" for="album-cover">Url to coverimage</label>
                         <input id="album-cover" name="album-cover" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text" />
-                        <input class="border border-solid block w-full mb-2 h-10 rounded hover:border-grey-darkest" type="submit" value="Create album" />
+                        <input class="border border-solid block w-full mb-2 h-10 rounded hover:border-grey-darkest" type="submit" value="Create album"
+                        />
                     </form>
                 </div>
             </section>
@@ -546,7 +564,8 @@
                         <input id="track-spotify" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text" />
                         <label class="inline-block mb-2" for="track-youtube">Youtube-url to track</label>
                         <input id="track-youtube" class="border border-solid block w-full mb-2 h-10 rounded pl-2" type="text" />
-                        <input class="border border-solid block w-full mb-2 h-10 rounded hover:border-grey-darkest" type="submit" value="Create track" />
+                        <input class="border border-solid block w-full mb-2 h-10 rounded hover:border-grey-darkest" type="submit" value="Create track"
+                        />
                     </form>
                 </div>
             </section>
